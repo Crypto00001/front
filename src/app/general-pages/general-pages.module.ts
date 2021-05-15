@@ -8,7 +8,7 @@ const routes : Routes = [
   { path: 'blank-page', component: BlankPageComponent }
 ]
 
-@NgModule({
+@NgModule({ 
   declarations: [BlankPageComponent],
   imports: [
     CommonModule,
