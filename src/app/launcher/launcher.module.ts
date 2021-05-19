@@ -11,11 +11,14 @@ import { FooterComponent } from '../shared/footer/footer.component';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { SpinnerComponent } from '../shared/spinner/spinner.component';
+import { LauncherRoutingModule } from './launcher-routing.module';
+import { LauncherComponent } from './launcher.component';
 
 
 
 @NgModule({
   declarations: [
+    LauncherComponent,
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
@@ -27,6 +30,7 @@ import { SpinnerComponent } from '../shared/spinner/spinner.component';
   ],
   imports: [
     CommonModule,
+    LauncherRoutingModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,

@@ -12,19 +12,18 @@ import { LauncherComponent } from './launcher/launcher.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LauncherModule } from './launcher/launcher.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    LauncherComponent,
-    NavbarComponent,
-    SidebarComponent,
-    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    LauncherRoutingModule,
+    AppRoutingModule,
+    LauncherModule,
     NgbModule,
     BrowserAnimationsModule,
     FormsModule,
