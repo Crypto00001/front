@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,12 +14,11 @@ export class DashboardComponent implements OnInit {
     document.querySelector('body').classList.toggle('removeProbanner');
   }
 
-  constructor() { 
+  constructor( private router: Router) { 
     debugger
   }
 
   ngOnInit() {
-    debugger
   }
 
   date: Date = new Date();

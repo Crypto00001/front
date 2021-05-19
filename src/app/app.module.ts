@@ -12,23 +12,23 @@ import { LauncherComponent } from './launcher/launcher.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { AppRoutingModule } from './app-routing.module';
 import { LauncherModule } from './launcher/launcher.module';
-import { routing } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     HomeComponent,
+    DashboardComponent,
     LauncherComponent,
     NavbarComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
-    routing,
     BrowserModule,
+    AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
     FormsModule,
