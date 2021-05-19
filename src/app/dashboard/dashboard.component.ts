@@ -13,7 +13,9 @@ export class DashboardComponent implements OnInit {
     document.querySelector('body').classList.toggle('removeProbanner');
   }
 
-  constructor() { }
+  constructor() { 
+    debugger
+  }
 
   ngOnInit() {
     debugger

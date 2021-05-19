@@ -18,11 +18,6 @@ import { LauncherComponent } from './launcher.component';
 
 @NgModule({
   declarations: [
-    LauncherComponent,
-    NavbarComponent,
-    SidebarComponent,
-    FooterComponent,
-    DashboardComponent,
     TodoListComponent,
     TodoComponent,
     SpinnerComponent,
