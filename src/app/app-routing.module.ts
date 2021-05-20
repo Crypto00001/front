@@ -1,69 +1,69 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { AppComponent } from "./app.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { HomeComponent } from "./home/home.component";
-import { LauncherComponent } from "./backOffice/backOffice.component";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { BackOfficeComponent } from './backOffice/backOffice.component';
+import { DashboardComponent } from './backOffice/dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: AppComponent,
-    children: [{ path: "", component: HomeComponent, pathMatch: "full" }],
+    children: [{ path: '', component: HomeComponent, pathMatch: 'full' }],
   },
   {
-    path: "",
-    component: LauncherComponent,
+    path: '',
+    component: BackOfficeComponent,
     children: [
-      { path: "dashboard", component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent },
       {
-        path: "basic-ui",
+        path: 'basic-ui',
         loadChildren: () =>
-          import("./basic-ui/basic-ui.module").then((m) => m.BasicUiModule),
+          import('./backOffice/basic-ui/basic-ui.module').then((m) => m.BasicUiModule),
       },
       {
-        path: "charts",
+        path: 'charts',
         loadChildren: () =>
-          import("./charts/charts.module").then((m) => m.ChartsDemoModule),
+          import('./backOffice/charts/charts.module').then((m) => m.ChartsDemoModule),
       },
       {
-        path: "forms",
+        path: 'forms',
         loadChildren: () =>
-          import("./forms/form.module").then((m) => m.FormModule),
+          import('./backOffice/forms/form.module').then((m) => m.FormModule),
       },
       {
-        path: "tables",
+        path: 'tables',
         loadChildren: () =>
-          import("./tables/tables.module").then((m) => m.TablesModule),
+          import('./backOffice/tables/tables.module').then((m) => m.TablesModule),
       },
       {
-        path: "icons",
+        path: 'icons',
         loadChildren: () =>
-          import("./icons/icons.module").then((m) => m.IconsModule),
+          import('./backOffice/icons/icons.module').then((m) => m.IconsModule),
       },
       {
-        path: "general-pages",
+        path: 'general-pages',
         loadChildren: () =>
-          import("./general-pages/general-pages.module").then(
+          import('./backOffice/general-pages/general-pages.module').then(
             (m) => m.GeneralPagesModule
           ),
       },
       {
-        path: "apps",
+        path: 'apps',
         loadChildren: () =>
-          import("./apps/apps.module").then((m) => m.AppsModule),
+          import('./backOffice/apps/apps.module').then((m) => m.AppsModule),
       },
       {
-        path: "user-pages",
+        path: 'user-pages',
         loadChildren: () =>
-          import("./user-pages/user-pages.module").then(
+          import('./user-pages/user-pages.module').then(
             (m) => m.UserPagesModule
           ),
       },
       {
-        path: "error-pages",
+        path: 'error-pages',
         loadChildren: () =>
-          import("./error-pages/error-pages.module").then(
+          import('./backOffice/error-pages/error-pages.module').then(
             (m) => m.ErrorPagesModule
           ),
       },

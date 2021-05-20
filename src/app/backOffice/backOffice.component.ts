@@ -6,7 +6,7 @@ import { NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStar
   templateUrl: './backOffice.component.html',
   styleUrls: ['./backOffice.component.scss']
 })
-export class LauncherComponent implements OnInit {
+export class BackOfficeComponent implements OnInit {
 
   title = 'demo1';
 
