@@ -3,8 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HomeComponent } from "./home/home.component";
-import { LauncherComponent } from "./launcher/launcher.component";
-import { LauncherModule } from "./launcher/launcher.module";
+import { LauncherComponent } from "./backOffice/backOffice.component";
 
 const routes: Routes = [
   {
@@ -73,7 +72,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), LauncherModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

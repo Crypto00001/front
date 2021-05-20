@@ -3,8 +3,8 @@ import { NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStar
 
 @Component({
   selector: 'app-launcher',
-  templateUrl: './launcher.component.html',
-  styleUrls: ['./launcher.component.scss']
+  templateUrl: './backOffice.component.html',
+  styleUrls: ['./backOffice.component.scss']
 })
 export class LauncherComponent implements OnInit {
 
