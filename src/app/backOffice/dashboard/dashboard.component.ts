@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
   }
 
   constructor( private router: Router) { 
-    debugger
   }
 
   ngOnInit() {

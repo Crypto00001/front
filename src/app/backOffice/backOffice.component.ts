@@ -16,7 +16,6 @@ export class BackOfficeComponent implements OnInit {
   isLoading: boolean;
 
   constructor(private router: Router) {
-    debugger
     // Removing Sidebar, Navbar, Footer for Documentation, Error and Auth pages
     router.events.forEach((event) => { 
       if(event instanceof NavigationStart) {
@@ -56,7 +55,6 @@ export class BackOfficeComponent implements OnInit {
 
 
   ngOnInit() {
-    debugger
     // Scroll to top after route change
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
