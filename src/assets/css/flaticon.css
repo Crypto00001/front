@@ -1,0 +1,37 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 27/01/2019 16:37
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+  font-style: normal;
+}
+
+.flaticon-mail:before { content: "\f100"; }
+.flaticon-phone-call:before { content: "\f101"; }
+.flaticon-location-pin:before { content: "\f102"; }
+.flaticon-clock:before { content: "\f103"; }
+.flaticon-outcoming-object:before { content: "\f104"; }
+.flaticon-check-form:before { content: "\f105"; }
+.flaticon-insurance:before { content: "\f106"; }
+.flaticon-success:before { content: "\f107"; }
+.flaticon-employee:before { content: "\f108"; }
+.flaticon-support:before { content: "\f109"; }
+.flaticon-insurance-1:before { content: "\f10a"; }
+.flaticon-life-insurance:before { content: "\f10b"; }
+.flaticon-car:before { content: "\f10c"; }
+.flaticon-money:before { content: "\f10d"; }
+.flaticon-play-arrow:before { content: "\f10e"; }
+.flaticon-insurance-2:before { content: "\f10f"; }
+.flaticon-download:before { content: "\f110"; }
+.flaticon-download-1:before { content: "\f111"; }
