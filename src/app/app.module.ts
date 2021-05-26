@@ -12,11 +12,19 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './backOffice/dashboard/dashboard.component';
 import { BackOfficeComponent } from './backOffice/backOffice.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { TermsComponent } from './terms/terms.component';
+import { FaqComponent } from './faq/faq.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    AboutUsComponent,
+    TermsComponent,
+    ContactUsComponent,
+    FaqComponent,
     DashboardComponent,
     BackOfficeComponent,
     NavbarComponent,

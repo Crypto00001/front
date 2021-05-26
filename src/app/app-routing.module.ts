@@ -1,15 +1,39 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AboutUsComponent } from './about-us/about-us.component';
 import { AppComponent } from './app.component';
 import { BackOfficeComponent } from './backOffice/backOffice.component';
 import { DashboardComponent } from './backOffice/dashboard/dashboard.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FaqComponent } from './faq/faq.component';
 import { HomeComponent } from './home/home.component';
+import { TermsComponent } from './terms/terms.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AppComponent,
     children: [{ path: '', component: HomeComponent, pathMatch: 'full' }],
+  },
+  {
+    path: 'about-us',
+    component: AppComponent,
+    children: [{ path: '', component: AboutUsComponent }],
+  },
+  {
+    path: 'terms',
+    component: AppComponent,
+    children: [{ path: '', component: TermsComponent }],
+  },
+  {
+    path: 'faq',
+    component: AppComponent,
+    children: [{ path: '', component: FaqComponent }],
+  },
+  {
+    path: 'contact-us',
+    component: AppComponent,
+    children: [{ path: '', component: ContactUsComponent }],
   },
   {
     path: '',
