@@ -1,39 +1,52 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutUsComponent } from './about-us/about-us.component';
+import { AboutUsComponent } from './site-layout/about-us/about-us.component';
 import { AppComponent } from './app.component';
 import { BackOfficeComponent } from './backOffice/backOffice.component';
 import { DashboardComponent } from './backOffice/dashboard/dashboard.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { FaqComponent } from './faq/faq.component';
-import { HomeComponent } from './home/home.component';
-import { TermsComponent } from './terms/terms.component';
+import { SiteLayoutComponent } from './site-layout/site-layout.component';
+import { LoginComponent } from './user-pages/login/login.component';
+import { RegisterComponent } from './user-pages/register/register.component';
+import { HomeComponent } from './site-layout/home/home.component';
+import { TermsComponent } from './site-layout/terms/terms.component';
+import { FaqComponent } from './site-layout/faq/faq.component';
+import { ContactUsComponent } from './site-layout/contact-us/contact-us.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
+    component: SiteLayoutComponent,
     children: [{ path: '', component: HomeComponent, pathMatch: 'full' }],
   },
   {
     path: 'about-us',
-    component: AppComponent,
+    component: SiteLayoutComponent,
     children: [{ path: '', component: AboutUsComponent }],
   },
   {
     path: 'terms',
-    component: AppComponent,
+    component: SiteLayoutComponent,
     children: [{ path: '', component: TermsComponent }],
   },
   {
     path: 'faq',
-    component: AppComponent,
+    component: SiteLayoutComponent,
     children: [{ path: '', component: FaqComponent }],
   },
   {
     path: 'contact-us',
-    component: AppComponent,
+    component: SiteLayoutComponent,
     children: [{ path: '', component: ContactUsComponent }],
+  },
+  {
+    path: 'login',
+    component: AppComponent,
+    children: [{ path: '', component: LoginComponent }],
+  },
+  {
+    path: 'register',
+    component: AppComponent,
+    children: [{ path: '', component: RegisterComponent }],
   },
   {
     path: '',
@@ -76,13 +89,6 @@ const routes: Routes = [
         path: 'apps',
         loadChildren: () =>
           import('./backOffice/apps/apps.module').then((m) => m.AppsModule),
-      },
-      {
-        path: 'user-pages',
-        loadChildren: () =>
-          import('./user-pages/user-pages.module').then(
-            (m) => m.UserPagesModule
-          ),
       },
       {
         path: 'error-pages',

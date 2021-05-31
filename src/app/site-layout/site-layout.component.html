@@ -1,0 +1,206 @@
+<header class="main-header header-style-two">
+  <div class="container-fluid">
+    <div class="outer-container clearfix">
+      <div class="top-left clearfix">
+        <div class="logo-outer">
+          <figure class="logo-box">
+            <a href="/">
+              <img src="../../assets/images/logo.png" alt="" />
+            </a>
+          </figure>
+        </div>
+        <div class="social-area"></div>
+        <div class="menu-area">
+          <nav class="main-menu navbar-expand-lg">
+            <div class="navbar-header">
+              <button
+                type="button"
+                class="navbar-toggle"
+                data-toggle="collapse"
+                data-target=".navbar-collapse"
+              >
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+            <div class="navbar-collapse collapse clearfix">
+              <ul class="navigation clearfix">
+                <li>
+                  <a  [ngStyle]="{'color': menuRoute == '' ? '#ffffff' : '#737879' }" href="/">Home</a>
+                </li>
+                <li>
+                  <a [ngStyle]="{'color': menuRoute == 'about-us' ? '#ffffff' : '#737879' }" href="/about-us">About us</a>
+                </li>
+                <li>
+                  <a [ngStyle]="{'color': menuRoute == 'terms' ? '#ffffff' : '#737879' }" href="/terms">Terms</a>
+                </li>
+                <li>
+                  <a class="smooth-menu" href="/register">register</a>
+                </li>
+                <li>
+                  <a class="smooth-menu" href="/login">Login</a>
+                </li>
+                <li>
+                  <a [ngStyle]="{'color': menuRoute == 'faq' ? '#ffffff' : '#737879' }" href="/faq">F.A.Q</a>
+                </li>
+                <li>
+                  <a [ngStyle]="{'color': menuRoute == 'contact-us' ? '#ffffff' : '#737879' }" href="/contact-us">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sticky-header">
+    <div class="container clearfix">
+      <figure class="logo-box">
+        <a href="/">
+          <img src="../../assets/images/small-logo.png" alt="" />
+        </a>
+      </figure>
+      <div class="menu-area">
+        <nav class="main-menu navbar-expand-lg">
+          <div class="navbar-header">
+            <button
+              type="button"
+              class="navbar-toggle"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+            >
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="navbar-collapse collapse clearfix">
+            <ul class="navigation clearfix">
+              <li
+                [ngClass]="{current: menuRoute == ''}">
+                <a href="/">Home</a>
+              </li>
+              <li
+                [ngClass]="{current: menuRoute == 'about-us'}">
+                <a class="smooth-menu" href="/about-us">About us</a>
+              </li>
+              <li
+                [ngClass]="{current: menuRoute == 'terms'}">
+                <a class="smooth-menu" href="/terms">Terms</a>
+              </li>
+              <li>
+                <a class="smooth-menu" href="/login">Login</a>
+              </li>
+              <li>
+                <a class="smooth-menu" href="/register">Register</a>
+              </li>
+              <li
+                [ngClass]="{current: menuRoute == 'faq'}">
+                <a class="smooth-menu" href="/faq">F.A.Q</a>
+              </li>
+              <li
+                [ngClass]="{current: menuRoute == 'contact-us'}">
+                <a class="smooth-menu" href="/contact-us">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<router-outlet></router-outlet>
+<footer class="main-footer">
+  <div class="container">
+    <div class="main-footer-content">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+          <div class="about-widget footer-widget">
+            <div class="divisor-logo">
+              <figure class="footer-logo">
+                <a href="index-2.html">
+                  <img src="../../assets/images/footer-logo.png" alt="" />
+                </a>
+              </figure>
+            </div>
+            <div class="text">
+              <p>
+                We focus on companies with proven business models that are
+                beyond the early phase stage, and therefore do not engage in
+                venture investments.
+              </p>
+              <p>
+                We evaluate the long-term potential of an investment solution
+                based on a thorough needs and market trend analysis.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+          <div class="explore-widget footer-widget">
+            <h3 class="widget-title">Explore</h3>
+            <ul class="link-list">
+              <li><a href="/about-us">The Company</a></li>
+              <li><a href="/terms">Service Terms</a></li>
+              <li>
+                <a href="/register">Create Account</a>
+              </li>
+              <li>
+                <a href="/contact-us">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+          <div class="product-widget footer-widget">
+            <h3 class="widget-title">Why us?</h3>
+            <ul class="link-list">
+              <li><a href="#">Payments all calender days</a></li>
+              <li><a href="#">DDOS Protected Servers</a></li>
+              <li><a href="#">Secure &amp; Encrypted Data</a></li>
+              <li><a href="#">24/7 Customer Support</a></li>
+              <li><a href="#">No withdrawal fee</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
+          <div class="info-widget footer-widget">
+            <h3 class="widget-title">Contact Information</h3>
+            <div class="info-box">
+              <div class="single-info">
+                <span>Address</span>
+                <div class="text">
+                  AVON, 1-5 St James Barton Roundabout, Broadmead, Bristol BS1
+                  3LT, United Kingdom
+                </div>
+              </div>
+              <div class="single-info">
+                <span>Email</span>
+                <div class="text">
+                  <a
+                    href="/cdn-cgi/l/email-protection"
+                    class="__cf_email__"
+                    data-cfemail="4d3e383d3d223f390d262c203e22232b382329632e2220"
+                    >[email&#160;protected]</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom centred">
+      <div class="copyright">
+        Copyright &copy; 2021 Kamson Fund. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+<button class="scroll-top scroll-to-target" data-target="html">
+  <span class="fa fa-arrow-up"></span>
+</button>
