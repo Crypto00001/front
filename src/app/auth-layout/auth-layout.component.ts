@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject } from '@angular/core';
+import { Inject, Renderer2 } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 @Component({
@@ -9,8 +9,9 @@ import * as $ from 'jquery';
 })
 export class AuthLayoutComponent implements OnInit {
   menuRoute = '';
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: Document,private renderer: Renderer2) {
     const cssURLs = [
+      '../../../assets/css/vendors.min.css',
       '../../../assets/css/bootstrap.min.css',
       '../../../assets/css/bootstrap-extended.min.css',
       '../../../assets/css/colors.min.css',

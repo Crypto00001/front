@@ -32,8 +32,6 @@
               "src/js"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/assets/css/style.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js"
