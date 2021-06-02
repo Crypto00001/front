@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import { BackOfficeComponent } from './backOffice/backOffice.component';
 import { DashboardComponent } from './backOffice/dashboard/dashboard.component';
 import { SiteLayoutComponent } from './site-layout/site-layout.component';
-import { LoginComponent } from './user-pages/login/login.component';
-import { RegisterComponent } from './user-pages/register/register.component';
+import { LoginComponent } from './auth-layout/login/login.component';
+import { RegisterComponent } from './auth-layout/register/register.component';
 import { HomeComponent } from './site-layout/home/home.component';
 import { TermsComponent } from './site-layout/terms/terms.component';
 import { FaqComponent } from './site-layout/faq/faq.component';
 import { ContactUsComponent } from './site-layout/contact-us/contact-us.component';
+import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 
 const routes: Routes = [
   {
@@ -40,12 +41,12 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: AppComponent,
+    component: AuthLayoutComponent,
     children: [{ path: '', component: LoginComponent }],
   },
   {
     path: 'register',
-    component: AppComponent,
+    component: AuthLayoutComponent,
     children: [{ path: '', component: RegisterComponent }],
   },
   {

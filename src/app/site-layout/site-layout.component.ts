@@ -27,6 +27,5 @@ export class SiteLayoutComponent implements OnInit {
     $.getScript('../../assets/js/SmoothScroll.js', function () {});
     $.getScript('../../assets/js/map-helper.js', function () {});
     $.getScript('../../assets/js/script.js', function () {});
-    $.getScript('../../assets/js/plan_manager.js', function () {});
   }
 }
