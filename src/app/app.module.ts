@@ -9,23 +9,25 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './backOffice/dashboard/dashboard.component';
-import { BackOfficeComponent } from './backOffice/backOffice.component';
-import { AboutUsComponent } from './site-layout/about-us/about-us.component';
-import { LoginComponent } from './auth-layout/login/login.component';
-import { RegisterComponent } from './auth-layout/register/register.component';
-import { SiteLayoutComponent } from './site-layout/site-layout.component';
-import { ContactUsComponent } from './site-layout/contact-us/contact-us.component';
-import { FaqComponent } from './site-layout/faq/faq.component';
-import { HomeComponent } from './site-layout/home/home.component';
-import { TermsComponent } from './site-layout/terms/terms.component';
-import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { AuthLayoutComponent } from './auth/auth-layout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { DashboardComponent } from './portal/dashboard/dashboard.component';
+import { AboutUsComponent } from './website/about-us/about-us.component';
+import { ContactUsComponent } from './website/contact-us/contact-us.component';
+import { FaqComponent } from './website/faq/faq.component';
+import { HomeComponent } from './website/home/home.component';
+import { TermsComponent } from './website/terms/terms.component';
+import { SiteLayoutComponent } from './website/website-layout.component';
+import { PortalLayoutComponent } from './portal/portal-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SiteLayoutComponent,
     AuthLayoutComponent,
+    ResetPasswordComponent,
     HomeComponent,
     AboutUsComponent,
     TermsComponent,
@@ -34,7 +36,7 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    BackOfficeComponent,
+    PortalLayoutComponent,
     NavbarComponent,
     SidebarComponent,
     FooterComponent,

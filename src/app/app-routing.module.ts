@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutUsComponent } from './site-layout/about-us/about-us.component';
-import { AppComponent } from './app.component';
-import { BackOfficeComponent } from './backOffice/backOffice.component';
-import { DashboardComponent } from './backOffice/dashboard/dashboard.component';
-import { SiteLayoutComponent } from './site-layout/site-layout.component';
-import { LoginComponent } from './auth-layout/login/login.component';
-import { RegisterComponent } from './auth-layout/register/register.component';
-import { HomeComponent } from './site-layout/home/home.component';
-import { TermsComponent } from './site-layout/terms/terms.component';
-import { FaqComponent } from './site-layout/faq/faq.component';
-import { ContactUsComponent } from './site-layout/contact-us/contact-us.component';
-import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
+import { AuthLayoutComponent } from './auth/auth-layout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { DashboardComponent } from './portal/dashboard/dashboard.component';
+import { PortalLayoutComponent } from './portal/portal-layout.component';
+import { AboutUsComponent } from './website/about-us/about-us.component';
+import { ContactUsComponent } from './website/contact-us/contact-us.component';
+import { FaqComponent } from './website/faq/faq.component';
+import { HomeComponent } from './website/home/home.component';
+import { TermsComponent } from './website/terms/terms.component';
+import { SiteLayoutComponent } from './website/website-layout.component';
 
 const routes: Routes = [
   {
@@ -50,51 +50,56 @@ const routes: Routes = [
     children: [{ path: '', component: RegisterComponent }],
   },
   {
+    path: 'reset-password',
+    component: AuthLayoutComponent,
+    children: [{ path: '', component: ResetPasswordComponent }],
+  },
+  {
     path: '',
-    component: BackOfficeComponent,
+    component: PortalLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
       {
         path: 'basic-ui',
         loadChildren: () =>
-          import('./backOffice/basic-ui/basic-ui.module').then((m) => m.BasicUiModule),
+          import('./portal/basic-ui/basic-ui.module').then((m) => m.BasicUiModule),
       },
       {
         path: 'charts',
         loadChildren: () =>
-          import('./backOffice/charts/charts.module').then((m) => m.ChartsDemoModule),
+          import('./portal/charts/charts.module').then((m) => m.ChartsDemoModule),
       },
       {
         path: 'forms',
         loadChildren: () =>
-          import('./backOffice/forms/form.module').then((m) => m.FormModule),
+          import('./portal/forms/form.module').then((m) => m.FormModule),
       },
       {
         path: 'tables',
         loadChildren: () =>
-          import('./backOffice/tables/tables.module').then((m) => m.TablesModule),
+          import('./portal/tables/tables.module').then((m) => m.TablesModule),
       },
       {
         path: 'icons',
         loadChildren: () =>
-          import('./backOffice/icons/icons.module').then((m) => m.IconsModule),
+          import('./portal/icons/icons.module').then((m) => m.IconsModule),
       },
       {
         path: 'general-pages',
         loadChildren: () =>
-          import('./backOffice/general-pages/general-pages.module').then(
+          import('./portal/general-pages/general-pages.module').then(
             (m) => m.GeneralPagesModule
           ),
       },
       {
         path: 'apps',
         loadChildren: () =>
-          import('./backOffice/apps/apps.module').then((m) => m.AppsModule),
+          import('./portal/apps/apps.module').then((m) => m.AppsModule),
       },
       {
         path: 'error-pages',
         loadChildren: () =>
-          import('./backOffice/error-pages/error-pages.module').then(
+          import('./portal/error-pages/error-pages.module').then(
             (m) => m.ErrorPagesModule
           ),
       },
