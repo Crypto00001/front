@@ -82,7 +82,7 @@ body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation >
 }
 body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation > li > a > span.badge {
   position : absolute;
-  right : 20px;
+  right : 30px;
 }
 body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub > a:not(.mm-next):after {
   content : '\f105';
@@ -224,7 +224,7 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .na
 }
 body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .navigation > li > a > span.badge {
   position : absolute;
-  right : 20px;
+  right : 30px;
 }
 body.vertical-layout.vertical-menu-modern.menu-collapsed .main-menu.expanded .navigation li.has-sub > a:not(.mm-next):after {
   content : '\f105';

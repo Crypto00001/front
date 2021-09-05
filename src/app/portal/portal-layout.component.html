@@ -1,5 +1,6 @@
-<div class="container-scroller">
+
     <app-navbar></app-navbar>
+    <app-sidebar></app-sidebar>
     <!-- <div class="container-fluid page-body-wrapper">
       <app-sidebar *ngIf="showSidebar"></app-sidebar>
       <div class="main-panel" [ngClass]="{ 'main-panel-only' : !showSidebar }">
@@ -12,7 +13,21 @@
         <app-footer *ngIf="showFooter"></app-footer>
       </div>
     </div> -->
+    <!-- BEGIN: Content-->
+    <div class="app-content content">
+      <div class="content-overlay"></div>
+      <div class="header-navbar-shadow"></div>
+      <div class="content-wrapper">
+          <div class="content-header row">
+          </div>
+          <div class="content-body">
+              <!-- Dashboard Ecommerce Starts -->
+              
+              <!-- Dashboard Ecommerce ends -->
+
+          </div>
+      </div>
   </div>
-  <script src="../../assets/js/core/app-menu.js"></script>
-  <script src="../../assets/js/core/app.js"></script>
-  <script src="../../assets/vendors/js/vendors.min.js"></script>
+  <!-- END: Content-->
+
+<app-footer></app-footer>

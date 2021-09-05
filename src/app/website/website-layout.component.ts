@@ -10,7 +10,12 @@ import * as $ from 'jquery';
 })
 export class SiteLayoutComponent implements OnInit {
   menuRoute = '';
+  loadAPI: Promise<any>;
   constructor(private route: ActivatedRoute,@Inject(DOCUMENT) private document: Document) {
+    this.loadAPI = new Promise((resolve) => {
+      this.loadScript();
+      resolve(true);
+  });
     this.menuRoute = route.snapshot.routeConfig.path;
       const cssURLs = [
         '../../../assets/css/style.css',
@@ -26,19 +31,27 @@ export class SiteLayoutComponent implements OnInit {
     }
 
   ngOnInit() {}
-  ngAfterViewInit() {
-    // loading templates js after dom render
-    $.getScript('../../assets/js/popper.min.js', function () {});
-    $.getScript('../../assets/js/bootstrap.min.js', function () {});
-    $.getScript('../../assets/js/owl.js', function () {});
-    $.getScript('../../assets/js/wow.js', function () {});
-    $.getScript('../../assets/js/validation.js', function () {});
-    $.getScript('../../assets/js/isotope.js', function () {});
-    $.getScript('../../assets/js/appear.js', function () {});
-    $.getScript('../../assets/js/jquery-ui.js', function () {});
-    $.getScript('../../assets/js/jquery.fancybox.js', function () {});
-    $.getScript('../../assets/js/SmoothScroll.js', function () {});
-    $.getScript('../../assets/js/map-helper.js', function () {});
-    $.getScript('../../assets/js/script.js', function () {});
-  }
+  public loadScript() {        
+    var isFound = false;
+    var scripts = document.getElementsByTagName("script")
+    for (var i = 0; i < scripts.length; ++i) {
+        if (scripts[i].getAttribute('src') != null && scripts[i].getAttribute('src').includes("loader")) {
+            isFound = true;
+        }
+    }
+
+    if (!isFound) {
+        var dynamicScripts = ["../../assets/js/owl.js"];
+
+        for (var i = 0; i < dynamicScripts.length; i++) {
+            let node = document.createElement('script');
+            node.src = dynamicScripts [i];
+            node.type = 'text/javascript';
+            node.async = false;
+            node.charset = 'utf-8';
+            document.getElementsByTagName('head')[0].appendChild(node);
+        }
+
+    }
+}
 }
