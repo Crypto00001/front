@@ -1,33 +1,13 @@
-
-    <app-navbar></app-navbar>
-    <app-sidebar></app-sidebar>
-    <!-- <div class="container-fluid page-body-wrapper">
-      <app-sidebar *ngIf="showSidebar"></app-sidebar>
-      <div class="main-panel" [ngClass]="{ 'main-panel-only' : !showSidebar }">
-        <div class="content-wrapper">
-          <app-spinner *ngIf="isLoading"></app-spinner>
-          <div contentAnimate *ngIf="!isLoading" class="h-100">
-            <router-outlet></router-outlet>
-          </div>
-        </div>
-        <app-footer *ngIf="showFooter"></app-footer>
-      </div>
-    </div> -->
-    <!-- BEGIN: Content-->
-    <div class="app-content content">
-      <div class="content-overlay"></div>
-      <div class="header-navbar-shadow"></div>
-      <div class="content-wrapper">
-          <div class="content-header row">
-          </div>
-          <div class="content-body">
-              <!-- Dashboard Ecommerce Starts -->
-              
-              <!-- Dashboard Ecommerce ends -->
-
-          </div>
-      </div>
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="header-navbar-shadow"></div>
+  <div class="content-wrapper">
+    <div class="content-header row"></div>
+    <div class="content-body">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <!-- END: Content-->
-
+</div>
 <app-footer></app-footer>

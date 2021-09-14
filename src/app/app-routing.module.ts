@@ -4,8 +4,14 @@ import { AuthLayoutComponent } from './auth/auth-layout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { ChoosePlanComponent } from './portal/choose-plan/choose-plan.component';
 import { DashboardComponent } from './portal/dashboard/dashboard.component';
+import { DepositComponent } from './portal/deposit/deposit.component';
+import { EditProfileComponent } from './portal/edit profile/edit-profile.component';
+import { PlansReportComponent } from './portal/plans report/plans-report.component';
 import { PortalLayoutComponent } from './portal/portal-layout.component';
+import { ReferralComponent } from './portal/referral/referral.component';
+import { WithdrawComponent } from './portal/withdraw/withdraw.component';
 import { AboutUsComponent } from './website/about-us/about-us.component';
 import { ContactUsComponent } from './website/contact-us/contact-us.component';
 import { FaqComponent } from './website/faq/faq.component';
@@ -59,31 +65,12 @@ const routes: Routes = [
     component: PortalLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      {
-        path: 'basic-ui',
-        loadChildren: () =>
-          import('./portal/basic-ui/basic-ui.module').then((m) => m.BasicUiModule),
-      },
-      {
-        path: 'charts',
-        loadChildren: () =>
-          import('./portal/charts/charts.module').then((m) => m.ChartsDemoModule),
-      },
-      {
-        path: 'forms',
-        loadChildren: () =>
-          import('./portal/forms/form.module').then((m) => m.FormModule),
-      },
-      {
-        path: 'tables',
-        loadChildren: () =>
-          import('./portal/tables/tables.module').then((m) => m.TablesModule),
-      },
-      {
-        path: 'icons',
-        loadChildren: () =>
-          import('./portal/icons/icons.module').then((m) => m.IconsModule),
-      },
+      { path: 'choose-plan', component: ChoosePlanComponent },
+      { path: 'deposit', component: DepositComponent },
+      { path: 'withdraw', component: WithdrawComponent },
+      { path: 'plans-report', component: PlansReportComponent },
+      { path: 'refferal', component: ReferralComponent },
+      { path: 'edit-profile', component: EditProfileComponent },
       {
         path: 'general-pages',
         loadChildren: () =>

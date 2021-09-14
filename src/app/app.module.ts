@@ -21,6 +21,12 @@ import { HomeComponent } from './website/home/home.component';
 import { TermsComponent } from './website/terms/terms.component';
 import { SiteLayoutComponent } from './website/website-layout.component';
 import { PortalLayoutComponent } from './portal/portal-layout.component';
+import { ChoosePlanComponent } from './portal/choose-plan/choose-plan.component';
+import { DepositComponent } from './portal/deposit/deposit.component';
+import { WithdrawComponent } from './portal/withdraw/withdraw.component';
+import { PlansReportComponent } from './portal/plans report/plans-report.component';
+import { ReferralComponent } from './portal/referral/referral.component';
+import { EditProfileComponent } from './portal/edit profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +40,14 @@ import { PortalLayoutComponent } from './portal/portal-layout.component';
     ContactUsComponent,
     FaqComponent,
     LoginComponent,
+    PlansReportComponent,
     RegisterComponent,
+    ReferralComponent,
+    EditProfileComponent,
     DashboardComponent,
+    ChoosePlanComponent,
+    DepositComponent,
+    WithdrawComponent,
     PortalLayoutComponent,
     NavbarComponent,
     SidebarComponent,
