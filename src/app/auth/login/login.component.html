@@ -33,6 +33,7 @@
                 </p>
 
                 <form
+                  [formGroup]="form" (ngSubmit)="onSubmit()" 
                   class="auth-login-form mt-2"
                   action="index.html"
                   method="POST"
@@ -41,6 +42,7 @@
                     <label for="login-email" class="form-label">Email</label>
                     <input
                       type="text"
+                      formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                       class="form-control"
                       id="login-email"
                       name="login-email"
@@ -63,6 +65,7 @@
                     >
                       <input
                         type="password"
+                        formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                         class="form-control form-control-merge"
                         id="login-password"
                         name="login-password"

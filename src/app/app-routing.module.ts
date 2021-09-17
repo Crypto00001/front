@@ -18,6 +18,7 @@ import { FaqComponent } from './website/faq/faq.component';
 import { HomeComponent } from './website/home/home.component';
 import { TermsComponent } from './website/terms/terms.component';
 import { SiteLayoutComponent } from './website/website-layout.component';
+import { AuthGuard } from './_helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -64,32 +65,13 @@ const routes: Routes = [
     path: '',
     component: PortalLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'choose-plan', component: ChoosePlanComponent },
       { path: 'deposit', component: DepositComponent },
       { path: 'withdraw', component: WithdrawComponent },
       { path: 'plans-report', component: PlansReportComponent },
       { path: 'refferal', component: ReferralComponent },
-      { path: 'edit-profile', component: EditProfileComponent },
-      {
-        path: 'general-pages',
-        loadChildren: () =>
-          import('./portal/general-pages/general-pages.module').then(
-            (m) => m.GeneralPagesModule
-          ),
-      },
-      {
-        path: 'apps',
-        loadChildren: () =>
-          import('./portal/apps/apps.module').then((m) => m.AppsModule),
-      },
-      {
-        path: 'error-pages',
-        loadChildren: () =>
-          import('./portal/error-pages/error-pages.module').then(
-            (m) => m.ErrorPagesModule
-          ),
-      },
+      { path: 'edit-profile', component: EditProfileComponent }
     ],
   },
 ];

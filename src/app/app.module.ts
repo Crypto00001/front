@@ -1,33 +1,35 @@
-import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ChartsModule, ThemeService } from 'ng2-charts';
-import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AuthLayoutComponent } from './auth/auth-layout.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { DashboardComponent } from './portal/dashboard/dashboard.component';
-import { AboutUsComponent } from './website/about-us/about-us.component';
-import { ContactUsComponent } from './website/contact-us/contact-us.component';
-import { FaqComponent } from './website/faq/faq.component';
-import { HomeComponent } from './website/home/home.component';
-import { TermsComponent } from './website/terms/terms.component';
-import { SiteLayoutComponent } from './website/website-layout.component';
-import { PortalLayoutComponent } from './portal/portal-layout.component';
-import { ChoosePlanComponent } from './portal/choose-plan/choose-plan.component';
-import { DepositComponent } from './portal/deposit/deposit.component';
-import { WithdrawComponent } from './portal/withdraw/withdraw.component';
-import { PlansReportComponent } from './portal/plans report/plans-report.component';
-import { ReferralComponent } from './portal/referral/referral.component';
-import { EditProfileComponent } from './portal/edit profile/edit-profile.component';
-
+import { NgModule } from "@angular/core";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ChartsModule, ThemeService } from "ng2-charts";
+import { AppComponent } from "./app.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { NavbarComponent } from "./shared/navbar/navbar.component";
+import { FooterComponent } from "./shared/footer/footer.component";
+import { SidebarComponent } from "./shared/sidebar/sidebar.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { AuthLayoutComponent } from "./auth/auth-layout.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { RegisterComponent } from "./auth/register/register.component";
+import { ResetPasswordComponent } from "./auth/reset-password/reset-password.component";
+import { DashboardComponent } from "./portal/dashboard/dashboard.component";
+import { AboutUsComponent } from "./website/about-us/about-us.component";
+import { ContactUsComponent } from "./website/contact-us/contact-us.component";
+import { FaqComponent } from "./website/faq/faq.component";
+import { HomeComponent } from "./website/home/home.component";
+import { TermsComponent } from "./website/terms/terms.component";
+import { SiteLayoutComponent } from "./website/website-layout.component";
+import { PortalLayoutComponent } from "./portal/portal-layout.component";
+import { ChoosePlanComponent } from "./portal/choose-plan/choose-plan.component";
+import { DepositComponent } from "./portal/deposit/deposit.component";
+import { WithdrawComponent } from "./portal/withdraw/withdraw.component";
+import { PlansReportComponent } from "./portal/plans report/plans-report.component";
+import { ReferralComponent } from "./portal/referral/referral.component";
+import { EditProfileComponent } from "./portal/edit profile/edit-profile.component";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { JwtInterceptor } from "./_helpers/jwt.interceptor";
+import { AlertComponent } from "./shared/alert/alert/alert.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,7 @@ import { EditProfileComponent } from './portal/edit profile/edit-profile.compone
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,9 +63,13 @@ import { EditProfileComponent } from './portal/edit profile/edit-profile.compone
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule,
   ],
-  providers: [ThemeService],
-  bootstrap: [AppComponent]
+  providers: [
+    ThemeService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
