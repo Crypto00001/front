@@ -30,6 +30,9 @@ import { EditProfileComponent } from "./portal/edit profile/edit-profile.compone
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { JwtInterceptor } from "./_helpers/jwt.interceptor";
 import { AlertComponent } from "./shared/alert/alert/alert.component";
+import { ErrorInterceptor } from "./_helpers/error.interceptor";
+import { AutoLogoutService } from "./_services/auto-logout.service";
+import { SearchDashboardPipe } from "./_pipes/search-dashboard.pipe";
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +58,7 @@ import { AlertComponent } from "./shared/alert/alert/alert.component";
     SidebarComponent,
     FooterComponent,
     AlertComponent,
+    SearchDashboardPipe
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,9 @@ import { AlertComponent } from "./shared/alert/alert/alert.component";
   ],
   providers: [
     ThemeService,
+    AutoLogoutService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })
