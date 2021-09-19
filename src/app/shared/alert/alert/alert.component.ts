@@ -4,7 +4,9 @@ import { Subscription } from 'rxjs';
 import { Alert, AlertType } from 'src/app/_models/alert';
 import { AlertService } from 'src/app/_services/alert.service';
 
-@Component({ selector: 'alert', templateUrl: 'alert.component.html' })
+@Component({ selector: 'alert', 
+templateUrl: 'alert.component.html',
+styleUrls: ['./alert.component.scss'] })
 export class AlertComponent implements OnInit, OnDestroy {
     @Input() id = 'default-alert';
     @Input() fade = true;
@@ -32,10 +34,7 @@ export class AlertComponent implements OnInit, OnDestroy {
                 // add alert to array
                 this.alerts.push(alert);
 
-                // auto close alert if required
-                if (alert.autoClose) {
-                    setTimeout(() => this.removeAlert(alert), 3000);
-                }
+                setTimeout(() => this.removeAlert(alert), 5000);
            });
 
         // clear alerts on location change
@@ -73,13 +72,13 @@ export class AlertComponent implements OnInit, OnDestroy {
     cssClass(alert: Alert) {
         if (!alert) return;
 
-        const classes = ['alert', 'alert-dismissable', 'mt-4', 'container'];
+        const classes = ['toast'];
                 
         const alertTypeClass = {
-            [AlertType.Success]: 'alert alert-success',
-            [AlertType.Error]: 'alert alert-danger',
-            [AlertType.Info]: 'alert alert-info',
-            [AlertType.Warning]: 'alert alert-warning'
+            [AlertType.Success]: 'toast-success',
+            [AlertType.Error]: 'toast-error',
+            [AlertType.Info]: 'toast-info',
+            [AlertType.Warning]: 'toast-warning'
         }
 
         classes.push(alertTypeClass[alert.type]);

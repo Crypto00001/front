@@ -1,4 +1,8 @@
-<div *ngFor="let alert of alerts" class="{{cssClass(alert)}}">
-  <a class="close" (click)="removeAlert(alert)">&times;</a>
-  <span [innerHTML]="alert.message"></span>
+<div id="toast-container" class="toast-container toast-top-right">
+  <div *ngFor="let alert of alerts" class="{{ cssClass(alert) }}" aria-live="polite" style="display: block">
+    <div class="toast-title">Sticky!</div>
+    <div class="toast-message">
+      {{alert.message}}
+    </div>
+  </div>
 </div>

@@ -65,7 +65,7 @@ const routes: Routes = [
     path: '',
     component: PortalLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'choose-plan', component: ChoosePlanComponent },
       { path: 'deposit', component: DepositComponent },
       { path: 'withdraw', component: WithdrawComponent },
