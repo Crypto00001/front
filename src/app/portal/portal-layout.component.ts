@@ -16,6 +16,7 @@ export class PortalLayoutComponent implements OnInit {
     private renderer: Renderer2,
     private autoLogoutService: AutoLogoutService
   ) {
+
     autoLogoutService.check();
     autoLogoutService.initListener();
     autoLogoutService.initInterval();

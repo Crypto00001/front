@@ -302,7 +302,7 @@ export class RegisterComponent implements OnInit {
           .pipe(first())
           .subscribe(
               data => {
-                  this.alertService.success('Registration successful', { keepAfterRouteChange: true });
+                  this.alertService.success('Registration successfully completed!', { keepAfterRouteChange: true });
                   this.router.navigate(['../login'], { relativeTo: this.route });
               },
               error => {

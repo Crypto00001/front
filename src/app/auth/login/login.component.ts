@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { AccountService } from 'src/app/_services/account.service';
-import { AlertService } from 'src/app/_services/alert.service';
-
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { first } from "rxjs/operators";
+import { AccountService } from "src/app/_services/account.service";
+import { AlertService } from "src/app/_services/alert.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
@@ -25,12 +24,13 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ["", Validators.required],
+      password: ["", Validators.required],
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+    this.returnUrl =
+      this.route.snapshot.queryParams["returnUrl"] || "/dashboard";
   }
 
   // convenience getter for easy access to form fields
@@ -53,15 +53,13 @@ export class LoginComponent implements OnInit {
     this.accountService
       .login(this.f.email.value, this.f.password.value)
       .pipe(first())
-      .subscribe(
-        (data) => {
-          this.router.navigate([this.returnUrl]);
-          this.alertService.success('Registration successfully completed!');
-        },
-        (error) => {
-          this.alertService.error(error);
+      .subscribe((data) => {
+        if (data.hasError) {
+          this.alertService.error(data.errorMessage);
           this.loading = false;
-        }
-      );
+        } 
+        else 
+          this.router.navigate([this.returnUrl]);
+      });
   }
 }

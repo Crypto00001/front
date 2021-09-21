@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Renderer2 } from '@angular/core';
+import { Inject, OnDestroy, Renderer2 } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 
@@ -8,7 +8,7 @@ import * as $ from 'jquery';
   templateUrl: './auth-layout.component.html',
   styleUrls: ['./auth-layout.component.scss'],
 })
-export class AuthLayoutComponent implements OnInit {
+export class AuthLayoutComponent implements OnInit,OnDestroy {
   menuRoute = '';
   constructor(@Inject(DOCUMENT) private document: Document,private renderer: Renderer2) {
 
@@ -19,9 +19,8 @@ export class AuthLayoutComponent implements OnInit {
       '../../../assets/css/colors.min.css',
       '../../../assets/css/components.min.css',
       '../../../assets/css/dark-layout.min.css',
-      '../../../assets/css/bordered-layout.min.css',
       '../../../assets/css/semi-dark-layout.min.css',
-      '../../../assets/css/vertical-menu.min.css',
+      '../../../assets/css/vertical-menu.css',
       '../../../assets/css/form-validation.css',
       '../../../assets/css/page-auth.min.css',
     ];
@@ -41,5 +40,8 @@ export class AuthLayoutComponent implements OnInit {
     $.getScript('../../assets/js/app/jquery.validate.min.js', function () {});
     $.getScript('../../assets/js/app/page-auth-login.js', function () {});
     $.getScript('../../assets/js/app/vendors.min.js', function () {});
+  }
+  ngOnDestroy(){
+
   }
 }
