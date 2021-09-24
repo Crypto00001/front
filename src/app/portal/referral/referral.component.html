@@ -29,9 +29,9 @@
                           <div class="col-md-12 col-12 mb-1">
                               <fieldset>
                                   <div class="input-group">
-                                      <input type="text" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
+                                      <input type="text" [value]="referralData[0]===undefined ? '': referralData[0].email" #inpInvite1 [disabled]="referralData.length >=1" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
                                       <div class="input-group-append" id="button-addon2">
-                                          <button class="btn btn-primary waves-effect waves-light" type="button">Invite</button>
+                                          <button id="btnInvite1" [disabled]="referralData.length >=1" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite1.value);" type="button">Invite</button>
                                       </div>
                                   </div>
                               </fieldset>
@@ -39,40 +39,40 @@
                           <div class="col-md-12 col-12 mb-1">
                             <fieldset>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                                    <div class="input-group-append" id="button-addon2">
-                                        <button class="btn btn-primary waves-effect waves-light" type="button">Invite</button>
-                                    </div>
+                                    <input type="text" [value]="referralData[1]===undefined ? '': referralData[1].email" #inpInvite2 [disabled]="referralData.length >=2" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
+                                      <div class="input-group-append" id="button-addon2">
+                                          <button id="btnInvite2" [disabled]="referralData.length >=2" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite2.value);" type="button">Invite</button>
+                                      </div>
                                 </div>
                             </fieldset>
                         </div>
                         <div class="col-md-12 col-12 mb-1">
                           <fieldset>
                               <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                                  <div class="input-group-append" id="button-addon2">
-                                      <button class="btn btn-primary waves-effect waves-light" type="button">Invite</button>
-                                  </div>
+                                <input type="text" [value]="referralData[2]===undefined ? '': referralData[2].email" #inpInvite3 [disabled]="referralData.length >=3" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
+                                <div class="input-group-append" id="button-addon2">
+                                    <button id="btnInvite2" [disabled]="referralData.length >=3" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite3.value);" type="button">Invite</button>
+                                </div>
                               </div>
                           </fieldset>
                       </div>
                       <div class="col-md-12 col-12 mb-1">
                         <fieldset>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                                <div class="input-group-append" id="button-addon2">
-                                    <button class="btn btn-primary waves-effect waves-light" type="button">Invite</button>
-                                </div>
+                                <input type="text" [value]="referralData[3]===undefined ? '': referralData[3].email" #inpInvite4 [disabled]="referralData.length >=4" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
+                                      <div class="input-group-append" id="button-addon2">
+                                          <button id="btnInvite2" [disabled]="referralData.length >=4" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite4.value);" type="button">Invite</button>
+                                      </div>
                             </div>
                         </fieldset>
                     </div>
                     <div class="col-md-12 col-12 mb-1">
                       <fieldset>
                           <div class="input-group">
-                              <input type="text" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                              <div class="input-group-append" id="button-addon2">
-                                  <button class="btn btn-primary waves-effect waves-light" type="button">Invite</button>
-                              </div>
+                            <input type="text" [value]="referralData[4]===undefined ? '': referralData[4].email" #inpInvite5 [disabled]="referralData.length ==5" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
+                            <div class="input-group-append" id="button-addon2">
+                                <button id="btnInvite2" [disabled]="referralData.length ==5" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite5.value);" type="button">Invite</button>
+                            </div>
                           </div>
                       </fieldset>
                   </div>
