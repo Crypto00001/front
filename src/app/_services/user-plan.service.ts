@@ -10,5 +10,7 @@ export class UserPlanService {
   registerPlan(userPlan: UserPlan) {
     return this.http.post<any>(`${environment.apiUrl}/userPlan`, userPlan);
   }
-
+  getAll() {
+    return this.http.get<any>(`${environment.apiUrl}/userPlan`);
+  }
 }

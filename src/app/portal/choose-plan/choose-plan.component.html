@@ -135,8 +135,8 @@
             </div>
             <div class="col-12">
                 <div class="form-label-group position-relative has-icon-left">
-                    <select formControlName="walletType" [ngClass]="{ 'is-invalid': submitted && f.walletType.errors }" class="form-control" id="basicSelect" (change)="cryptoChange($event.target.value);">
-                        <option [value]="count.key" *ngFor ="let count of cryptoList">{{count.value}} </option>
+                    <select  formControlName="walletType" [ngClass]="{ 'is-invalid': submitted && f.walletType.errors }" class="form-control" id="basicSelect" (ngModelChange)="cryptoChange($event);">
+                        <option [ngValue]="count.key" *ngFor ="let count of cryptoList">{{count.value}} </option>
                     </select>
                     <div class="form-control-position">
                         <i class="feather icon-credit-card"></i>

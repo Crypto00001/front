@@ -41,64 +41,89 @@
               aria-controls="DataTables_Table_0"
               rowspan="1"
               colspan="1"
-              style="width: 368.141px;padding-left: 15px;"
+              style="padding-left: 15px;"
             >
-              COIN
+              Plan Name
             </th>
             <th
               tabindex="0"
               aria-controls="DataTables_Table_0"
               rowspan="1"
               colspan="1"
-              style="width: 83.7656px"
             >
-              CATEGORY
+              Currency
             </th>
             <th
               tabindex="0"
               aria-controls="DataTables_Table_0"
               rowspan="1"
               colspan="1"
-              style="width: 79.0938px"
             >
-              POPULARITY
+              Investment Amount
             </th>
             <th
               tabindex="0"
               aria-controls="DataTables_Table_0"
               rowspan="1"
               colspan="1"
-              style="width: 94.9531px"
             >
-              ORDER STATUS
+            Start Date
             </th>
             <th
               tabindex="0"
               aria-controls="DataTables_Table_0"
               rowspan="1"
               colspan="1"
-              style="width: 65.4531px"
             >
-              PRICE
+            End Date
             </th>
             <th
               tabindex="0"
               aria-controls="DataTables_Table_0"
               rowspan="1"
               colspan="1"
-              style="width: 47.2031px"
             >
-              ACTION
+              Profit Per Day
+            </th>
+            <th
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              rowspan="1"
+              colspan="1"
+            >
+              Current Profit
+            </th>
+            <th
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              rowspan="1"
+              colspan="1"
+              style="width: 15%"
+            >
+              Progress
+            </th>
+            <th
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              rowspan="1"
+              colspan="1"
+            >
+              Status
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr role="row" class="odd">
+          <tr *ngFor="let userPlan of userPlanList" role="row" class="odd">
             <td class="product-name sorting_1">
-              Bitcoin
+              {{userPlan.planName}}
             </td>
-            <td class="product-category">Audio</td>
-            <td>
+            <td class="product-category">{{userPlan.currencyName}}</td>
+            <td class="product-price">{{userPlan.investmentAmount}}</td>
+            <td class="product-price">{{userPlan.startDate}}</td>
+            <td class="product-price">{{userPlan.endDate}}</td>
+            <td class="product-price">{{userPlan.profitPercent}}%</td>
+            <td class="product-price">100</td>
+            <td class="product-price">
               <div class="progress progress-bar-warning">
                 <div
                   class="progress-bar"
@@ -106,119 +131,21 @@
                   aria-valuenow="40"
                   aria-valuemin="40"
                   aria-valuemax="100"
-                  style="width: 57%"
+                  [style.width]="userPlan.progress + '%' "
                 ></div>
               </div>
             </td>
-            <td>
-              <div class="chip chip-danger">
+            <td class="product-action">
+              <div *ngIf="userPlan.isActive" class="chip chip-success">
                 <div class="chip-body">
-                  <div class="chip-text">canceled</div>
+                  <div class="chip-text">Investing</div>
                 </div>
               </div>
-            </td>
-            <td class="product-price">$199.99</td>
-            <td class="product-action">
-              <span class="action-edit"><i class="feather icon-edit"></i></span>
-              <span class="action-delete"
-                ><i class="feather icon-trash"></i
-              ></span>
-            </td>
-          </tr>
-          <tr role="row" class="even">
-            <td class="product-name sorting_1">
-              Etherium
-            </td>
-            <td class="product-category">Fitness</td>
-            <td>
-              <div class="progress progress-bar-success">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="40"
-                  aria-valuemin="40"
-                  aria-valuemax="100"
-                  style="width: 87%"
-                ></div>
-              </div>
-            </td>
-            <td>
-              <div class="chip chip-success">
+              <div *ngIf="!userPlan.isActive" class="chip chip-info">
                 <div class="chip-body">
-                  <div class="chip-text">delivered</div>
+                  <div class="chip-text">Finished</div>
                 </div>
               </div>
-            </td>
-            <td class="product-price">$199.99</td>
-            <td class="product-action">
-              <span class="action-edit"><i class="feather icon-edit"></i></span>
-              <span class="action-delete"
-                ><i class="feather icon-trash"></i
-              ></span>
-            </td>
-          </tr>
-          <tr role="row" class="odd">
-            <td class="product-name sorting_1">
-              Litecoin
-            </td>
-            <td class="product-category">Computers</td>
-            <td>
-              <div class="progress progress-bar-warning">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="40"
-                  aria-valuemin="40"
-                  aria-valuemax="100"
-                  style="width: 65%"
-                ></div>
-              </div>
-            </td>
-            <td>
-              <div class="chip chip-warning">
-                <div class="chip-body">
-                  <div class="chip-text">on hold</div>
-                </div>
-              </div>
-            </td>
-            <td class="product-price">$29.99</td>
-            <td class="product-action">
-              <span class="action-edit"><i class="feather icon-edit"></i></span>
-              <span class="action-delete"
-                ><i class="feather icon-trash"></i
-              ></span>
-            </td>
-          </tr>
-          <tr role="row" class="even">
-            <td class="product-name sorting_1">
-              Zcash
-            </td>
-            <td class="product-category">Audio</td>
-            <td>
-              <div class="progress progress-bar-warning">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="40"
-                  aria-valuemin="40"
-                  aria-valuemax="100"
-                  style="width: 87%"
-                ></div>
-              </div>
-            </td>
-            <td>
-              <div class="chip chip-danger">
-                <div class="chip-body">
-                  <div class="chip-text">canceled</div>
-                </div>
-              </div>
-            </td>
-            <td class="product-price">$199.99</td>
-            <td class="product-action">
-              <span class="action-edit"><i class="feather icon-edit"></i></span>
-              <span class="action-delete"
-                ><i class="feather icon-trash"></i
-              ></span>
             </td>
           </tr>
         </tbody>

@@ -1,0 +1,9 @@
+table {
+    border-collapse: inherit;
+}
+table.data-list-view.dataTable tbody tr:hover, table.data-thumb-view.dataTable tbody tr:hover {
+    transform: translateY(0px) !important;
+}
+table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody tr {
+    cursor: unset;
+}

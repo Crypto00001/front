@@ -24,7 +24,6 @@ import { PortalLayoutComponent } from "./portal/portal-layout.component";
 import { ChoosePlanComponent } from "./portal/choose-plan/choose-plan.component";
 import { DepositComponent } from "./portal/deposit/deposit.component";
 import { WithdrawComponent } from "./portal/withdraw/withdraw.component";
-import { PlansReportComponent } from "./portal/plans report/plans-report.component";
 import { ReferralComponent } from "./portal/referral/referral.component";
 import { EditProfileComponent } from "./portal/edit profile/edit-profile.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -33,6 +32,7 @@ import { AlertComponent } from "./shared/alert/alert/alert.component";
 import { ErrorInterceptor } from "./_helpers/error.interceptor";
 import { AutoLogoutService } from "./_services/auto-logout.service";
 import { SearchDashboardPipe } from "./_pipes/search-dashboard.pipe";
+import { StatusReportComponent } from "./portal/status report/status-report.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +45,7 @@ import { SearchDashboardPipe } from "./_pipes/search-dashboard.pipe";
     ContactUsComponent,
     FaqComponent,
     LoginComponent,
-    PlansReportComponent,
+    StatusReportComponent,
     RegisterComponent,
     ReferralComponent,
     EditProfileComponent,

@@ -52,7 +52,7 @@
               colspan="1"
               style="width: 83.7656px"
             >
-              STOCK
+              Asset
             </th>
             <th
               tabindex="0"
@@ -75,12 +75,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr role="row" class="odd">
+          <tr *ngFor="let wallet of walletList" role="row" class="odd">
             <td class="product-name sorting_1">
-              Bitcoin
+              {{wallet.name}}
             </td>
-            <td class="product-category">4</td>
-            <td class="product-category">2</td>
+            <td class="product-category">{{wallet.balance}}</td>
+            <td class="product-category">{{wallet.investedBalance}}</td>
             <td>
                 <div class="chip chip-success">
                   <div class="chip-body">
@@ -88,49 +88,7 @@
                   </div>
                 </div>
               </td>
-          </tr>
-          <tr role="row" class="even">
-            <td class="product-name sorting_1">
-              Etherium
-            </td>
-            <td class="product-category">2.5</td>
-            <td class="product-category">1.8</td>
-            <td>
-              <div class="chip chip-success">
-                <div class="chip-body">
-                  <div class="chip-text">Deposit</div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr role="row" class="odd">
-            <td class="product-name sorting_1">
-              Litecoin
-            </td>
-            <td class="product-category">1.6</td>
-            <td class="product-category">1</td>
-            <td>
-                <div class="chip chip-success">
-                  <div class="chip-body">
-                    <div class="chip-text">Deposit</div>
-                  </div>
-                </div>
-              </td>
-          </tr>
-          <tr role="row" class="even">
-            <td class="product-name sorting_1">
-              Zcash
-            </td>
-            <td class="product-category">2.9</td>
-            <td class="product-category">2.6</td>
-            <td>
-                <div class="chip chip-success">
-                  <div class="chip-body">
-                    <div class="chip-text">Deposit</div>
-                  </div>
-                </div>
-              </td>
-          </tr>
+            </tr>
         </tbody>
       </table>
     </div>

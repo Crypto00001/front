@@ -25,7 +25,6 @@ export class ChoosePlanComponent implements OnInit {
     {key:4,value:'Zcash'},
   ];
   constructor( private formBuilder: FormBuilder,
-    private router: Router, 
     private alertService:AlertService,
     private userPlanService:UserPlanService,
     private walletService:WalletService) { 
@@ -40,24 +39,20 @@ export class ChoosePlanComponent implements OnInit {
     this.form = this.formBuilder.group({
       planName: ['', Validators.required],
       walletType: [1, Validators.required],
-      investmentAmount: ['', Validators.required]
+      investmentAmount: [ '', Validators.required]
   });
   
   }
   get f() { return this.form.controls; }
-  invest(plan:string){
+  async invest(plan:string){
     this.form.controls.planName.setValue(plan);
+    this.form.controls.walletType.setValue(1);
     this.form.controls.investmentAmount.setValue('');
-    this.walletService
-    .getAll()
-    .pipe(first())
-    .subscribe((response) => {
-      this.walletData = response.data;
-    });
+    this.walletData= (await this.walletService.getAll()).data;
     this.balance = this.walletData.filter(q=>q.walletType==1)[0].availableBalance
     this.popup=true;
   }
-  cryptoChange(item:number){
+  cryptoChange(item){
     this.balance = this.walletData.filter(q=>q.walletType==item)[0].availableBalance
   }
   onSubmit(){
@@ -75,13 +70,17 @@ export class ChoosePlanComponent implements OnInit {
     this.userPlanService.registerPlan(this.form.value)
         .pipe(first())
         .subscribe(
-            data => {
+            response => {
+              if(response.hasError)
+              {
+                this.alertService.error(response.errorMessage);
+                this.loading = false;
+              }
+              else
+              {
                 this.alertService.success('Investment plan started successfully!', { keepAfterRouteChange: true });
                 this.popup = false;
-            },
-            error => {
-                this.alertService.error(error);
-                this.loading = false;
+              }
             });
   }
 }

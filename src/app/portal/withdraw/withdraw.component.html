@@ -75,54 +75,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr role="row" class="odd">
+          <tr  *ngFor="let wallet of walletList" role="row" class="odd">
             <td class="product-name sorting_1">
-              Bitcoin
+              {{wallet.name}}
             </td>
-            <td class="product-category">4</td>
-            <td class="product-category">2</td>
-            <td>
-                <div class="chip chip-info">
-                  <div class="chip-body">
-                    <div class="chip-text">Withdraw</div>
-                  </div>
-                </div>
-              </td>
-          </tr>
-          <tr role="row" class="even">  
-            <td class="product-name sorting_1">
-              Etherium
-            </td>
-            <td class="product-category">2.5</td>
-            <td class="product-category">0.7</td>
-            <td>
-              <div class="chip chip-info">
-                <div class="chip-body">
-                  <div class="chip-text">Withdraw</div>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr role="row" class="odd">
-            <td class="product-name sorting_1">
-              Litecoin
-            </td>
-            <td class="product-category">1.6</td>
-            <td class="product-category">0.6</td>
-            <td>
-                <div class="chip chip-info">
-                  <div class="chip-body">
-                    <div class="chip-text">Withdraw</div>
-                  </div>
-                </div>
-              </td>
-          </tr>
-          <tr role="row" class="even">
-            <td class="product-name sorting_1">
-              Zcash
-            </td>
-            <td class="product-category">2.9</td>
-            <td class="product-category">0.3</td>
+            <td class="product-category">{{wallet.balance}}</td>
+            <td class="product-category">{{wallet.availableBalance}}</td>
             <td>
                 <div class="chip chip-info">
                   <div class="chip-body">

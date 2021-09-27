@@ -7,6 +7,12 @@ export class WalletService {
   constructor(private http: HttpClient) {}
 
   getAll() {
-    return this.http.get<any>(`${environment.apiUrl}/wallet`);
+    return this.http.get<any>(`${environment.apiUrl}/wallet`).toPromise();
+  }
+  getAllForDeposit() {
+    return this.http.get<any>(`${environment.apiUrl}/wallet/deposit`);
+  }
+  getAllForWithdraw() {
+    return this.http.get<any>(`${environment.apiUrl}/wallet/withdraw`);
   }
 }

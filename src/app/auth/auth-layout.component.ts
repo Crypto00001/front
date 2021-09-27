@@ -13,7 +13,7 @@ export class AuthLayoutComponent implements OnInit,OnDestroy {
   constructor(@Inject(DOCUMENT) private document: Document,private renderer: Renderer2) {
 
     const cssURLs = [
-      '../../../assets/css/vendors.min.css',
+      '../../../assets/vendors/css/vendors.min.css',
       '../../../assets/css/bootstrap.min.css',
       '../../../assets/css/bootstrap-extended.min.css',
       '../../../assets/css/colors.min.css',
