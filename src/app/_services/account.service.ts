@@ -5,15 +5,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) {
     this.userSubject = new BehaviorSubject<User>(
-      JSON.parse(localStorage.getItem('user'))
+      this.cookieService.get('user')===''?null:JSON.parse(this.cookieService.get('user'))
     );
     this.user = this.userSubject.asObservable();
   }
@@ -21,14 +22,16 @@ export class AccountService {
   public get userValue(): any {
     return this.userSubject.value;
   }
-
+  getUserFromCookie() {
+    return JSON.parse(this.cookieService.get('user'));
+  }
   login(email, password) {
     return this.http
       .post<any>(`${environment.apiUrl}/user/login`, { email, password })
       .pipe(
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify(user));
+          this.cookieService.set('user',JSON.stringify(user),{secure:true});
           this.userSubject.next(user);
           return user;
         })
@@ -37,8 +40,7 @@ export class AccountService {
 
   logout() {
     // remove user from local storage and set current user to null
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    this.cookieService.delete('user');
     this.userSubject.next(null);
     this.router.navigate(['/login']);
   }
@@ -60,7 +62,7 @@ export class AccountService {
       map((x) => {
         // update local storage
         const user = { ...this.userValue, ...params };
-        localStorage.setItem('user', JSON.stringify(user));
+        this.cookieService.set('user',JSON.stringify(user),{secure:true});
 
         // publish updated user to subscribers
         this.userSubject.next(user);
@@ -73,7 +75,7 @@ export class AccountService {
       map((x) => {
         // update local storage
         const user = { ...this.userValue, ...params };
-        localStorage.setItem('user', JSON.stringify(user));
+        this.cookieService.set('user',JSON.stringify(user),{secure:true});
 
         // publish updated user to subscribers
         this.userSubject.next(user);

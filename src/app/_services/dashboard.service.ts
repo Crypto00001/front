@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -13,9 +14,10 @@ export class DashboardService {
 
     constructor(
         private router: Router,
-        private http: HttpClient
+        private http: HttpClient,
+        private cookieService: CookieService
     ) {
-        this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+        this.userSubject = new BehaviorSubject<User>(JSON.parse(this.cookieService.get('user')));
         this.user = this.userSubject.asObservable();
     }
 

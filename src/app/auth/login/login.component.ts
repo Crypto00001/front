@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/_services/account.service';
 import { AlertService } from 'src/app/_services/alert.service';
+import { AutoLogoutService } from 'src/app/_services/auto-logout.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private autoLogoutService: AutoLogoutService
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -30,10 +32,10 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
       captcha: [''],
     });
-    if (JSON.parse(localStorage.getItem('captcha'))) {
+    if (JSON.parse(localStorage.getItem('cpt'))) {
       this.captchaEnabeld = true;
       this.form.controls.captcha.setValidators(Validators.required);
-      this.form.get('captcha').updateValueAndValidity();
+      this.form.get('cpt').updateValueAndValidity();
     }
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/dashboard';
@@ -61,7 +63,7 @@ export class LoginComponent implements OnInit {
         if (data.hasError) {
           this.loading = false;
           if (data.captcha) {
-            localStorage.setItem('captcha', JSON.stringify(true));
+            localStorage.setItem('cpt', JSON.stringify(true));
             this.captchaEnabeld = true;
             this.form.controls.captcha.setValidators(Validators.required);
             this.form.get('captcha').updateValueAndValidity();
@@ -69,7 +71,7 @@ export class LoginComponent implements OnInit {
             this.submitted = false;
           } else {
             this.alertService.error(data.errorMessage);
-            localStorage.setItem('captcha', JSON.stringify(false));
+            localStorage.setItem('cpt', JSON.stringify(false));
             this.captchaEnabeld = false;
             this.form.controls.captcha.clearValidators();
             this.form.get('captcha').updateValueAndValidity();
@@ -77,7 +79,8 @@ export class LoginComponent implements OnInit {
           }
         } else 
         {
-          localStorage.setItem('captcha', JSON.stringify(false));
+          localStorage.setItem('cpt', JSON.stringify(false));
+          this.autoLogoutService.reset();
           this.router.navigate([this.returnUrl]).then(() => {
             window.location.reload();
           });

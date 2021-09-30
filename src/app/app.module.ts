@@ -34,6 +34,7 @@ import { AutoLogoutService } from "./_services/auto-logout.service";
 import { SearchDashboardPipe } from "./_pipes/search-dashboard.pipe";
 import { StatusReportComponent } from "./portal/status report/status-report.component";
 import { NgHcaptchaModule } from "ng-hcaptcha";
+import { CookieService } from "ngx-cookie-service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +79,8 @@ import { NgHcaptchaModule } from "ng-hcaptcha";
     ThemeService,
     AutoLogoutService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })

@@ -8,11 +8,10 @@ import { AlertService } from 'src/app/_services/alert.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-
-  countryList: Array<any>  = [
+  countryList: Array<any> = [
     'Afghanistan',
     'Albania',
     'Algeria',
@@ -259,58 +258,82 @@ export class RegisterComponent implements OnInit {
     'Western Sahara',
     'Yemen',
     'Zambia',
-    'Zimbabwe'
+    'Zimbabwe',
   ];
   form: FormGroup;
   loading = false;
   submitted = false;
+  captchaEnabeld: boolean;
 
   constructor(
-      private formBuilder: FormBuilder,
-      private route: ActivatedRoute,
-      private router: Router,
-      private accountService: AccountService,
-      private alertService: AlertService
-  ) { }
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private accountService: AccountService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit() {
-      this.form = this.formBuilder.group({
-          firstName: ['', Validators.required],
-          lastName: ['', Validators.required],
-          country: ['', Validators.required],
-          email: ['', Validators.required],
-          password: ['', [Validators.required, Validators.minLength(6)]],
-          confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-          captcha: ['', Validators.required],
-      });
+    this.form = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      country: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+      captcha: [''],
+    });
+
+    if (!localStorage.getItem('regCount'))
+      localStorage.setItem('regCount', JSON.stringify(0));
+    else {
+      if (JSON.parse(localStorage.getItem('regCount')) > 3) {
+        this.captchaEnabeld = true;
+        this.form.controls.captcha.setValidators(Validators.required);
+        this.form.get('captcha').updateValueAndValidity();
+      } else {
+        this.captchaEnabeld = false;
+        this.form.controls.captcha.clearValidators();
+        this.form.get('captcha').updateValueAndValidity();
+      }
+    }
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.form.controls; }
-
-  onSubmit() {
-      this.submitted = true;
-
-      // reset alerts on submit
-      this.alertService.clear();
-
-      // stop here if form is invalid
-      if (this.form.invalid) {
-          return;
-      }
-
-      this.loading = true;
-      this.accountService.register(this.form.value)
-          .pipe(first())
-          .subscribe(
-              data => {
-                  this.alertService.success('Registration successfully completed!', { keepAfterRouteChange: true });
-                  this.router.navigate(['../login'], { relativeTo: this.route });
-              },
-              error => {
-                  this.alertService.error(error);
-                  this.loading = false;
-              });
+  get f() {
+    return this.form.controls;
   }
 
+  onSubmit() {
+    this.submitted = true;
+
+    // reset alerts on submit
+    this.alertService.clear();
+
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.accountService
+      .register(this.form.value)
+      .pipe(first())
+      .subscribe(
+        (data) => {
+          this.alertService.success('Registration successfully completed!', {
+            keepAfterRouteChange: true,
+          });
+          localStorage.setItem(
+            'regCount',
+            JSON.parse(localStorage.getItem('regCount')) + 1
+          );
+          this.router.navigate(['../login'], { relativeTo: this.route });
+        },
+        (error) => {
+          this.alertService.error(error);
+          this.loading = false;
+        }
+      );
+  }
 }

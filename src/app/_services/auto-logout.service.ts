@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-const MINUTES_UNITL_AUTO_LOGOUT = 2;
+import { CookieService } from 'ngx-cookie-service';
+const MINUTES_UNITL_AUTO_LOGOUT = 20;
 const CHECK_INTERVAL = 15000;
 const STORE_KEY = 'lastAction';
 
@@ -13,7 +14,7 @@ export class AutoLogoutService {
     localStorage.setItem(STORE_KEY, lastAction.toString());
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cookieService: CookieService) {
   }
 
   initListener() {
@@ -42,7 +43,7 @@ export class AutoLogoutService {
     const diff = timeleft - now;
     const isTimeout = diff < 0;
 
-    if (isTimeout && localStorage.getItem('user')) {
+    if (isTimeout && this.cookieService.get('user')) {
       localStorage.clear();
       this.router.navigate(['/login']).then(() => {
         window.location.reload();

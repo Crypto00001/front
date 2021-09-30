@@ -3,6 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountService } from '../_services/account.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable()
@@ -11,7 +12,6 @@ export class JwtInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add auth header with jwt if user is logged in and request is to the api url
-        document.cookie=this.accountService.userValue?.data;
         const user = this.accountService.userValue?.data;
         const isLoggedIn = user && user.token;
         const isApiUrl = request.url.startsWith(environment.apiUrl);
