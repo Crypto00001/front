@@ -33,6 +33,7 @@ import { ErrorInterceptor } from "./_helpers/error.interceptor";
 import { AutoLogoutService } from "./_services/auto-logout.service";
 import { SearchDashboardPipe } from "./_pipes/search-dashboard.pipe";
 import { StatusReportComponent } from "./portal/status report/status-report.component";
+import { NgHcaptchaModule } from "ng-hcaptcha";
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +62,9 @@ import { StatusReportComponent } from "./portal/status report/status-report.comp
     SearchDashboardPipe
   ],
   imports: [
+    NgHcaptchaModule.forRoot({
+      siteKey: '3ceb8624-1970-4e6b-91d5-70317b70b650'
+  }), 
     BrowserModule,
     AppRoutingModule,
     NgbModule,

@@ -9,7 +9,6 @@ import { DashboardService } from 'src/app/_services/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
   dashboardData = null;
-  public searchDashboard: any = '';
   constructor(private dashboardService: DashboardService) {}
 
   ngOnInit() {

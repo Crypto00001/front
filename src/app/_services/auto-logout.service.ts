@@ -42,9 +42,11 @@ export class AutoLogoutService {
     const diff = timeleft - now;
     const isTimeout = diff < 0;
 
-    if (isTimeout) {
+    if (isTimeout && localStorage.getItem('user')) {
       localStorage.clear();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']).then(() => {
+        window.location.reload();
+      });
     }
   }
 }
