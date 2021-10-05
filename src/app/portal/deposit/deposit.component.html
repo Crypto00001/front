@@ -81,7 +81,9 @@
             <td>
               <div class="chip chip-success">
                 <div class="chip-body">
-                  <div class="chip-text">Deposit</div>
+                  <div class="chip-text">
+                    <button class="depositButton" (click)="charge(+wallet.walletType);">Charge</button>
+                  </div>
                 </div>
               </div>
             </td>
@@ -215,25 +217,37 @@
                 <div class="col-md-1"></div>
               </div>
               <div class="row">
-                <div class="col-md-4"></div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="firstName3"> Wallet </label>
+                    <select  [formControl]="walletType" class="form-control" id="basicSelect" (ngModelChange)="cryptoChange($event);">
+                      <option value="" disabled selected>Select your wallet </option> 
+                      <option [ngValue]="count.key" *ngFor ="let count of cryptoList">{{count.value}} </option>
+                    </select>
+                    <div *ngIf="submitted && walletType.errors?.required">
+                      <div class="danger">Wallet is required</div>
+                  </div>
+                  </div>
+                </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="firstName3"> Amount </label>
                     <input
                       type="text"
+                      [formControl]="amount"
                       class="form-control required"
                       id="firstName3"
                       name="firstName"
-                    /><label
-                      id="firstName3-error"
-                      class="danger"
-                      for="firstName3"
-                      >The amount is required.</label
-                    >
+                    />
+                    <div *ngIf="submitted && amount.errors?.required">
+                      <div class="danger">Amount is required</div>
+                  </div>
                   </div>
                 </div>
-                <div class="col-md-4"></div>
+                <div class="col-md-2"></div>
               </div>
+              
             </fieldset>
 
             <!-- Step 2 -->
@@ -267,11 +281,16 @@
                     <label for="proposalTitle3"> Transaction Id </label>
                     <input
                       type="text"
+                      [formControl]="transactionId"
                       placeholder="Enter your transaction id"
                       class="form-control required"
                       id="proposalTitle3"
                       name="proposalTitle"
                     />
+                    <div *ngIf="submitted && currentStep==2">
+                      <div *ngIf="transactionId.errors.required" class="danger">TransactionId is required</div>
+                      <div *ngIf="transactionId.errors.minlength" class="danger">TransactionId must be more than 32 charactors</div>
+                  </div>
                   </div>
                 </div>
               </div>
@@ -294,7 +313,7 @@
                     <h4 class="alert-heading">Success</h4>
                     <p class="mb-0" style="float: left;padding-right: 10px;">
                       Your payment number is:</p>
-                      <h4>54564564</h4>
+                      <h4>{{paymentNumber}}</h4>
                     <p class="mb-0">
                       If your account balance is not charged within 2 hours, 
                       you can check the problem with our colleagues through 
