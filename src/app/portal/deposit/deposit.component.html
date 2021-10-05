@@ -1,21 +1,18 @@
 <div class="content-header row">
-    <div class="content-header-left col-md-9 col-12 mb-2">
-        <div class="row breadcrumbs-top">
-            <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Deposit</h2>
-                <div class="breadcrumb-wrapper col-12">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#">Deposit</a>
-                        </li>
-                        <li class="breadcrumb-item active">Wallets
-                        </li>
-                    </ol>
-                </div>
-            </div>
+  <div class="content-header-left col-md-9 col-12 mb-2">
+    <div class="row breadcrumbs-top">
+      <div class="col-12">
+        <h2 class="content-header-title float-left mb-0">Deposit</h2>
+        <div class="breadcrumb-wrapper col-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Deposit</a></li>
+            <li class="breadcrumb-item active">Wallets</li>
+          </ol>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <section id="data-list-view" class="data-list-view-header">
   <div class="action-btns d-none">
@@ -41,7 +38,7 @@
               aria-controls="DataTables_Table_0"
               rowspan="1"
               colspan="1"
-              style="width: 368.141px;padding-left: 15px;"
+              style="width: 368.141px; padding-left: 15px"
             >
               COIN
             </th>
@@ -77,21 +74,253 @@
         <tbody>
           <tr *ngFor="let wallet of walletList" role="row" class="odd">
             <td class="product-name sorting_1">
-              {{wallet.name}}
+              {{ wallet.name }}
             </td>
-            <td class="product-category">{{wallet.balance}}</td>
-            <td class="product-category">{{wallet.investedBalance}}</td>
+            <td class="product-category">{{ wallet.balance }}</td>
+            <td class="product-category">{{ wallet.investedBalance }}</td>
             <td>
-                <div class="chip chip-success">
-                  <div class="chip-body">
-                    <div class="chip-text">Deposit</div>
-                  </div>
+              <div class="chip chip-success">
+                <div class="chip-body">
+                  <div class="chip-text">Deposit</div>
                 </div>
-              </td>
-            </tr>
+              </div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
   <!-- DataTable ends -->
 </section>
+<div *ngIf="popup" 
+  class="swal2-container swal2-center swal2-fade swal2-shown"
+  ngif
+  style="overflow-y: auto;"
+>
+  <div
+    aria-labelledby="swal2-title"
+    aria-describedby="swal2-content"
+    class="swal2-popup swal2-modal swal2-show"
+    tabindex="-1"
+    role="dialog"
+    aria-live="assertive"
+    aria-modal="true"
+    style="display: flex"
+  >
+    <div class="card-header-choos-plan">
+      <h4 class="card-title">Deposit Steps</h4>
+      <button type="button" (click)='closePopup();' class="swal2-close" aria-label="Close this dialog" style="display: flex;">×</button>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        <form
+          action="#"
+          class="steps-validation wizard-circle wizard clearfix"
+          role="application"
+          id="steps-uid-2"
+          novalidate="novalidate"
+        >
+          <div class="steps clearfix">
+            <ul role="tablist">
+              <li
+                #paymentLi
+                role="tab"
+                class="first current"
+                aria-disabled="false"
+                aria-selected="true"
+              >
+                <a
+                  id="steps-uid-2-t-0"
+                  href="#steps-uid-2-h-0"
+                  aria-controls="steps-uid-2-p-0"
+                  ><span class="current-info audible">current step: </span
+                  ><span class="step"
+                    ><i class="step-icon feather icon-credit-card"></i
+                  ></span>
+                  Payment</a
+                >
+              </li>
+              <li
+                #transactionIdentificationLi
+                role="tab"
+                class="disabled"
+                aria-disabled="true"
+              >
+                <a
+                  id="steps-uid-2-t-1"
+                  href="#steps-uid-2-h-1"
+                  aria-controls="steps-uid-2-p-1"
+                  ><span class="step"
+                    ><i class="step-icon feather icon-file-text"></i
+                  ></span>
+                  Transaction Identification</a
+                >
+              </li>
+              <li
+                #confirmationLi
+                role="tab"
+                class="disabled"
+                aria-disabled="true"
+              >
+                <a
+                  id="steps-uid-2-t-1"
+                  href="#steps-uid-2-h-1"
+                  aria-controls="steps-uid-2-p-1"
+                  ><span class="step"
+                    ><i class="step-icon feather icon-check"></i
+                  ></span>
+                  Confirmation</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="content clearfix">
+            <!-- Step 1 -->
+            <h6 id="steps-uid-2-h-0" tabindex="-1" class="title current">
+              <i class="step-icon feather icon-home"></i> Step 1
+            </h6>
+            <fieldset
+              [style.display]="stepOne"
+              id="steps-uid-2-p-0"
+              role="tabpanel"
+              aria-labelledby="steps-uid-2-h-0"
+            >
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <p>Your wallet address (QR)</p>
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <img src="../../../assets/images/Capture.JPG" />
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                  <div class="form-group" style="word-wrap: break-word">
+                    <p>
+                      addr1q8ky6ry63lw4pmu08cmvjcnv2swtvaqgwg2p783kln57afp3nhlnmu5rnlyh7ldfwkz9kc3ryarr9l8latx288zh62mse3jyae
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-1"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="firstName3"> Amount </label>
+                    <input
+                      type="text"
+                      class="form-control required"
+                      id="firstName3"
+                      name="firstName"
+                    /><label
+                      id="firstName3-error"
+                      class="danger"
+                      for="firstName3"
+                      >The amount is required.</label
+                    >
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+            </fieldset>
+
+            <!-- Step 2 -->
+            <h6 id="steps-uid-2-h-1" tabindex="-1" class="title">
+              <i class="step-icon feather icon-check"></i> Step 2
+            </h6>
+            <fieldset
+              [style.display]="stepTwo"
+              id="steps-uid-2-p-1"
+              role="tabpanel"
+              aria-labelledby="steps-uid-2-h-1"
+              class="body"
+            >
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">Info</h4>
+                    <p class="mb-0">
+                      After the payment operation, 
+                      enter the transaction id in this step and go to the next step.
+                    </p>
+                  </div>
+                  <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Danger</h4>
+                    <p class="mb-0">
+                      Be careful when entering this number, because if you enter the 
+                      wrong number, your payment may be lost.
+                    </p>
+                </div>
+                  <div class="form-group">
+                    <label for="proposalTitle3"> Transaction Id </label>
+                    <input
+                      type="text"
+                      placeholder="Enter your transaction id"
+                      class="form-control required"
+                      id="proposalTitle3"
+                      name="proposalTitle"
+                    />
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Step 3 -->
+            <h6 id="steps-uid-2-h-2" tabindex="-1" class="title">
+              <i class="step-icon feather icon-image"></i> Step 3
+            </h6>
+            <fieldset
+              [style.display]="stepThree"
+              id="steps-uid-2-p-2"
+              role="tabpanel"
+              aria-labelledby="steps-uid-2-h-2"
+              class="body"
+            >
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Success</h4>
+                    <p class="mb-0" style="float: left;padding-right: 10px;">
+                      Your payment number is:</p>
+                      <h4>54564564</h4>
+                    <p class="mb-0">
+                      If your account balance is not charged within 2 hours, 
+                      you can check the problem with our colleagues through 
+                      the payment number. So keep the number with you until 
+                      the balance is fully updated.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="actions clearfix">
+            <ul role="menu" aria-label="Pagination">
+              <li [style.display]="previousButton">
+                <a (click)="previous()" class="btn btn-danger" role="menuitem"
+                  >Previous</a
+                >
+              </li>
+              <li [style.display]="nextButton" aria-disabled="false">
+                <a (click)="next()" role="menuitem">Next</a>
+              </li>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="swal2-footer" style="display: none"></div>
+  </div>
+</div>
