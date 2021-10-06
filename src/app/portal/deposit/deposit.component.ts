@@ -2,9 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Payment } from 'src/app/_models/payment';
+import { Withdrawal } from 'src/app/_models/withdrawal';
 import { AlertService } from 'src/app/_services/alert.service';
 import { PaymentService } from 'src/app/_services/payment.service';
 import { WalletService } from 'src/app/_services/wallet.service';
+import { WithdrawalService } from 'src/app/_services/withdrawal.service';
 
 @Component({
   selector: 'app-deposit',
@@ -19,16 +21,21 @@ export class DepositComponent implements OnInit {
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private walletService: WalletService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private withdrawalService: WithdrawalService
   ) {}
   currentStep = 1;
   previousButton = 'none';
   nextButton = 'block';
-  popup: boolean;
+  popupDeposit: boolean;
+  popupWithdraw: boolean;
 
   stepOne = 'block';
   stepTwo = 'none';
   stepThree = 'none';
+
+  stepOneWithdraw = 'block';
+  stepTwoWithdraw = 'none';
 
   cryptoList: Array<any> = [
     { key: 1, value: 'Bitcoin' },
@@ -39,13 +46,17 @@ export class DepositComponent implements OnInit {
 
   submitted = false;
   paymentNumber: number;
+  withdrawalNumber: number;
   amount = new FormControl('', Validators.required);
   transactionId = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
   ]);
   walletType = new FormControl('', Validators.required);
-
+  walletAddress = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+  ]);
   @ViewChild('paymentLi') paymentLi: ElementRef;
   @ViewChild('transactionIdentificationLi')
   transactionIdentificationLi: ElementRef;
@@ -98,7 +109,10 @@ export class DepositComponent implements OnInit {
         break;
       case 2:
         this.submitted = true;
-        if (this.transactionId.invalid) return;
+        if (this.transactionId.invalid) {
+          this.submitted = false;
+          return;
+        }
 
         const payment: Payment = {
           amount: this.amount.value,
@@ -110,6 +124,7 @@ export class DepositComponent implements OnInit {
           .pipe(first())
           .subscribe((response) => {
             if (response.hasError) {
+              this.closePopupDeposit()
               this.alertService.error(response.errorMessage);
               this.loading = false;
             } else {
@@ -120,18 +135,63 @@ export class DepositComponent implements OnInit {
               this.stepThree = 'block';
               this.submitted = false;
               this.previousButton = 'none';
-              this.currentStep=1;
+              this.currentStep = 1;
               this.paymentNumber = response.data.paymentNumber;
             }
           });
         break;
     }
   }
-  charge(walletType: number) {
+  depositPopup(walletType: number) {
+    this.popupDeposit = true;
     this.walletType.setValue(walletType);
-    this.popup = true;
+    
   }
-  closePopup() {
-    this.popup = false;
+  withdrawPopup(walletType: number) {
+    this.popupWithdraw = true;
+    this.walletType.setValue(walletType);
+  }
+  withdraw() {
+    this.submitted = true;
+    if (this.walletAddress.invalid) {
+      this.submitted = false;
+      return;
+    }
+
+    const withdrawal: Withdrawal = {
+      amount: this.amount.value,
+      walletAddress: this.walletAddress.value,
+      walletType: this.walletType.value,
+    };
+    this.withdrawalService
+      .registerWithdrawal(withdrawal)
+      .pipe(first())
+      .subscribe((response) => {
+        if (response.hasError) {
+          this.closePopupWithdraw()
+          this.alertService.error(response.errorMessage);
+          this.loading = false;
+        } else {
+          this.paymentLi.nativeElement.className = 'first done';
+          this.confirmationLi.nativeElement.className = 'last current';
+          this.stepOneWithdraw = 'none';
+          this.stepTwoWithdraw = 'block';
+          this.nextButton = 'none';
+          this.submitted = false;
+          this.withdrawalNumber = response.data.withdrawalNumber;
+        }
+      });
+  }
+  closePopupDeposit() {
+    this.stepOne='block';
+    this.stepTwo='none';
+    this.stepThree='none';
+    this.popupDeposit = false;
+  }
+  closePopupWithdraw() {
+    this.stepOneWithdraw='block';
+    this.stepTwoWithdraw='none';
+    this.nextButton = 'block';
+    this.popupWithdraw = false;
   }
 }

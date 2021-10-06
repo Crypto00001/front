@@ -11,7 +11,6 @@ import { EditProfileComponent } from './portal/edit profile/edit-profile.compone
 import { PortalLayoutComponent } from './portal/portal-layout.component';
 import { ReferralComponent } from './portal/referral/referral.component';
 import { StatusReportComponent } from './portal/status report/status-report.component';
-import { WithdrawComponent } from './portal/withdraw/withdraw.component';
 import { AboutUsComponent } from './website/about-us/about-us.component';
 import { ContactUsComponent } from './website/contact-us/contact-us.component';
 import { FaqComponent } from './website/faq/faq.component';
@@ -67,8 +66,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'choose-plan', component: ChoosePlanComponent },
-      { path: 'deposit', component: DepositComponent },
-      { path: 'withdraw', component: WithdrawComponent },
+      { path: 'wallet', component: DepositComponent },
       { path: 'status-report', component: StatusReportComponent },
       { path: 'refferal', component: ReferralComponent },
       { path: 'edit-profile', component: EditProfileComponent }

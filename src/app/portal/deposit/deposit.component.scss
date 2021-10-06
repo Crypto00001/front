@@ -36,6 +36,11 @@ table.data-list-view.dataTable tbody tr{
     border: 0;
     color: white;
 }
+.withdrawButton{
+    background-color: #00CFE8 !important;
+    border: 0;
+    color: white;
+}
 table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody tr:hover {
        -webkit-transition: unset !important;
        transform: unset !important;
@@ -43,4 +48,8 @@ table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody t
 }
 table {
     border-collapse: unset !important;
+    font-size: 1.5rem;
 }
+ul.b {
+    list-style-type: square;
+  }
