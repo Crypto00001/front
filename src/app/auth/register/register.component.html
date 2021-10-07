@@ -23,13 +23,16 @@
           <input formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
             type="text"
             class="form-control"
-            id="register-firstName"
-            name="register-firstName"
             placeholder="johndoe"
             aria-describedby="register-firstName"
             tabindex="1"
             autofocus
           />
+          <div *ngIf="f.firstName.invalid && f.firstName.dirty" class="alert alert-danger" >
+            <p *ngIf="f.firstName.hasError('maxlength')">
+              Your first Name cannot exceed 50 characters
+            </p>
+          </div>
         </div>
         <div class="form-group">
           <label for="register-username" class="form-label">Last Name</label>
@@ -43,6 +46,11 @@
             tabindex="1"
             autofocus
           />
+          <div *ngIf="f.lastName.invalid && f.lastName.dirty" class="alert alert-danger" >
+            <p *ngIf="f.lastName.hasError('maxlength')">
+              Your last name cannot exceed 50 characters
+            </p>
+          </div>
       </div>
         <div class="form-group">
           <label for="register-country" class="form-label">Country</label>
@@ -55,8 +63,9 @@
         <div class="form-group">
           <label for="register-email" class="form-label">Email</label>
           <input
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
             type="text"
-            formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+            formControlName="email" [ngClass]="{ 'is-invalid': submitted  && f.email.errors }"
             class="form-control"
             id="register-email"
             name="register-email"
@@ -64,6 +73,14 @@
             aria-describedby="register-email"
             tabindex="2"
           />
+          <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)" class="alert alert-danger" >
+            <p *ngIf="submitted && f.email.errors?.pattern">
+              Please enter a valid email
+            </p>
+            <p *ngIf="f.email.hasError('maxlength')">
+              Your email cannot exceed 50 characters
+            </p>
+          </div>
         </div>
         <div class="form-group">
           <label for="register-password" class="form-label">Password</label>
@@ -79,7 +96,18 @@
               tabindex="3"
             />
             <div class="input-group-append">
-              <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+              <span [ngStyle]="{
+                'border-color':
+                  submitted && f.password.errors ? '#EA5455' : null}"
+              class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+            </div>
+            <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger" >
+              <p *ngIf="submitted && f.password.hasError('minlength')">
+                Your password must be at least 6 characters long
+              </p>
+              <p *ngIf="submitted && f.password.hasError('maxlength')">
+                Your password cannot exceed 30 characters
+              </p>
             </div>
           </div>
         </div>
@@ -97,9 +125,24 @@
               tabindex="3"
             />
             <div class="input-group-append">
-              <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+              <span [ngStyle]="{
+                'border-color':
+                  submitted && f.confirmPassword.errors ? '#EA5455' : null}" 
+              class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
             </div>
+            <div *ngIf="f.confirmPassword.invalid && (f.confirmPassword.dirty || f.confirmPassword.touched)" class="alert alert-danger" >
+              <p *ngIf="submitted && f.confirmPassword.hasError('minlength')">
+                Your password must be at least 6 characters long
+              </p>
+              <p *ngIf="submitted && f.confirmPassword.hasError('maxlength')">
+                Your password cannot exceed 30 characters
+              </p>
+            </div>
+            
           </div>
+        </div>
+        <div class="alert alert-danger" *ngIf="submitted && form.hasError('notSame')">
+          password does not match
         </div>
         <div class="form-group" *ngIf="captchaEnabeld" style="text-align: center;" >
           <ng-hcaptcha formControlName="captcha"></ng-hcaptcha>

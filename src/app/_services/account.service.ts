@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 import { CookieService } from 'ngx-cookie-service';
+import { ResetPassword } from '../_models/ResetPassword';
+import { ResetPasswordRequest } from '../_models/resetPasswordRequest';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
 
-  constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) {
+  constructor(private http: HttpClient, private cookieService: CookieService) {
     this.userSubject = new BehaviorSubject<User>(
       this.cookieService.get('user')===''?null:JSON.parse(this.cookieService.get('user'))
     );
@@ -42,19 +43,10 @@ export class AccountService {
     // remove user from local storage and set current user to null
     this.cookieService.delete('user');
     this.userSubject.next(null);
-    this.router.navigate(['/login']);
   }
 
   register(user: User) {
-    return this.http.post(`${environment.apiUrl}/user/register`, user);
-  }
-
-  getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
-  }
-
-  getById(id: string) {
-    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+    return this.http.post<any>(`${environment.apiUrl}/user/register`, user);
   }
 
   update(params) {
@@ -83,15 +75,13 @@ export class AccountService {
       })
     );
   }
-  delete(id: string) {
-    return this.http.delete(`${environment.apiUrl}/users/${id}`).pipe(
-      map((x) => {
-        // auto logout if the logged in user deleted their own record
-        if (id == this.userValue.id) {
-          this.logout();
-        }
-        return x;
-      })
-    );
+
+  resetPasswordRequest(resetPasswordRequest: ResetPasswordRequest) {
+    return this.http.post<any>(`${environment.apiUrl}/user/resetPasswordRequest`, resetPasswordRequest);
   }
+
+  doResetPassword(resetPassword: ResetPassword) {
+    return this.http.post<any>(`${environment.apiUrl}/user/doResetPassword`, resetPassword);
+  }
+
 }

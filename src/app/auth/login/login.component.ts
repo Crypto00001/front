@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required,Validators.maxLength(50)]],
+      password: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
       captcha: [''],
     });
     if (JSON.parse(localStorage.getItem('cpt'))) {
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
             this.form.get('captcha').updateValueAndValidity();
             this.form.controls.captcha.setValue('');
           }
-        } else 
+        } else
         {
           localStorage.setItem('cpt', JSON.stringify(false));
           this.autoLogoutService.reset();

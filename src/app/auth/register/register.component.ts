@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/_services/account.service';
 import { AlertService } from 'src/app/_services/alert.service';
@@ -267,22 +274,24 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService,
     private alertService: AlertService
   ) {}
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      country: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-      captcha: [''],
-    });
+    this.form = this.formBuilder.group(
+      {
+        firstName: ['', [Validators.required, Validators.maxLength(50)]],
+        lastName: ['', [Validators.required, Validators.maxLength(50)]],
+        country: ['', Validators.required],
+        email: ['', [Validators.required, Validators.maxLength(50)]],
+        password: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
+        confirmPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
+        captcha: [''],
+      },
+      { validators: this.checkPasswords }
+    );
 
     if (!localStorage.getItem('regCount'))
       localStorage.setItem('regCount', JSON.stringify(0));
@@ -303,7 +312,13 @@ export class RegisterComponent implements OnInit {
   get f() {
     return this.form.controls;
   }
-
+  checkPasswords: ValidatorFn = (
+    group: AbstractControl
+  ): ValidationErrors | null => {
+    const pass = group.get('password').value;
+    const confirmPass = group.get('confirmPassword').value;
+    return pass === confirmPass ? null : { notSame: true };
+  };
   onSubmit() {
     this.submitted = true;
 
@@ -319,21 +334,20 @@ export class RegisterComponent implements OnInit {
     this.accountService
       .register(this.form.value)
       .pipe(first())
-      .subscribe(
-        (data) => {
-          this.alertService.success('Registration successfully completed!', {
+      .subscribe((data) => {
+        if (data.hasError) {
+          this.alertService.error(data.errorMessage);
+          this.loading = false;
+        } else {
+          this.loading = false;
+          this.alertService.success('Registration successfully completed', {
             keepAfterRouteChange: true,
           });
-          localStorage.setItem(
-            'regCount',
-            JSON.parse(localStorage.getItem('regCount')) + 1
-          );
-          this.router.navigate(['../login'], { relativeTo: this.route });
-        },
-        (error) => {
-          this.alertService.error(error);
-          this.loading = false;
+          localStorage.setItem('regCount',JSON.parse(localStorage.getItem('regCount')) + 1);
+          this.router.navigate(['/login']).then(() => {
+            window.location.reload();
+          });
         }
-      );
+      });
   }
 }
