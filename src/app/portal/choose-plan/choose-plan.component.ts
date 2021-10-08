@@ -71,16 +71,22 @@ export class ChoosePlanComponent implements OnInit {
         .pipe(first())
         .subscribe(
             response => {
+              this.loading = false;
+              this.submitted = false;
               if(response.hasError)
               {
                 this.alertService.error(response.errorMessage);
-                this.loading = false;
               }
               else
               {
                 this.alertService.success('Investment plan started successfully!', { keepAfterRouteChange: true });
                 this.popup = false;
               }
+            },
+            () => {
+              this.loading = false;
+              this.submitted = false;
+              this.alertService.error('Something went wrong.');
             });
   }
 }

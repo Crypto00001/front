@@ -40,7 +40,7 @@
                   <div class="form-group">
                     <label for="login-email" class="form-label">Email</label>
                     <input
-                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
                       type="text"
                       formControlName="email"
                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
@@ -87,7 +87,7 @@
                             'border-color':
                               submitted && f.password.errors ? '#EA5455' : null
                           }"
-                          ><i data-feather="eye"></i
+                          ><i class="feather icon-eye"></i
                         ></span>
                       </div>
                     </div>
@@ -113,6 +113,7 @@
                   </div>
                   <button class="btn btn-primary btn-block" tabindex="4">
                     Sign in
+                    <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
                   </button>
                 </form>
 

@@ -28,8 +28,15 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required,Validators.maxLength(50)]],
-      password: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
+      email: ['', [Validators.required, Validators.maxLength(50)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(30),
+        ],
+      ],
       captcha: [''],
     });
     if (JSON.parse(localStorage.getItem('cpt'))) {
@@ -59,32 +66,39 @@ export class LoginComponent implements OnInit {
     this.accountService
       .login(this.f.email.value, this.f.password.value)
       .pipe(first())
-      .subscribe((data) => {
-        if (data.hasError) {
+      .subscribe(
+        (data) => {
           this.loading = false;
-          if (data.captcha) {
-            localStorage.setItem('cpt', JSON.stringify(true));
-            this.captchaEnabeld = true;
-            this.form.controls.captcha.setValidators(Validators.required);
-            this.form.get('captcha').updateValueAndValidity();
-            this.form.controls.captcha.setValue('');
-            this.submitted = false;
+          this.submitted = false;
+          if (data.hasError) {
+            if (data.captcha) {
+              localStorage.setItem('cpt', JSON.stringify(true));
+              this.alertService.error(data.errorMessage);
+              this.captchaEnabeld = true;
+              this.form.controls.captcha.setValidators(Validators.required);
+              this.form.get('captcha').updateValueAndValidity();
+              this.form.controls.captcha.setValue('');
+            } else {
+              this.alertService.error(data.errorMessage);
+              localStorage.setItem('cpt', JSON.stringify(false));
+              this.captchaEnabeld = false;
+              this.form.controls.captcha.clearValidators();
+              this.form.get('captcha').updateValueAndValidity();
+              this.form.controls.captcha.setValue('');
+            }
           } else {
-            this.alertService.error(data.errorMessage);
             localStorage.setItem('cpt', JSON.stringify(false));
-            this.captchaEnabeld = false;
-            this.form.controls.captcha.clearValidators();
-            this.form.get('captcha').updateValueAndValidity();
-            this.form.controls.captcha.setValue('');
+            this.autoLogoutService.reset();
+            this.router.navigate([this.returnUrl]).then(() => {
+              window.location.reload();
+            });
           }
-        } else
-        {
-          localStorage.setItem('cpt', JSON.stringify(false));
-          this.autoLogoutService.reset();
-          this.router.navigate([this.returnUrl]).then(() => {
-            window.location.reload();
-          });
+        },
+        () => {
+          this.loading = false;
+          this.submitted = false;
+          this.alertService.error('Something went wrong.');
         }
-      });
+      );
   }
 }

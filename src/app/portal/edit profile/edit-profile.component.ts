@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AccountService } from 'src/app/_services/account.service';
@@ -277,11 +277,19 @@ export class EditProfileComponent implements OnInit {
       country: ['', Validators.required],
     });
     this.changePaaswordForm = this.formBuilder.group({
-      oldPassword: ['', [Validators.required, Validators.minLength(6)]],
-      newPassword: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
-    });
+      oldPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
+      newPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
+      confirmPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
+    },
+    { validators: this.checkPasswords });
   }
+  checkPasswords: ValidatorFn = (
+    group: AbstractControl
+  ): ValidationErrors | null => {
+    const pass = group.get('newPassword').value;
+    const confirmPass = group.get('confirmPassword').value;
+    return pass === confirmPass ? null : { notSame: true };
+  };
     // convenience getter for easy access to form fields
     get getGeneralForm() { return this.generalForm.controls; }
     get getChangePaaswordForm() { return this.changePaaswordForm.controls; }
@@ -304,6 +312,11 @@ export class EditProfileComponent implements OnInit {
               } 
               else 
                 this.alertService.success('Information successfully updated!', { keepAfterRouteChange: true });
+            },
+            () => {
+              this.loading = false;
+              this.generalFormSubmitted = false;
+              this.alertService.error('Something went wrong.');
             });
   }
 
@@ -319,12 +332,17 @@ export class EditProfileComponent implements OnInit {
         .pipe(first())
         .subscribe(
             data => {
+              this.loading = false;
               if (data.hasError) {
                 this.alertService.error(data.errorMessage);
-                this.loading = false;
               } 
               else 
                 this.alertService.success('Password successfully changed!', { keepAfterRouteChange: true });
+            },
+            () => {
+              this.loading = false;
+              this.changePaaswordFormSubmitted = false;
+              this.alertService.error('Something went wrong.');
             });
   }
 }

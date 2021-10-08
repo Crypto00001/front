@@ -19,7 +19,8 @@
                 <span class="">Duration</span>
               </div>
             </div>
-            <button (click)="invest('Bronze');"
+            <button
+              (click)="invest('Bronze')"
               class="
                 btn
                 gradient-light-primary
@@ -52,7 +53,8 @@
                 <span class="">Duration</span>
               </div>
             </div>
-            <button (click)="invest('Silver');"
+            <button
+              (click)="invest('Silver')"
               class="
                 btn
                 gradient-light-primary
@@ -85,7 +87,8 @@
                 <span class="">Duration</span>
               </div>
             </div>
-            <button (click)="invest('Gold');"
+            <button
+              (click)="invest('Gold')"
               class="
                 btn
                 gradient-light-primary
@@ -102,8 +105,10 @@
     </div>
   </div>
 </section>
-<div *ngIf="popup"
-  class="swal2-container swal2-center swal2-fade swal2-shown" ngif
+<div
+  *ngIf="popup"
+  class="swal2-container swal2-center swal2-fade swal2-shown"
+  ngif
   style="overflow-y: auto"
 >
   <div
@@ -114,70 +119,106 @@
     role="dialog"
     aria-live="assertive"
     aria-modal="true"
-    style="display: flex;"
+    style="display: flex"
   >
-  <div class="card-header-choos-plan">
-                                    <h4 class="card-title">Plan Selection</h4>
-                                </div>
-  <form class="form form-vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form-body">
-        <div class="row">
-            <div class="col-12">
-                <div class="form-label-group position-relative has-icon-left">
-                    <select formControlName="planName" [ngClass]="{ 'is-invalid': submitted && f.planName.errors }" class="form-control" id="basicSelect">
-                        <option [value]="count" *ngFor ="let count of planList">{{count}} </option>
-                    </select>
-                    <div class="form-control-position">
-                        <i class="feather icon-box"></i>
-                    </div>
-                    <label for="first-name-floating-icon">Plan</label>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-label-group position-relative has-icon-left">
-                    <select  formControlName="walletType" [ngClass]="{ 'is-invalid': submitted && f.walletType.errors }" class="form-control" id="basicSelect" (ngModelChange)="cryptoChange($event);">
-                        <option [ngValue]="count.key" *ngFor ="let count of cryptoList">{{count.value}} </option>
-                    </select>
-                    <div class="form-control-position">
-                        <i class="feather icon-credit-card"></i>
-                    </div>
-                    <label for="email-id-floating-icon">Email</label>
-
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-label-group">
-                    <input disabled type="email" [value]="balance" id="email-id-floating" class="form-control" name="email-id-floating" placeholder="Balance">
-                    <label for="email-id-floating">Available Balance</label>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="form-label-group">
-                    <input formControlName="investmentAmount" [ngClass]="{ 'is-invalid': submitted && f.investmentAmount.errors }" type="email" id="email-id-floating" class="form-control" name="email-id-floating" placeholder="Investment Amount">
-                    <label for="email-id-floating">Investment Amount</label>
-                </div>
-            </div>
-        </div>
+    <div class="card-header-choos-plan">
+      <h4 class="card-title">Plan Selection</h4>
+      <button
+        type="button"
+        (click)="popup = false"
+        class="swal2-close"
+        aria-label="Close this dialog"
+        style="display: flex"
+      >
+        ×
+      </button>
     </div>
-    <div class="swal2-actions" style="display: flex">
+    <form class="form form-vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-label-group position-relative has-icon-left">
+              <select
+                formControlName="planName"
+                [ngClass]="{ 'is-invalid': submitted && f.planName.errors }"
+                class="form-control"
+                id="basicSelect"
+              >
+                <option [value]="count" *ngFor="let count of planList">
+                  {{ count }}
+                </option>
+              </select>
+              <div class="form-control-position">
+                <i class="feather icon-box"></i>
+              </div>
+              <label for="first-name-floating-icon">Plan</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-label-group position-relative has-icon-left">
+              <select
+                formControlName="walletType"
+                [ngClass]="{ 'is-invalid': submitted && f.walletType.errors }"
+                class="form-control"
+                id="basicSelect"
+                (ngModelChange)="cryptoChange($event)"
+              >
+                <option [ngValue]="count.key" *ngFor="let count of cryptoList">
+                  {{ count.value }}
+                </option>
+              </select>
+              <div class="form-control-position">
+                <i class="feather icon-credit-card"></i>
+              </div>
+              <label for="email-id-floating-icon">Email</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-label-group">
+              <input
+                disabled
+                type="email"
+                [value]="balance"
+                id="email-id-floating"
+                class="form-control"
+                name="email-id-floating"
+                placeholder="Balance"
+              />
+              <label for="email-id-floating">Available Balance</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-label-group">
+              <input
+                formControlName="investmentAmount"
+                digitOnly
+                [max]="balance"
+                [decimal]="true"
+                [ngClass]="{
+                  'is-invalid': submitted && f.investmentAmount.errors
+                }"
+                id="email-id-floating"
+                class="form-control"
+                name="email-id-floating"
+                placeholder="Investment Amount"
+              />
+              <label for="email-id-floating">Investment Amount</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swal2-actions" style="display: flex">
         <button
           type="submit"
           class="swal2-confirm btn btn-primary"
           aria-label=""
           style="display: inline-block"
         >
-          Start Investment!</button
-        ><button
-          type="button"
-          (click)="popup = false"
-          class="swal2-cancel btn btn-danger ml-1"
-          aria-label=""
-          style="display: inline-block"
+          Start Investment
+          <span class="spinner-border spinner-border-sm" *ngIf="loading"></span></button
         >
-          Cancel
-        </button>
       </div>
-</form>
+    </form>
     <div class="swal2-footer" style="display: none"></div>
   </div>
 </div>

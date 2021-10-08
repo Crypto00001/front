@@ -37,5 +37,6 @@ export class PortalLayoutComponent implements OnInit {
 
   ngOnInit() {
 
+    $.getScript('../../assets/js/app/app.min.js', function () {});
   }
 }

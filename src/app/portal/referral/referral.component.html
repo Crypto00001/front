@@ -1,85 +1,97 @@
 <div class="content-header row">
-    <div class="content-header-left col-md-9 col-12 mb-2">
-        <div class="row breadcrumbs-top">
-            <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Referral</h2>
-                <div class="breadcrumb-wrapper col-12">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a>
-                        </li>
-                        <li class="breadcrumb-item active">Referral
-                        </li>
-                    </ol>
-                </div>
-            </div>
+  <div class="content-header-left col-md-9 col-12 mb-2">
+    <div class="row breadcrumbs-top">
+      <div class="col-12">
+        <h2 class="content-header-title float-left mb-0">Referral</h2>
+        <div class="breadcrumb-wrapper col-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Referral</li>
+          </ol>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <section id="input-group-buttons">
   <div class="row">
-      <div class="col-md-12">
-          <div class="card">
-              <div class="card-header">
-                  <h4 class="card-title">Invite your friends to get more profit</h4>
-              </div>
-              <div class="card-content">
-                  <div class="card-body">
-                      <p>You are allowed to invite up to 5 of your friends</p>
-                      <div class="row">
-                          <div class="col-md-12 col-12 mb-1">
-                              <fieldset>
-                                  <div class="input-group">
-                                      <input type="text" [value]="referralData[0]===undefined ? '': referralData[0].email" #inpInvite1 [disabled]="referralData.length >=1" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                                      <div class="input-group-append" id="button-addon2">
-                                          <button id="btnInvite1" [disabled]="referralData.length >=1" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite1.value);" type="button">Invite</button>
-                                      </div>
-                                  </div>
-                              </fieldset>
-                          </div>
-                          <div class="col-md-12 col-12 mb-1">
-                            <fieldset>
-                                <div class="input-group">
-                                    <input type="text" [value]="referralData[1]===undefined ? '': referralData[1].email" #inpInvite2 [disabled]="referralData.length >=2" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                                      <div class="input-group-append" id="button-addon2">
-                                          <button id="btnInvite2" [disabled]="referralData.length >=2" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite2.value);" type="button">Invite</button>
-                                      </div>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div class="col-md-12 col-12 mb-1">
-                          <fieldset>
-                              <div class="input-group">
-                                <input type="text" [value]="referralData[2]===undefined ? '': referralData[2].email" #inpInvite3 [disabled]="referralData.length >=3" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                                <div class="input-group-append" id="button-addon2">
-                                    <button id="btnInvite2" [disabled]="referralData.length >=3" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite3.value);" type="button">Invite</button>
-                                </div>
-                              </div>
-                          </fieldset>
-                      </div>
-                      <div class="col-md-12 col-12 mb-1">
-                        <fieldset>
-                            <div class="input-group">
-                                <input type="text" [value]="referralData[3]===undefined ? '': referralData[3].email" #inpInvite4 [disabled]="referralData.length >=4" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                                      <div class="input-group-append" id="button-addon2">
-                                          <button id="btnInvite2" [disabled]="referralData.length >=4" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite4.value);" type="button">Invite</button>
-                                      </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="col-md-12 col-12 mb-1">
-                      <fieldset>
-                          <div class="input-group">
-                            <input type="text" [value]="referralData[4]===undefined ? '': referralData[4].email" #inpInvite5 [disabled]="referralData.length ==5" class="form-control" placeholder="Email address" aria-describedby="button-addon2">
-                            <div class="input-group-append" id="button-addon2">
-                                <button id="btnInvite2" [disabled]="referralData.length ==5" class="btn btn-primary waves-effect waves-light" (click)="sendInvitation(inpInvite5.value);" type="button">Invite</button>
-                            </div>
-                          </div>
-                      </fieldset>
-                  </div>
-                      </div>
-                  </div>
-              </div>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title" style="margin-bottom: 10px">
+            Invite your friends to get more profit
+          </h4>
+          <div class="alert alert-info" role="alert" style="width: 100%">
+            <h4 class="alert-heading">Attention</h4>
+            <ul class="b">
+              <li>
+                To receive a percentage of the bonus, each of the invitees must
+                be active in order to participate in at least one of the
+                investment plans.
+              </li>
+              <li>You are allowed to have up to 5 active invitees.</li>
+              <li>
+                For each active invitee, you will be awarded a percentage of the
+                bonus, the amount of which varies in each plan.
+              </li>
+            </ul>
           </div>
+          <div class="alert alert-success" role="alert" style="width: 100%">
+            <div class="b" style="display: flex">
+              You have
+              <div style="padding-left: 5px; padding-right: 5px">{{activeInviteesCount}}</div>
+              active invitees right now
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12 col-12 mb-1">
+                <fieldset>
+                  <div class="input-group">
+                    <input
+                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
+                      type="text"
+                      [formControl]="email"
+                      [ngClass]="{ 'is-invalid': submitted && email.errors }"
+                      class="form-control"
+                      placeholder="Email address"
+                      aria-describedby="login-email"
+                      tabindex="1"
+                      autofocus
+                    />
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-primary waves-effect waves-light"
+                        (click)="sendInvitation(email)"
+                        type="button"
+                      >
+                        Invite
+                        <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
+                      </button>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="col-md-12 col-12 mb-1" style="padding-top: 10px;">
+                  <p
+                    *ngIf="submitted && email.errors?.pattern"
+                    class="alert alert-danger"
+                  >
+                    Please enter a valid email
+                  </p>
+                  <p
+                    *ngIf="email.hasError('maxlength')"
+                    class="alert alert-danger"
+                  >
+                    Your email cannot exceed 50 characters
+                  </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
   </div>
 </section>

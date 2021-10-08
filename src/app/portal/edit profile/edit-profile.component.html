@@ -135,12 +135,6 @@
                       >
                         Save changes
                       </button>
-                      <button
-                        type="reset"
-                        class="btn btn-outline-warning waves-effect waves-light"
-                      >
-                        Cancel
-                      </button>
                     </div>
                   </div>
                 </form>
@@ -160,56 +154,76 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="form-group">
-                        <div class="controls">
-                          <label
-                            for="account-old-password"
-                            >Old Password</label
-                          >
+                        <label for="register-password" class="form-label">Old Password</label>
+                        <div class="input-group input-group-merge form-password-toggle">
                           <input
-                            type="password"
-                            formControlName="oldPassword"
+                          formControlName="oldPassword"
                             [ngClass]="{
                               'is-invalid': changePaaswordFormSubmitted && getChangePaaswordForm.oldPassword.errors
                             }"
-                            class="form-control"
-                            id="account-old-password"
-                            required=""
-                            placeholder="Old Password"
-                            data-validation-required-message="This old password field is required"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-group">
-                        <div class="controls">
-                          <label
-                            for="account-new-password"
-                            >New Password</label
-                          >
-                          <input
-                          formControlName="newPassword"
-                          [ngClass]="{
-                            'is-invalid': changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.errors
-                          }"
                             type="password"
-                            name="password"
-                            id="account-new-password"
+                            name="con-password"
                             class="form-control"
-                            placeholder="New Password"
-                            required=""
-                            data-validation-required-message="The password field is required"
+                            required="" 
+                            id="account-retype-new-password"
+                            placeholder="Old password"
                             minlength="6"
                           />
+                          <div class="input-group-append">
+                            <span [ngStyle]="{
+                              'border-color':
+                                submitted && getChangePaaswordForm.oldPassword.errors ? '#EA5455' : '#10163A'}" 
+                            class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
+                          </div>
                         </div>
+                          <div style="padding-top: 10px;">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.oldPassword.hasError('minlength')" class="alert alert-danger">
+                              Your password must be at least 6 characters long
+                            </p>
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.oldPassword.hasError('maxlength')" class="alert alert-danger">
+                              Your password cannot exceed 30 characters
+                            </p>
+                          </div>
                       </div>
                     </div>
                     <div class="col-12">
                       <div class="form-group">
-                        <div class="controls">
-                          <label for="account-retype-new-password"
-                            >Retype New Password</label
-                          >
+                        <label for="register-password" class="form-label">New Password</label>
+                        <div class="input-group input-group-merge form-password-toggle">
+                          <input
+                          formControlName="newPassword"
+                            [ngClass]="{
+                              'is-invalid': changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.errors
+                            }"
+                            type="password"
+                            name="con-password"
+                            class="form-control"
+                            required=""
+                            id="account-retype-new-password"
+                            placeholder="New password"
+                            minlength="6"
+                          />
+                          <div class="input-group-append">
+                            <span [ngStyle]="{
+                              'border-color':
+                                submitted && getChangePaaswordForm.newPassword.errors ? '#EA5455' : '#10163A'}" 
+                            class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
+                          </div>
+                        </div>
+                          <div style="padding-top: 10px;">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.hasError('minlength')" class="alert alert-danger">
+                              Your password must be at least 6 characters long
+                            </p>
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.hasError('maxlength')" class="alert alert-danger">
+                              Your password cannot exceed 30 characters
+                            </p>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label for="register-password" class="form-label">Confirm Password</label>
+                        <div class="input-group input-group-merge form-password-toggle">
                           <input
                           formControlName="confirmPassword"
                             [ngClass]="{
@@ -220,14 +234,30 @@
                             class="form-control"
                             required=""
                             id="account-retype-new-password"
-                            data-validation-match-match="password"
-                            placeholder="New Password"
-                            data-validation-required-message="The Confirm password field is required"
+                            placeholder="Retype your new password"
                             minlength="6"
                           />
+                          <div class="input-group-append">
+                            <span [ngStyle]="{
+                              'border-color':
+                                submitted && getChangePaaswordForm.confirmPassword.errors ? '#EA5455' : '#10163A'}" 
+                            class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
+                          </div>
                         </div>
+                          <div style="padding-top: 10px;">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.confirmPassword.hasError('minlength')" class="alert alert-danger">
+                              Your password must be at least 6 characters long
+                            </p>
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.confirmPassword.hasError('maxlength')" class="alert alert-danger">
+                              Your password cannot exceed 30 characters
+                            </p>
+                            <p class="alert alert-danger" *ngIf="changePaaswordFormSubmitted && changePaaswordForm.hasError('notSame')">
+                              Password does not match
+                            </p>
+                          </div>
                       </div>
                     </div>
+                    
                     <div
                       class="
                         col-12
@@ -246,12 +276,7 @@
                         "
                       >
                         Save changes
-                      </button>
-                      <button
-                        type="reset"
-                        class="btn btn-outline-warning waves-effect waves-light"
-                      >
-                        Cancel
+                        <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
                       </button>
                     </div>
                   </div>

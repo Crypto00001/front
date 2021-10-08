@@ -63,7 +63,7 @@
         <div class="form-group">
           <label for="register-email" class="form-label">Email</label>
           <input
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
             type="text"
             formControlName="email" [ngClass]="{ 'is-invalid': submitted  && f.email.errors }"
             class="form-control"
@@ -99,7 +99,7 @@
               <span [ngStyle]="{
                 'border-color':
                   submitted && f.password.errors ? '#EA5455' : null}"
-              class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+              class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
             </div>
             <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger" >
               <p *ngIf="submitted && f.password.hasError('minlength')">
@@ -128,7 +128,7 @@
               <span [ngStyle]="{
                 'border-color':
                   submitted && f.confirmPassword.errors ? '#EA5455' : null}" 
-              class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+              class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
             </div>
             <div *ngIf="f.confirmPassword.invalid && (f.confirmPassword.dirty || f.confirmPassword.touched)" class="alert alert-danger" >
               <p *ngIf="submitted && f.confirmPassword.hasError('minlength')">
@@ -148,7 +148,10 @@
           <ng-hcaptcha formControlName="captcha"></ng-hcaptcha>
           <span *ngIf="submitted && f.captcha.errors" style="color: #EA5455!important;">Captcha ir required</span>
         </div>
-        <button class="btn btn-primary btn-block" tabindex="5">Sign up</button>
+        <button class="btn btn-primary btn-block" tabindex="5">
+          Sign up
+          <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
+        </button>
       </form>
 
       <p class="text-center mt-2">

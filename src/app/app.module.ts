@@ -34,6 +34,7 @@ import { SearchDashboardPipe } from "./_pipes/search-dashboard.pipe";
 import { StatusReportComponent } from "./portal/status report/status-report.component";
 import { NgHcaptchaModule } from "ng-hcaptcha";
 import { CookieService } from "ngx-cookie-service";
+import { DigitOnlyDirective } from "./_directives/digit-only.directive";
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,11 +59,12 @@ import { CookieService } from "ngx-cookie-service";
     SidebarComponent,
     FooterComponent,
     AlertComponent,
-    SearchDashboardPipe
+    SearchDashboardPipe,
+    DigitOnlyDirective
   ],
   imports: [
     NgHcaptchaModule.forRoot({
-      siteKey: '3ceb8624-1970-4e6b-91d5-70317b70b650'
+      siteKey: '3ceb8624-1970-4e6b-91d5-70317b70b670'
   }), 
     BrowserModule,
     AppRoutingModule,

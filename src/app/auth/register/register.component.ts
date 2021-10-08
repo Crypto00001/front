@@ -335,12 +335,12 @@ export class RegisterComponent implements OnInit {
       .register(this.form.value)
       .pipe(first())
       .subscribe((data) => {
+        this.loading = false;
+        this.submitted = false;
         if (data.hasError) {
           this.alertService.error(data.errorMessage);
-          this.loading = false;
         } else {
-          this.loading = false;
-          this.alertService.success('Registration successfully completed', {
+          this.alertService.success('Registration successfully completed.', {
             keepAfterRouteChange: true,
           });
           localStorage.setItem('regCount',JSON.parse(localStorage.getItem('regCount')) + 1);
@@ -348,6 +348,11 @@ export class RegisterComponent implements OnInit {
             window.location.reload();
           });
         }
+      },
+      () => {
+        this.loading = false;
+        this.submitted = false;
+        this.alertService.error('Something went wrong.');
       });
   }
 }
