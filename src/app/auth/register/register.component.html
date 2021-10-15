@@ -30,7 +30,7 @@
           />
           <div *ngIf="f.firstName.invalid && f.firstName.dirty" class="alert alert-danger" >
             <p *ngIf="f.firstName.hasError('maxlength')">
-              Your first Name cannot exceed 50 characters
+              First Name cannot exceed 50 characters
             </p>
           </div>
         </div>
@@ -48,7 +48,7 @@
           />
           <div *ngIf="f.lastName.invalid && f.lastName.dirty" class="alert alert-danger" >
             <p *ngIf="f.lastName.hasError('maxlength')">
-              Your last name cannot exceed 50 characters
+              Last Name cannot exceed 50 characters
             </p>
           </div>
       </div>
@@ -78,7 +78,7 @@
               Please enter a valid email
             </p>
             <p *ngIf="f.email.hasError('maxlength')">
-              Your email cannot exceed 50 characters
+              Email cannot exceed 50 characters
             </p>
           </div>
         </div>
@@ -103,10 +103,10 @@
             </div>
             <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger" >
               <p *ngIf="submitted && f.password.hasError('minlength')">
-                Your password must be at least 6 characters long
+                Password must be at least 6 characters long
               </p>
               <p *ngIf="submitted && f.password.hasError('maxlength')">
-                Your password cannot exceed 30 characters
+                Password cannot exceed 30 characters
               </p>
             </div>
           </div>
@@ -132,10 +132,10 @@
             </div>
             <div *ngIf="f.confirmPassword.invalid && (f.confirmPassword.dirty || f.confirmPassword.touched)" class="alert alert-danger" >
               <p *ngIf="submitted && f.confirmPassword.hasError('minlength')">
-                Your password must be at least 6 characters long
+                Password must be at least 6 characters long
               </p>
               <p *ngIf="submitted && f.confirmPassword.hasError('maxlength')">
-                Your password cannot exceed 30 characters
+                Password cannot exceed 30 characters
               </p>
             </div>
             

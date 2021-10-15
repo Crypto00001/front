@@ -24,17 +24,17 @@ import { PortalLayoutComponent } from "./portal/portal-layout.component";
 import { ChoosePlanComponent } from "./portal/choose-plan/choose-plan.component";
 import { DepositComponent } from "./portal/deposit/deposit.component";
 import { ReferralComponent } from "./portal/referral/referral.component";
-import { EditProfileComponent } from "./portal/edit profile/edit-profile.component";
+import { EditProfileComponent } from "./portal/edit-profile/edit-profile.component";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { JwtInterceptor } from "./_helpers/jwt.interceptor";
 import { AlertComponent } from "./shared/alert/alert/alert.component";
 import { ErrorInterceptor } from "./_helpers/error.interceptor";
 import { AutoLogoutService } from "./_services/auto-logout.service";
 import { SearchDashboardPipe } from "./_pipes/search-dashboard.pipe";
-import { StatusReportComponent } from "./portal/status report/status-report.component";
 import { NgHcaptchaModule } from "ng-hcaptcha";
 import { CookieService } from "ngx-cookie-service";
 import { DigitOnlyDirective } from "./_directives/digit-only.directive";
+import { PlansReportComponent } from "./portal/plans-report/plans-report.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +47,7 @@ import { DigitOnlyDirective } from "./_directives/digit-only.directive";
     ContactUsComponent,
     FaqComponent,
     LoginComponent,
-    StatusReportComponent,
+    PlansReportComponent,
     RegisterComponent,
     ReferralComponent,
     EditProfileComponent,

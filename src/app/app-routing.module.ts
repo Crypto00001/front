@@ -7,10 +7,10 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { ChoosePlanComponent } from './portal/choose-plan/choose-plan.component';
 import { DashboardComponent } from './portal/dashboard/dashboard.component';
 import { DepositComponent } from './portal/deposit/deposit.component';
-import { EditProfileComponent } from './portal/edit profile/edit-profile.component';
+import { EditProfileComponent } from './portal/edit-profile/edit-profile.component';
+import { PlansReportComponent } from './portal/plans-report/plans-report.component';
 import { PortalLayoutComponent } from './portal/portal-layout.component';
 import { ReferralComponent } from './portal/referral/referral.component';
-import { StatusReportComponent } from './portal/status report/status-report.component';
 import { AboutUsComponent } from './website/about-us/about-us.component';
 import { ContactUsComponent } from './website/contact-us/contact-us.component';
 import { FaqComponent } from './website/faq/faq.component';
@@ -67,7 +67,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'choose-plan', component: ChoosePlanComponent },
       { path: 'wallet', component: DepositComponent },
-      { path: 'status-report', component: StatusReportComponent },
+      { path: 'plans-report', component: PlansReportComponent },
       { path: 'refferal', component: ReferralComponent },
       { path: 'edit-profile', component: EditProfileComponent }
     ],

@@ -64,14 +64,20 @@
                         <div class="controls">
                           <label for="account-name">Email</label>
                           <input
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
                             type="text"
                             formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': generalFormSubmitted && getGeneralForm.email.errors }"
                             id="account-name"
                             placeholder="Email address"
-                            value="Hermione Granger"
                             required=""
                             data-validation-required-message="This Name field is required"
                           />
+                          <div *ngIf="getGeneralForm.email.hasError('maxlength') && generalFormSubmitted" class="alert alert-danger">
+                            Email cannot exceed 50 characters
+                          </div>
+                          <div *ngIf="getGeneralForm.email.errors?.pattern && generalFormSubmitted" class="alert alert-danger">
+                            Please enter a valid email
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -84,10 +90,12 @@
                             formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': generalFormSubmitted && getGeneralForm.firstName.errors }"
                             id="account-name"
                             placeholder="First Name"
-                            value="Hermione Granger"
                             required=""
                             data-validation-required-message="This Name field is required"
                           />
+                            <div *ngIf="getGeneralForm.firstName.hasError('maxlength') && generalFormSubmitted" class="alert alert-danger" >
+                              First Name cannot exceed 50 characters
+                            </div>
                         </div>
                       </div>
                     </div>
@@ -100,10 +108,12 @@
                               formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': generalFormSubmitted && getGeneralForm.lastName.errors }"
                               id="account-lastName"
                               placeholder="Last Name"
-                              value="Hermione Granger"
                               required=""
                               data-validation-required-message="This Last Name field is required"
                             />
+                            <div *ngIf="getGeneralForm.lastName.hasError('maxlength') && generalFormSubmitted" class="alert alert-danger" >
+                              Last Name cannot exceed 50 characters
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -176,12 +186,12 @@
                             class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
                           </div>
                         </div>
-                          <div style="padding-top: 10px;">
+                          <div>
                             <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.oldPassword.hasError('minlength')" class="alert alert-danger">
-                              Your password must be at least 6 characters long
+                              Password must be at least 6 characters long
                             </p>
                             <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.oldPassword.hasError('maxlength')" class="alert alert-danger">
-                              Your password cannot exceed 30 characters
+                              Password cannot exceed 30 characters
                             </p>
                           </div>
                       </div>
@@ -210,12 +220,12 @@
                             class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
                           </div>
                         </div>
-                          <div style="padding-top: 10px;">
+                          <div>
                             <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.hasError('minlength')" class="alert alert-danger">
-                              Your password must be at least 6 characters long
+                              Password must be at least 6 characters long
                             </p>
                             <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.hasError('maxlength')" class="alert alert-danger">
-                              Your password cannot exceed 30 characters
+                              Password cannot exceed 30 characters
                             </p>
                           </div>
                       </div>
@@ -244,12 +254,12 @@
                             class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
                           </div>
                         </div>
-                          <div style="padding-top: 10px;">
+                          <div  >
                             <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.confirmPassword.hasError('minlength')" class="alert alert-danger">
-                              Your password must be at least 6 characters long
+                              Password must be at least 6 characters long
                             </p>
                             <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.confirmPassword.hasError('maxlength')" class="alert alert-danger">
-                              Your password cannot exceed 30 characters
+                              Password cannot exceed 30 characters
                             </p>
                             <p class="alert alert-danger" *ngIf="changePaaswordFormSubmitted && changePaaswordForm.hasError('notSame')">
                               Password does not match

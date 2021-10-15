@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class NavbarComponent implements OnInit {
   firstName:string;
   lastName:string;
 
-  constructor(private accountService: AccountService) {
+  constructor(private router:Router, private accountService: AccountService) {
   }
 
   ngOnInit() {
@@ -19,5 +20,11 @@ export class NavbarComponent implements OnInit {
     this.lastName=user.lastName;
   }
 
+  logOut(){
+    this.accountService.logout();
+    this.router.navigate(['/login']).then(() => {
+      window.location.reload();
+    });
+  }
 
 }

@@ -160,7 +160,6 @@
               >
                 <a
                   id="steps-uid-2-t-0"
-                  href="#steps-uid-2-h-0"
                   aria-controls="steps-uid-2-p-0"
                   ><span class="current-info audible">current step: </span
                   ><span class="step"
@@ -177,7 +176,6 @@
               >
                 <a
                   id="steps-uid-2-t-1"
-                  href="#steps-uid-2-h-1"
                   aria-controls="steps-uid-2-p-1"
                   ><span class="step"
                     ><i class="step-icon feather icon-file-text"></i
@@ -193,7 +191,6 @@
               >
                 <a
                   id="steps-uid-2-t-1"
-                  href="#steps-uid-2-h-1"
                   aria-controls="steps-uid-2-p-1"
                   ><span class="step"
                     ><i class="step-icon feather icon-check"></i
@@ -227,7 +224,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <img src="../../../assets/images/Capture.JPG" />
+                    <img src={{pathQR}} />
                   </div>
                 </div>
                 <div class="col-md-4"></div>
@@ -237,7 +234,7 @@
                 <div class="col-md-10">
                   <div class="form-group" style="word-wrap: break-word">
                     <p>
-                      addr1q8ky6ry63lw4pmu08cmvjcnv2swtvaqgwg2p783kln57afp3nhlnmu5rnlyh7ldfwkz9kc3ryarr9l8latx288zh62mse3jyae
+                      {{displayWalletAddress}}
                     </p>
                   </div>
                 </div>
@@ -252,7 +249,7 @@
                       [formControl]="walletType"
                       class="form-control"
                       id="basicSelect"
-                      (ngModelChange)="cryptoChange($event)"
+                      (change)="changeWalletType($event)"
                     >
                       <option value="" disabled selected>
                         Select your wallet
@@ -273,15 +270,17 @@
                   <div class="form-group">
                     <label for="firstName3"> Amount </label>
                     <input
+                      digitOnly
+                      [decimal]="true"
                       type="text"
+                      [ngClass]="{
+                        'is-invalid': submitted && amount.errors?.required
+                      }"
                       [formControl]="amount"
                       class="form-control required"
                       id="firstName3"
                       name="firstName"
                     />
-                    <div *ngIf="submitted && amount.errors?.required">
-                      <div class="danger">Amount is required</div>
-                    </div>
                   </div>
                 </div>
                 <div class="col-md-2"></div>
@@ -320,20 +319,20 @@
                     <input
                       type="text"
                       [formControl]="transactionId"
+                      [ngClass]="{
+                        'is-invalid': submitted && transactionId.errors?.required
+                      }"
                       placeholder="Enter your transaction id"
                       class="form-control required"
                       id="proposalTitle3"
                       name="proposalTitle"
                     />
                     <div *ngIf="submitted && currentStep == 2">
-                      <div *ngIf="transactionId.errors?.required" class="danger">
-                        TransactionId is required
-                      </div>
                       <div
-                        *ngIf="transactionId.errors?.minlength"
+                        *ngIf="transactionId.errors?.minlength || transactionId.errors?.maxlength"
                         class="danger"
                       >
-                        TransactionId must be more than 32 charactors
+                        TransactionId not well formed
                       </div>
                     </div>
                   </div>
@@ -438,7 +437,6 @@
             >
               <a
                 id="steps-uid-2-t-0"
-                href="#steps-uid-2-h-0"
                 aria-controls="steps-uid-2-p-0"
                 ><span class="current-info audible">current step: </span
                 ><span class="step"
@@ -455,7 +453,6 @@
             >
               <a
                 id="steps-uid-2-t-1"
-                href="#steps-uid-2-h-1"
                 aria-controls="steps-uid-2-p-1"
                 ><span class="step"
                   ><i class="step-icon feather icon-check"></i
@@ -503,7 +500,6 @@
                       [formControl]="walletType"
                       class="form-control"
                       id="basicSelect"
-                      (ngModelChange)="cryptoChange($event)"
                     >
                       <option value="" disabled selected>
                         Select your wallet
@@ -524,15 +520,17 @@
                   <div class="form-group">
                     <label for="firstName3"> Amount </label>
                     <input
+                    digitOnly
+                    [decimal]="true"
                       type="text"
+                      [ngClass]="{
+                        'is-invalid': submitted && amount.errors?.required
+                      }"
                       [formControl]="amount"
                       class="form-control required"
                       id="firstName3"
                       name="firstName"
                     />
-                    <div *ngIf="submitted && amount.errors?.required">
-                      <div class="danger">Amount is required</div>
-                    </div>
                   </div>
                 </div>
                 <div class="col-md-3"></div>
@@ -541,6 +539,9 @@
                     <label for="proposalTitle3"> Wallet Address </label>
                     <input
                       type="text"
+                      [ngClass]="{
+                        'is-invalid': submitted && walletAddress.errors?.required
+                      }"
                       [formControl]="walletAddress"
                       placeholder="Enter your wallet address"
                       class="form-control required"
@@ -549,16 +550,10 @@
                     />
                     <div *ngIf="submitted">
                       <div
-                        *ngIf="walletAddress.errors?.required"
+                        *ngIf="walletAddress.errors?.minlength || walletAddress.errors?.maxlength"
                         class="danger"
                       >
-                        TransactionId is required
-                      </div>
-                      <div
-                        *ngIf="walletAddress.errors?.minlength"
-                        class="danger"
-                      >
-                        TransactionId must be more than 32 charactors
+                      Wallet Address not well formed
                       </div>
                     </div>
                   </div>

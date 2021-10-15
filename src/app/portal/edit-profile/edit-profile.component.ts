@@ -265,17 +265,26 @@ export class EditProfileComponent implements OnInit {
   loading = false;
   generalFormSubmitted = false;
   changePaaswordFormSubmitted = false;
+
   constructor(private formBuilder: FormBuilder,
     private accountService: AccountService,
     private alertService: AlertService) {}
 
   ngOnInit() {
-    this.generalForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      country: ['', Validators.required],
-    });
+    this.accountService.getCurrentUser()
+    .pipe(first())
+      .subscribe((response) => {
+        this.generalForm.controls.firstName.setValue(response.data.firstName);
+        this.generalForm.controls.lastName.setValue(response.data.lastName);
+        this.generalForm.controls.email.setValue(response.data.email);
+        this.generalForm.controls.country.setValue(response.data.country);
+      });
+      this.generalForm = this.formBuilder.group({
+        firstName: [null, [Validators.required,Validators.maxLength(50)]],
+        lastName: [null, [Validators.required,Validators.maxLength(50)]],
+        email: [null, [Validators.required,Validators.maxLength(50)]],
+        country: [null, Validators.required],
+      });
     this.changePaaswordForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
       newPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],

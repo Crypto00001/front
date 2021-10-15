@@ -74,7 +74,7 @@
                   </div>
                 </fieldset>
               </div>
-              <div class="col-md-12 col-12 mb-1" style="padding-top: 10px;">
+              <div class="col-md-12 col-12 mb-1">
                   <p
                     *ngIf="submitted && email.errors?.pattern"
                     class="alert alert-danger"
@@ -85,7 +85,7 @@
                     *ngIf="email.hasError('maxlength')"
                     class="alert alert-danger"
                   >
-                    Your email cannot exceed 50 characters
+                    Email cannot exceed 50 characters
                   </p>
               </div>
             </div>

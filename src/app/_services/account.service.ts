@@ -49,6 +49,10 @@ export class AccountService {
     return this.http.post<any>(`${environment.apiUrl}/user/register`, user);
   }
 
+  getCurrentUser() {
+    return this.http.get<any>(`${environment.apiUrl}/user/`);
+  }
+
   update(params) {
     return this.http.put<any>(`${environment.apiUrl}/user/`, params).pipe(
       map((x) => {

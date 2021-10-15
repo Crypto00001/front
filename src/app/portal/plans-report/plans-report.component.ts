@@ -6,11 +6,11 @@ import { AlertService } from 'src/app/_services/alert.service';
 import { UserPlanService } from 'src/app/_services/user-plan.service';
 
 @Component({
-  selector: 'app-status-report',
-  templateUrl: './status-report.component.html',
-  styleUrls: ['./status-report.component.scss'],
+  selector: 'app-plans-report',
+  templateUrl: './plans-report.component.html',
+  styleUrls: ['./plans-report.component.scss'],
 })
-export class StatusReportComponent implements OnInit {
+export class PlansReportComponent implements OnInit {
   userPlanList: any;
 
   constructor( private formBuilder: FormBuilder,

@@ -17,6 +17,8 @@ export class DepositComponent implements OnInit {
   walletList: any;
   viewChi;
   loading: boolean;
+  displayWalletAddress: any;
+  pathQR: string;
   constructor(
     private formBuilder: FormBuilder,
     private alertService: AlertService,
@@ -29,7 +31,7 @@ export class DepositComponent implements OnInit {
   nextButton = 'block';
   popupDeposit: boolean;
   popupWithdraw: boolean;
-
+  imgPath = '../../../assets/images/';
   stepOne = 'block';
   stepTwo = 'none';
   stepThree = 'none';
@@ -50,12 +52,14 @@ export class DepositComponent implements OnInit {
   amount = new FormControl('', Validators.required);
   transactionId = new FormControl('', [
     Validators.required,
-    Validators.minLength(5),
+    Validators.minLength(32),
+    Validators.maxLength(64),
   ]);
   walletType = new FormControl('', Validators.required);
   walletAddress = new FormControl('', [
     Validators.required,
-    Validators.minLength(5),
+    Validators.minLength(26),
+    Validators.maxLength(120),
   ]);
   @ViewChild('paymentLi') paymentLi: ElementRef;
   @ViewChild('transactionIdentificationLi')
@@ -110,7 +114,6 @@ export class DepositComponent implements OnInit {
       case 2:
         this.submitted = true;
         if (this.transactionId.invalid) {
-          this.submitted = false;
           return;
         }
 
@@ -124,7 +127,7 @@ export class DepositComponent implements OnInit {
           .pipe(first())
           .subscribe((response) => {
             if (response.hasError) {
-              this.closePopupDeposit()
+              this.closePopupDeposit();
               this.alertService.error(response.errorMessage);
               this.loading = false;
             } else {
@@ -145,16 +148,24 @@ export class DepositComponent implements OnInit {
   depositPopup(walletType: number) {
     this.popupDeposit = true;
     this.walletType.setValue(walletType);
-    
+    this.displayWalletAddress = this.walletList.find(
+      (q) => q.walletType === walletType
+    ).walletAddress;
+    this.pathQR =
+      this.imgPath +
+      this.walletList.find((q) => q.walletType === walletType).name +
+      '.JPG';
+    this.clearControls();
   }
+
   withdrawPopup(walletType: number) {
     this.popupWithdraw = true;
     this.walletType.setValue(walletType);
+    this.clearControls();
   }
   withdraw() {
     this.submitted = true;
     if (this.walletAddress.invalid) {
-      this.submitted = false;
       return;
     }
 
@@ -168,7 +179,7 @@ export class DepositComponent implements OnInit {
       .pipe(first())
       .subscribe((response) => {
         if (response.hasError) {
-          this.closePopupWithdraw()
+          this.closePopupWithdraw();
           this.alertService.error(response.errorMessage);
           this.loading = false;
         } else {
@@ -183,15 +194,28 @@ export class DepositComponent implements OnInit {
       });
   }
   closePopupDeposit() {
-    this.stepOne='block';
-    this.stepTwo='none';
-    this.stepThree='none';
+    this.stepOne = 'block';
+    this.stepTwo = 'none';
+    this.stepThree = 'none';
+    this.nextButton = 'block';
     this.popupDeposit = false;
   }
   closePopupWithdraw() {
-    this.stepOneWithdraw='block';
-    this.stepTwoWithdraw='none';
+    this.stepOneWithdraw = 'block';
+    this.stepTwoWithdraw = 'none';
     this.nextButton = 'block';
     this.popupWithdraw = false;
+  }
+
+  clearControls() {
+    this.amount.setValue(null);
+    this.transactionId.setValue(null);
+    this.walletAddress.setValue(null);
+  }
+
+  changeWalletType(event:any) {
+    const walletText=event.target.options[event.target.options.selectedIndex].text;
+    this.displayWalletAddress = this.walletList.find((q) => q.name === walletText).walletAddress;
+    this.pathQR =this.imgPath +this.walletList.find((q) => q.name === walletText).name + '.JPG';
   }
 }

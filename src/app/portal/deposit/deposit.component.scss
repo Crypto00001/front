@@ -1,55 +1,66 @@
 .swal2-popup.swal2-modal.swal2-show {
-    background-color: #10163A !important;
+  background-color: #10163a !important;
 }
 .swal2-popup {
-    width: 50em !important;
+  width: 50em !important;
 }
-.form-group{
-    text-align: center !important;
+.form-group {
+  text-align: center !important;
 }
-.swal2-close{
-    font-weight: bold;
-    font-family: 'Montserrat';
+.swal2-close {
+  font-weight: bold;
+  font-family: "Montserrat";
 }
 .swal2-container.swal2-fade {
-    transition: background-color .1s; 
+  transition: background-color 0.1s;
 }
-select.form-control:not([multiple='multiple']) {
-    background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23d8d6de\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' class=\'feather feather-chevron-down\'%3E%3Cpolyline points=\'6 9 12 15 18 9\'%3E%3C/polyline%3E%3C/svg%3E');
-    background-position: calc(100% - 12px) 13px, calc(100% - 20px) 13px, 100% 0;
-    background-size: 12px 12px, 10px 10px;
-    background-repeat: no-repeat;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-right: 1.5rem;
+select.form-control:not([multiple="multiple"]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d8d6de' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-position: calc(100% - 12px) 13px, calc(100% - 20px) 13px, 100% 0;
+  background-size: 12px 12px, 10px 10px;
+  background-repeat: no-repeat;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 1.5rem;
 }
 .has-icon-left .form-control-position i {
-    position: relative;
-    left: 5px;
-    color: #C2C6DC !important;
+  position: relative;
+  left: 5px;
+  color: #c2c6dc !important;
 }
-table.data-list-view.dataTable tbody tr{
-    cursor: unset !important;
+table.data-list-view.dataTable tbody tr {
+  cursor: unset !important;
 }
-.depositButton{
-    background-color: #28C76F !important;
-    border: 0;
-    color: white;
+.depositButton {
+  background-color: #28c76f !important;
+  border: 0;
+  color: white;
 }
-.withdrawButton{
-    background-color: #00CFE8 !important;
-    border: 0;
-    color: white;
+.withdrawButton {
+  background-color: #00cfe8 !important;
+  border: 0;
+  color: white;
 }
-table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody tr:hover {
-       -webkit-transition: unset !important;
-       transform: unset !important;
-    border-radius: 0 ;
+table.data-list-view.dataTable tbody tr,
+table.data-thumb-view.dataTable tbody tr:hover {
+  transform: unset !important;
+  border-radius: 0;
 }
 table {
-    border-collapse: unset !important;
-    font-size: 1.2rem;
+  border-collapse: unset !important;
+  font-size: 1.2rem;
 }
 ul.b {
-    list-style-type: square;
-  }
+  list-style-type: square;
+}
+li a:has(span){
+  cursor: unset;
+}
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  border: 1px solid #EA5455 !important;
+  padding-right: calc(1.45em + .876rem);
+  background-image: url('data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' fill=\'none\' stroke=\'%23ea5455\' viewBox=\'0 0 12 12\'%3e%3ccircle cx=\'6\' cy=\'6\' r=\'4.5\'/%3e%3cpath stroke-linejoin=\'round\' d=\'M5.8 3.6h.4L6 6.5z\'/%3e%3ccircle cx=\'6\' cy=\'8.2\' r=\'.6\' fill=\'%23ea5455\' stroke=\'none\'/%3e%3c/svg%3e');
+  background-repeat: no-repeat;
+  background-position: right calc(.3625em + .219rem) center;
+  background-size: calc(.725em + .438rem) calc(.725em + .438rem);
+}
