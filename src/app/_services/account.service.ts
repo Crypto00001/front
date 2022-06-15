@@ -41,6 +41,7 @@ export class AccountService {
 
   logout() {
     // remove user from local storage and set current user to null
+    //this.userValue.data = null;
     this.cookieService.delete('user');
     this.userSubject.next(null);
   }
