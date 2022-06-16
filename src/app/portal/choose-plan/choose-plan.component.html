@@ -4,23 +4,17 @@
     <div class="col-xl-4 col-md-6 col-sm-12">
       <div class="card" style="height: 96%">
         <div class="card-content">
-          <div class="bronze"><a class="bronzeText">30%</a></div>
+          <div class="bronze"><a class="bronzeText">25%</a></div>
           <div class="card-body">
-            <h5>Bronze Plan</h5>
-            <p class="card-text mb-0">Receive 30% profit after one month</p>
-            <span class="card-text">Refferal Bonus per person : 5%</span>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="uploads">
-                <p class="font-weight-bold font-medium-2 mb-0">100$</p>
-                <span class="">Minimum Deposit</span>
-              </div>
-              <div class="followers">
-                <p class="font-weight-bold font-medium-2 mb-0">1 month</p>
-                <span class="">Duration</span>
-              </div>
+            <h5 style="text-align: center">Bronze Plan</h5>
+            <div style="text-align: center;font-size: 12pt">
+              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">25%</span></p>
+              <p class="card-text mb-2">Refferal Bonus per person : <span style="font-weight: bold">1%</span></p>
+              <p class="card-text mb-2">Minimum Deposit : <span style="font-weight: bold">100$</span></p>
+              <p class="card-text mb-4">Duration Deposit : <span style="font-weight: bold">1 month</span></p>
             </div>
             <button
-              (click)="invest('Bronze')"
+              (click)="invest('Bronze Plan',0.25,1)"
               class="
                 btn
                 gradient-light-primary
@@ -38,23 +32,17 @@
     <div class="col-xl-4 col-md-6 col-sm-12">
       <div class="card" style="height: 96%">
         <div class="card-content">
-          <div class="silver"><a class="silverText">90%</a></div>
+          <div class="silver"><a class="silverText">35%</a></div>
           <div class="card-body">
-            <h5>Silver Plan</h5>
-            <p class="card-text mb-0">Receive 90% profit after two months</p>
-            <span class="card-text">Refferal Bonus per person : 8%</span>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="uploads">
-                <p class="font-weight-bold font-medium-2 mb-0">400$</p>
-                <span class="">Minimum Deposit</span>
-              </div>
-              <div class="followers">
-                <p class="font-weight-bold font-medium-2 mb-0">2 months</p>
-                <span class="">Duration</span>
-              </div>
+            <h5 style="text-align: center">Silver Plan</h5>
+            <div style="text-align: center;font-size: 12pt">
+              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">35%</span></p>
+              <p class="card-text mb-2">Refferal Bonus per person : <span style="font-weight: bold">2%</span></p>
+              <p class="card-text mb-2">Minimum Deposit : <span style="font-weight: bold">400$</span></p>
+              <p class="card-text mb-4">Duration Deposit : <span style="font-weight: bold">2 months</span></p>
             </div>
             <button
-              (click)="invest('Silver')"
+              (click)="invest('Silver Plan',0.35,2)"
               class="
                 btn
                 gradient-light-primary
@@ -72,23 +60,17 @@
     <div class="col-xl-4 col-md-6 col-sm-12">
       <div class="card" style="height: 96%">
         <div class="card-content">
-          <div class="gold"><a class="goldText">140%</a></div>
+          <div class="gold"><a class="goldText">50%</a></div>
           <div class="card-body">
-            <h5>Gold Plan</h5>
-            <p class="card-text mb-0">Receive 140% profit after three months</p>
-            <span class="card-text">Refferal Bonus per person : 12%</span>
-            <div class="d-flex justify-content-between mt-2">
-              <div class="uploads">
-                <p class="font-weight-bold font-medium-2 mb-0">900$</p>
-                <span class="">Minimum Deposit</span>
-              </div>
-              <div class="followers">
-                <p class="font-weight-bold font-medium-2 mb-0">3 months</p>
-                <span class="">Duration</span>
-              </div>
+            <h5 style="text-align: center">Gold Plan</h5>
+            <div style="text-align: center;font-size: 12pt">
+              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">50%</span></p>
+              <p class="card-text mb-2">Refferal Bonus per person : <span style="font-weight: bold">3%</span></p>
+              <p class="card-text mb-2">Minimum Deposit : <span style="font-weight: bold">900$</span></p>
+              <p class="card-text mb-4">Duration Deposit : <span style="font-weight: bold">3 months</span></p>
             </div>
             <button
-              (click)="invest('Gold')"
+              (click)="invest('Gold Plan',0.5,3)"
               class="
                 btn
                 gradient-light-primary
@@ -119,7 +101,7 @@
     role="dialog"
     aria-live="assertive"
     aria-modal="true"
-    style="display: flex"
+    style="display: flex;width: 40em"
   >
     <div class="card-header-choos-plan">
       <h4 class="card-title">Plan Selection</h4>
@@ -133,6 +115,20 @@
         ×
       </button>
     </div>
+    <div class="alert alert-info mb-2" role="alert" style="width: 100%">
+      <h4 class="alert-heading">Attention</h4>
+      <ul class="b">
+        <li>
+          It is impossible to cancel after starting the investment.
+        </li>
+        <li>
+          Capital will withdraw from your account when you start investing.
+        </li>
+        <li>
+          Profit is not receivable until the end of the investment duration.
+        </li>
+      </ul>
+    </div>
     <form class="form form-vertical" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-body">
         <div class="row">
@@ -140,12 +136,13 @@
             <div class="form-label-group position-relative has-icon-left">
               <select
                 formControlName="planName"
+                (ngModelChange)="onPlanChanged($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.planName.errors }"
                 class="form-control"
                 id="basicSelect"
               >
-                <option [value]="count" *ngFor="let count of planList">
-                  {{ count }}
+                <option [value]="count.value" *ngFor="let count of planList">
+                  {{ count.value }}
                 </option>
               </select>
               <div class="form-control-position">
@@ -200,9 +197,18 @@
                 id="email-id-floating"
                 class="form-control"
                 name="email-id-floating"
+                (ngModelChange)="onBalanceChanged($event)"
                 placeholder="Investment Amount"
               />
               <label for="email-id-floating">Investment Amount</label>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="alert alert-success" role="alert" style="width: 100%">
+              <div class="b" style="display: flex">
+                You will gain {{finalProfit}} after {{planMonth}}
+                month(s)
+              </div>
             </div>
           </div>
         </div>
