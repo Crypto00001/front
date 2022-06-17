@@ -1,21 +1,21 @@
 <div class="content-header row">
-    <div class="content-header-left col-md-9 col-12 mb-2">
-        <div class="row breadcrumbs-top">
-            <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Plans Report</h2>
-                <div class="breadcrumb-wrapper col-12">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="#">Plans Report</a>
-                        </li>
-                        <li class="breadcrumb-item active">Latest Status
-                        </li>
-                    </ol>
-                </div>
-            </div>
+  <div class="content-header-left col-md-9 col-12 mb-2">
+    <div class="row breadcrumbs-top">
+      <div class="col-12">
+        <h2 class="content-header-title float-left mb-0">Plans Report</h2>
+        <div class="breadcrumb-wrapper col-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a>
+            </li>
+            <li class="breadcrumb-item"><a href="#">Plans Report</a>
+            </li>
+            <li class="breadcrumb-item active">Latest Status
+            </li>
+          </ol>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <section id="data-list-view" class="data-list-view-header">
   <div class="action-btns d-none">
@@ -35,119 +35,123 @@
         role="grid"
       >
         <thead>
-          <tr role="row">
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-              style="padding-left: 15px;"
-            >
-              Plan Name
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-            >
-              Currency
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-            >
-              Investment Amount
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-            >
+        <tr role="row">
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+            style="padding-left: 15px;"
+          >
+            Plan Name
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+          >
+            Currency
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+          >
+            Investment Amount
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+          >
             Start Date
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-            >
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+          >
             End Date
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-            >
-              Profit Percentage
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-            >
-              Will Gain
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-              style="width: 15%"
-            >
-              Progress
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-            >
-              Status
-            </th>
-          </tr>
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+          >
+            Profit Percentage
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+          >
+            Will Gain
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+            style="width: 15%"
+          >
+            Progress
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+          >
+            Status
+          </th>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let userPlan of userPlanList" role="row" class="odd">
-            <td class="product-name sorting_1">
-              {{userPlan.planName}}
-            </td>
-            <td class="product-category">{{userPlan.currencyName}}</td>
-            <td class="product-price">{{userPlan.investmentAmount}}</td>
-            <td class="product-price">{{userPlan.startDate}}</td>
-            <td class="product-price">{{userPlan.endDate}}</td>
-            <td class="product-price">{{userPlan.profitPercent}}%</td>
-            <td class="product-price">{{userPlan.accruedProfit}}</td>
-            <td class="product-price">
-              <div class="progress progress-bar-warning">
-                <div
-                  class="progress-bar"
-                  role="progressbar"
-                  aria-valuenow="40"
-                  aria-valuemin="40"
-                  aria-valuemax="100"
-                  [style.width]="userPlan.progress + '%' "
-                ></div>
+        <tr *ngFor="let userPlan of userPlanList" role="row" class="odd">
+          <td style="color: black"
+              [ngStyle]="{'background-color': userPlan.planName === 'Bronze Plan' ? 'peru'
+              : (userPlan.planName === 'Silver Plan' ? 'silver'
+              : (userPlan.planName === 'Gold Plan' ? 'gold' : null)) }"
+              class="product-name sorting_1">
+            {{userPlan.planName}}
+          </td>
+          <td class="product-category">{{userPlan.currencyName}}</td>
+          <td class="product-price">{{userPlan.investmentAmount}}</td>
+          <td class="product-price">{{userPlan.startDate}}</td>
+          <td class="product-price">{{userPlan.endDate}}</td>
+          <td class="product-price">{{userPlan.profitPercent}}%</td>
+          <td class="product-price">{{userPlan.accruedProfit}}</td>
+          <td class="product-price">
+            <div class="progress progress-bar-warning">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                aria-valuenow="40"
+                aria-valuemin="40"
+                aria-valuemax="100"
+                [style.width]="userPlan.progress + '%' "
+              ></div>
+            </div>
+          </td>
+          <td class="product-action">
+            <div *ngIf="userPlan.isActive" class="chip chip-success">
+              <div class="chip-body">
+                <div class="chip-text">Investing</div>
               </div>
-            </td>
-            <td class="product-action">
-              <div *ngIf="userPlan.isActive" class="chip chip-success">
-                <div class="chip-body">
-                  <div class="chip-text">Investing</div>
-                </div>
+            </div>
+            <div *ngIf="!userPlan.isActive" class="chip chip-info">
+              <div class="chip-body">
+                <div class="chip-text">Finished</div>
               </div>
-              <div *ngIf="!userPlan.isActive" class="chip chip-info">
-                <div class="chip-body">
-                  <div class="chip-text">Finished</div>
-                </div>
-              </div>
-            </td>
-          </tr>
+            </div>
+          </td>
+        </tr>
         </tbody>
       </table>
       <!-- <div class="bottom">
