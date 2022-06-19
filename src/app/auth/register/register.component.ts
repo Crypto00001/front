@@ -286,6 +286,7 @@ export class RegisterComponent implements OnInit {
         lastName: ['', [Validators.required, Validators.maxLength(50)]],
         country: ['', Validators.required],
         email: ['', [Validators.required, Validators.maxLength(50)]],
+        referralCode: ['', [Validators.maxLength(6)]],
         password: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
         confirmPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
         captcha: [''],

@@ -23,7 +23,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 }
             });
         }
-        else if(user === undefined && !request.url.endsWith('login')){
+        else if(user === undefined && !request.url.endsWith('login') && !request.url.endsWith('register')){
           this.router.navigate(['/login']).then(() => {
             window.location.reload();
           });
