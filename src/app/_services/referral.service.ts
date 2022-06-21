@@ -12,6 +12,9 @@ export class ReferralService {
   }
 
   getAll() {
-    return this.http.get<any>(`${environment.apiUrl}/referral`);
+    return this.http.get<any>(`${environment.apiUrl}/referral/ActiveInviteesCount/`);
+  }
+  getAllInvitees() {
+    return this.http.get<any>(`${environment.apiUrl}/referral/ActiveInvitees/`);
   }
 }

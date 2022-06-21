@@ -29,7 +29,7 @@
               </li>
               <li>You are allowed to have up to 5 active invitees.</li>
               <li>
-                For each active invitee, you will be awarded a percentage of the
+                For each <d style="text-decoration: underline">active</d> invitee, you will be awarded a percentage of the
                 bonus, the amount of which varies in each plan.
               </li>
             </ul>
@@ -43,52 +43,83 @@
           </div>
         </div>
         <div class="card-content">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-12 col-12 mb-1">
-                <fieldset>
-                  <div class="input-group">
-                    <input
-                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$"
-                      type="text"
-                      [formControl]="email"
-                      [ngClass]="{ 'is-invalid': submitted && email.errors }"
-                      class="form-control"
-                      placeholder="Email address"
-                      aria-describedby="login-email"
-                      tabindex="1"
-                      autofocus
-                    />
-                    <div class="input-group-append">
-                      <button
-                        class="btn btn-primary waves-effect waves-light"
-                        (click)="sendInvitation(email)"
-                        type="button"
-                      >
-                        Invite
-                        <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
-                      </button>
-                    </div>
+            <div class="card">
+              <div class="card-header">
+                <!-- DataTable starts -->
+                <div class="table-responsive">
+                  <div
+                    id="DataTables_Table_0_wrapper"
+                    class="dataTables_wrapper dt-bootstrap4 no-footer"
+                  >
+                    <div class="clear"></div>
+                    <table
+                      class="table data-list-view dataTable no-footer dt-checkboxes-select"
+                      id="DataTables_Table_0"
+                      role="grid"
+                    >
+                      <thead>
+                      <tr role="row">
+                        <th
+                          tabindex="0"
+                          aria-controls="DataTables_Table_0"
+                          rowspan="1"
+                          colspan="1"
+                          style="padding-left: 15px;"
+                        >
+                          First Name
+                        </th>
+                        <th
+                          tabindex="0"
+                          aria-controls="DataTables_Table_0"
+                          rowspan="1"
+                          colspan="1"
+                        >
+                          Last Name
+                        </th>
+                        <th
+                          tabindex="0"
+                          aria-controls="DataTables_Table_0"
+                          rowspan="1"
+                          colspan="1"
+                        >
+                          Email
+                        </th>
+                        <th
+                          tabindex="0"
+                          aria-controls="DataTables_Table_0"
+                          rowspan="1"
+                          colspan="1"
+                        >
+                          Is Active?
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let invitee of inviteeList" role="row" class="odd">
+                        <td class="product-category" style="border-top-left-radius:0;border-bottom-left-radius:0">{{invitee.firstName}}</td>
+                        <td class="product-category">{{invitee.lastName}}</td>
+                        <td class="product-category">{{invitee.email}}</td>
+                        <td class="product-action" style="border-top-right-radius:0;border-bottom-right-radius:0">
+                          <div *ngIf="invitee.isActive" class="chip chip-success">
+                            <div class="chip-body">
+                              <div class="chip-text">Active</div>
+                            </div>
+                          </div>
+                          <div *ngIf="!invitee.isActive" class="chip chip-warning">
+                            <div class="chip-body">
+                              <div class="chip-text">Not Investing</div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
                   </div>
-                </fieldset>
-              </div>
-              <div class="col-md-12 col-12 mb-1">
-                  <p
-                    *ngIf="submitted && email.errors?.pattern"
-                    class="alert alert-danger"
-                  >
-                    Please enter a valid email
-                  </p>
-                  <p
-                    *ngIf="email.hasError('maxlength')"
-                    class="alert alert-danger"
-                  >
-                    Email cannot exceed 50 characters
-                  </p>
+                </div>
+                <!-- DataTable ends -->
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>

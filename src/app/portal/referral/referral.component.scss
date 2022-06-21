@@ -5,7 +5,7 @@
     background-position: right calc(0.3625em + 0.219rem) center;
     background-size: calc(0.725em + 0.438rem) calc(0.725em + 0.438rem);
   }
-  
+
   .spinner-border,
   .spinner-grow {
     display: inline-block;
@@ -61,3 +61,13 @@
       animation-duration: 1.5s;
     }
   }
+table {
+  border-collapse: inherit;
+  text-align: center;
+}
+table.data-list-view.dataTable tbody tr:hover, table.data-thumb-view.dataTable tbody tr:hover {
+  transform: translateY(0px) !important;
+}
+table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody tr {
+  cursor: unset;
+}
