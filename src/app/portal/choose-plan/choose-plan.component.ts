@@ -34,8 +34,8 @@ export class ChoosePlanComponent implements OnInit {
               private walletService: WalletService) {
   }
 
-  activeInviteesCount: any;
-  popup = false
+  activeInviteesCount = -1;
+  popup = false;
   defaultPlan: string = null;
   balance: string = null;
   form: FormGroup;
@@ -43,20 +43,17 @@ export class ChoosePlanComponent implements OnInit {
   submitted = false;
   finalProfit: any;
 
+
   ngOnInit() {
     this.form = this.formBuilder.group({
       planName: ['', Validators.required],
       walletType: [1, Validators.required],
       investmentAmount: ['', Validators.required]
     });
-    this.referralService
-      .getAll()
-      .pipe(first())
-      .subscribe((response) => {
-        this.activeInviteesCount = response.data;
-      });
+
     this.planService
       .getAll()
+      .pipe(first())
       .subscribe((response: any) => {
         this.planList = response.map(item => ({
           value: item.name, planDetail: {
@@ -71,6 +68,19 @@ export class ChoosePlanComponent implements OnInit {
 
   get f() {
     return this.form.controls;
+  }
+
+  getActiveInviteesCount() {
+    if (this.activeInviteesCount < 0) {
+      this.referralService
+        .getAll()
+        .pipe(first())
+        .subscribe((response) => {
+          this.activeInviteesCount = response.data;
+        });
+    }
+
+    return this.activeInviteesCount;
   }
 
   async invest(plan: any, percentage: any, month: any) {
