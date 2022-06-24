@@ -1,10 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {first} from 'rxjs/operators';
+import {first, map} from 'rxjs/operators';
 import {AlertService} from 'src/app/_services/alert.service';
 import {UserPlanService} from 'src/app/_services/user-plan.service';
 import {WalletService} from 'src/app/_services/wallet.service';
+import {ReferralService} from '../../_services/referral.service';
+import {PlanService} from '../../_services/plan.service';
+import {Plan} from '../../_models/plan';
+import {dateComparator} from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-tools';
 
 @Component({
   selector: 'app-choose-plan',
@@ -13,13 +17,8 @@ import {WalletService} from 'src/app/_services/wallet.service';
 })
 export class ChoosePlanComponent implements OnInit {
   walletData: any;
-  planPercentage: any;
-  planMonth: any;
-  planList: Array<any> = [
-    {value: 'Bronze Plan', planDetail: {percentage: 0.25, month: 1}},
-    {value: 'Silver Plan', planDetail: {percentage: 0.35, month: 2}},
-    {value: 'Gold Plan', planDetail: {percentage: 0.5, month: 3}}
-  ];
+  plan: any;
+  planList: Array<any>;
   cryptoList: Array<any> = [
     {key: 1, value: 'Bitcoin'},
     {key: 2, value: 'Etherium'},
@@ -28,11 +27,14 @@ export class ChoosePlanComponent implements OnInit {
   ];
 
   constructor(private formBuilder: FormBuilder,
+              private referralService: ReferralService,
               private alertService: AlertService,
+              private planService: PlanService,
               private userPlanService: UserPlanService,
               private walletService: WalletService) {
   }
 
+  activeInviteesCount: any;
   popup = false
   defaultPlan: string = null;
   balance: string = null;
@@ -47,7 +49,24 @@ export class ChoosePlanComponent implements OnInit {
       walletType: [1, Validators.required],
       investmentAmount: ['', Validators.required]
     });
-
+    this.referralService
+      .getAll()
+      .pipe(first())
+      .subscribe((response) => {
+        this.activeInviteesCount = response.data;
+      });
+    this.planService
+      .getAll()
+      .subscribe((response: any) => {
+        this.planList = response.map(item => ({
+          value: item.name, planDetail: {
+            percentage: item.profitPercent,
+            month: item.duration,
+            referralPercent: item.referralPercent,
+            minimumDeposit: item.minimumDeposit
+          }
+        }));
+      });
   }
 
   get f() {
@@ -65,7 +84,7 @@ export class ChoosePlanComponent implements OnInit {
   }
 
   cryptoChange(item) {
-    this.balance = this.walletData.filter(q => q.walletType == item)[0].availableBalance
+    this.balance = this.walletData.filter(q => q.walletType === item)[0].availableBalance
   }
 
   onSubmit() {
@@ -101,16 +120,22 @@ export class ChoosePlanComponent implements OnInit {
   }
 
   onPlanChanged($event: Event) {
-    this.planPercentage = this.planList.find(a => a.value === $event).planDetail.percentage;
-    this.planMonth = this.planList.find(a => a.value === $event).planDetail.month;
-    const investmentValue = Number(this.form.controls.investmentAmount.value);
-    this.finalProfit = parseFloat((investmentValue + (investmentValue * this.planPercentage)).toFixed(8));
+    if (this.form.controls.investmentAmount.value !== '')
+      this.finalProfit = this.calculateProfitPlan(Number(this.form.controls.investmentAmount.value));
   }
 
   onBalanceChanged($event: Event) {
-    this.planPercentage = this.planList.find(a => a.value === this.form.controls.planName.value).planDetail.percentage;
-    this.planMonth = this.planList.find(a => a.value === this.form.controls.planName.value).planDetail.month;
-    const investmentValue = Number($event);
-    this.finalProfit = parseFloat((investmentValue + (investmentValue * this.planPercentage)).toFixed(8));
+    this.finalProfit = this.calculateProfitPlan(Number($event));
+  }
+
+  calculateProfitPlan(investmentValue: number) {
+    this.plan = this.planList.find(a => a.value === this.form.controls.planName.value);
+    const profitPercentage = this.toPercentage(this.plan.planDetail.percentage);
+    const referralPercentage = this.toPercentage(this.plan.planDetail.referralPercent) * this.activeInviteesCount;
+    return parseFloat((investmentValue + (investmentValue * (profitPercentage + referralPercentage))).toFixed(8));
+  }
+
+  toPercentage(percentage: number) {
+    return (percentage / 100);
   }
 }
