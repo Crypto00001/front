@@ -1,14 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {first, map} from 'rxjs/operators';
+import {first, map, takeUntil} from 'rxjs/operators';
 import {AlertService} from 'src/app/_services/alert.service';
 import {UserPlanService} from 'src/app/_services/user-plan.service';
 import {WalletService} from 'src/app/_services/wallet.service';
 import {ReferralService} from '../../_services/referral.service';
 import {PlanService} from '../../_services/plan.service';
-import {Plan} from '../../_models/plan';
-import {dateComparator} from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-tools';
+import {combineLatest, forkJoin, Subject, Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'app-choose-plan',
@@ -25,6 +24,7 @@ export class ChoosePlanComponent implements OnInit {
     {key: 3, value: 'Litecoin'},
     {key: 4, value: 'Zcash'},
   ];
+  private countActive: any;
 
   constructor(private formBuilder: FormBuilder,
               private referralService: ReferralService,
@@ -43,7 +43,7 @@ export class ChoosePlanComponent implements OnInit {
   submitted = false;
   finalProfit: any;
 
-
+  //unsubscribe$: Subject<void> = new Subject();
   ngOnInit() {
     this.form = this.formBuilder.group({
       planName: ['', Validators.required],
@@ -51,39 +51,80 @@ export class ChoosePlanComponent implements OnInit {
       investmentAmount: ['', Validators.required]
     });
 
-    this.planService
-      .getAll()
-      .pipe(first())
-      .subscribe((response: any) => {
-        this.planList = response.map(item => ({
-          value: item.name, planDetail: {
-            percentage: item.profitPercent,
-            month: item.duration,
-            referralPercent: item.referralPercent,
-            minimumDeposit: item.minimumDeposit
-          }
-        }));
-      });
+    const statePromise = this.referralService
+      .getAll();
+    const citiesPromise = this.planService
+      .getAll();
+
+    forkJoin([statePromise, citiesPromise]).subscribe((responses) => {
+      this.countActive = responses[0].data;
+      this.planList = responses[1].map(item => ({
+        value: item.name, planDetail: {
+          percentage: item.profitPercent,
+          month: item.duration,
+          referralPercent: item.referralPercent,
+          minimumDeposit: item.minimumDeposit
+        }
+      }));
+    });
+    // combineLatest(this.referralService.getAll(), this.planService.getAll())
+    //   .pipe(takeUntil(this.unsubscribe$))
+    //   .subscribe(([allReferrals, allPlans]) => {
+    //     if (allReferrals) {
+    //       this.countActive = allReferrals.data;
+    //     }
+    //     if (allPlans) {
+    //       this.planList = allPlans.map(item => ({
+    //         value: item.name, planDetail: {
+    //           percentage: item.profitPercent,
+    //           month: item.duration
+    //         }
+    //       }))
+    //     }
+    //   })
+
+    // this.referralService
+    //   .getAll()
+    //   .pipe(first())
+    //   .subscribe((response) => {
+    //     this.countActive = response.data;
+    //   });
+    // this.planService
+    //   .getAll()
+    //   .pipe(first())
+    //   .subscribe((r: any) => {
+    //     this.planList = r.map(item => ({
+    //       value: item.name, planDetail: {
+    //         percentage: item.profitPercent,
+    //         month: item.duration,
+    //         referralPercent: item.referralPercent,
+    //         minimumDeposit: item.minimumDeposit
+    //       }
+    //     }));
+    //   });
+
   }
+
+  // ngOnDestroy() {
+  //   this.unsubscribe$.next();
+  // }
 
   get f() {
     return this.form.controls;
   }
 
   getActiveInviteesCount() {
-    if (this.activeInviteesCount < 0) {
-      this.referralService
-        .getAll()
-        .pipe(first())
-        .subscribe((response) => {
-          this.activeInviteesCount = response.data;
-        });
-    }
-
+    this.referralService
+      .getAll()
+      .pipe(first())
+      .subscribe((response) => {
+        this.activeInviteesCount = response.data;
+      });
     return this.activeInviteesCount;
   }
 
   async invest(plan: any, percentage: any, month: any) {
+
     this.finalProfit = 0;
     this.form.controls.planName.setValue(plan);
     this.form.controls.walletType.setValue(1);
@@ -141,7 +182,7 @@ export class ChoosePlanComponent implements OnInit {
   calculateProfitPlan(investmentValue: number) {
     this.plan = this.planList.find(a => a.value === this.form.controls.planName.value);
     const profitPercentage = this.toPercentage(this.plan.planDetail.percentage);
-    const referralPercentage = this.toPercentage(this.plan.planDetail.referralPercent) * this.activeInviteesCount;
+    const referralPercentage = this.toPercentage(this.plan.planDetail.referralPercent) * this.countActive;
     return parseFloat((investmentValue + (investmentValue * (profitPercentage + referralPercentage))).toFixed(8));
   }
 
