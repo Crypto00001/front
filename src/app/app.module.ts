@@ -64,8 +64,8 @@ import { PlansReportComponent } from "./portal/plans-report/plans-report.compone
   ],
   imports: [
     NgHcaptchaModule.forRoot({
-      siteKey: '3ceb8624-1970-4e6b-91d5-70317b70b670'
-  }), 
+      siteKey: '20000000-ffff-ffff-ffff-000000000002'
+  }),
     BrowserModule,
     AppRoutingModule,
     NgbModule,

@@ -345,9 +345,7 @@ export class RegisterComponent implements OnInit {
             keepAfterRouteChange: true,
           });
           localStorage.setItem('regCount',JSON.parse(localStorage.getItem('regCount')) + 1);
-          this.router.navigate(['/login']).then(() => {
-            window.location.reload();
-          });
+          this.router.navigate(['/login']);
         }
       },
       () => {

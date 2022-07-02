@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Alert, AlertType } from 'src/app/_models/alert';
 import { AlertService } from 'src/app/_services/alert.service';
 
-@Component({ selector: 'alert', 
+@Component({ selector: 'alert',
 templateUrl: 'alert.component.html',
 styleUrls: ['./alert.component.scss'] })
 export class AlertComponent implements OnInit, OnDestroy {
@@ -73,7 +73,7 @@ export class AlertComponent implements OnInit, OnDestroy {
         if (!alert) return;
 
         const classes = ['toast'];
-                
+
         const alertTypeClass = {
             [AlertType.Success]: 'toast-success',
             [AlertType.Error]: 'toast-error',
