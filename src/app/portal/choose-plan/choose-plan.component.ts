@@ -20,9 +20,10 @@ export class ChoosePlanComponent implements OnInit {
   planList: Array<any>;
   cryptoList: Array<any> = [
     {key: 1, value: 'Bitcoin'},
-    {key: 2, value: 'Etherium'},
+    {key: 2, value: 'Ethereum'},
     {key: 3, value: 'Litecoin'},
     {key: 4, value: 'Zcash'},
+    {key: 5, value: 'Tether'}
   ];
   private countActive: any;
 

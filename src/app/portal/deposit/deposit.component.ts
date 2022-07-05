@@ -1,12 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { Payment } from 'src/app/_models/payment';
-import { Withdrawal } from 'src/app/_models/withdrawal';
-import { AlertService } from 'src/app/_services/alert.service';
-import { PaymentService } from 'src/app/_services/payment.service';
-import { WalletService } from 'src/app/_services/wallet.service';
-import { WithdrawalService } from 'src/app/_services/withdrawal.service';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {first} from 'rxjs/operators';
+import {Payment} from 'src/app/_models/payment';
+import {Withdrawal} from 'src/app/_models/withdrawal';
+import {AlertService} from 'src/app/_services/alert.service';
+import {PaymentService} from 'src/app/_services/payment.service';
+import {WalletService} from 'src/app/_services/wallet.service';
+import {WithdrawalService} from 'src/app/_services/withdrawal.service';
+import {Clipboard} from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'app-deposit',
@@ -19,13 +20,17 @@ export class DepositComponent implements OnInit {
   loading: boolean;
   displayWalletAddress: any;
   pathQR: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private alertService: AlertService,
     private walletService: WalletService,
     private paymentService: PaymentService,
-    private withdrawalService: WithdrawalService
-  ) {}
+    private withdrawalService: WithdrawalService,
+    private clipboard: Clipboard
+  ) {
+  }
+
   currentStep = 1;
   previousButton = 'none';
   nextButton = 'block';
@@ -40,10 +45,11 @@ export class DepositComponent implements OnInit {
   stepTwoWithdraw = 'none';
 
   cryptoList: Array<any> = [
-    { key: 1, value: 'Bitcoin' },
-    { key: 2, value: 'Etherium' },
-    { key: 3, value: 'Litecoin' },
-    { key: 4, value: 'Zcash' },
+    {key: 1, value: 'Bitcoin'},
+    {key: 2, value: 'Ethereum'},
+    {key: 3, value: 'Litecoin'},
+    {key: 4, value: 'Zcash'},
+    {key: 5, value: 'Tether'}
   ];
 
   submitted = false;
@@ -79,6 +85,7 @@ export class DepositComponent implements OnInit {
         this.walletList = response.data;
       });
   }
+
   previous() {
     switch (this.currentStep) {
       case 2:
@@ -98,6 +105,7 @@ export class DepositComponent implements OnInit {
     }
     --this.currentStep;
   }
+
   next() {
     switch (this.currentStep) {
       case 1:
@@ -145,6 +153,7 @@ export class DepositComponent implements OnInit {
         break;
     }
   }
+
   depositPopup(walletType: number) {
     this.popupDeposit = true;
     this.walletType.setValue(walletType);
@@ -163,6 +172,7 @@ export class DepositComponent implements OnInit {
     this.walletType.setValue(walletType);
     this.clearControls();
   }
+
   withdraw() {
     this.submitted = true;
     if (this.walletAddress.invalid) {
@@ -193,6 +203,7 @@ export class DepositComponent implements OnInit {
         }
       });
   }
+
   closePopupDeposit() {
     this.stepOne = 'block';
     this.stepTwo = 'none';
@@ -200,6 +211,7 @@ export class DepositComponent implements OnInit {
     this.nextButton = 'block';
     this.popupDeposit = false;
   }
+
   closePopupWithdraw() {
     this.stepOneWithdraw = 'block';
     this.stepTwoWithdraw = 'none';
@@ -213,9 +225,19 @@ export class DepositComponent implements OnInit {
     this.walletAddress.setValue(null);
   }
 
-  changeWalletType(event:any) {
-    const walletText=event.target.options[event.target.options.selectedIndex].text;
+  changeWalletType(event: any) {
+    const walletText = event.target.options[event.target.options.selectedIndex].text;
     this.displayWalletAddress = this.walletList.find((q) => q.name === walletText).walletAddress;
-    this.pathQR =this.imgPath +this.walletList.find((q) => q.name === walletText).name + '.JPG';
+    this.pathQR = this.imgPath + this.walletList.find((q) => q.name === walletText).name + '.JPG';
+  }
+
+  copyText(event: any, textToCopy: string) {
+    const copyText = document.querySelector('.copy-text');
+    copyText.classList.add('active');
+    window.getSelection().removeAllRanges()
+    this.clipboard.copy(textToCopy);
+    setTimeout(() => {
+      copyText.classList.remove('active');
+    }, 2500)
   }
 }

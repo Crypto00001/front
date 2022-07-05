@@ -64,3 +64,35 @@ li a:has(span){
   background-position: right calc(.3625em + .219rem) center;
   background-size: calc(.725em + .438rem) calc(.725em + .438rem);
 }
+.copy-text{
+  padding: 10px;
+  margin-left: 5px;
+  background: #7367F0;
+  color: #fff;
+  font-size: 13px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.copy-text:active {
+  background: #809ce2;
+}
+.copy-text.active:before {
+  content: "Copied";
+  position: absolute;
+  top: -50px;
+  background: #7367F0;
+  padding: 8px 10px;
+  border-radius: 20px;
+  font-size: 15px;
+}
+.copy-text.active:after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  width: 12px;
+  height: 12px;
+  background: #7367F0;
+  transform: rotate(45deg);
+}

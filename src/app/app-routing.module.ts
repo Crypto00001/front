@@ -65,11 +65,11 @@ const routes: Routes = [
     component: PortalLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-      { path: 'choose-plan', component: ChoosePlanComponent },
-      { path: 'wallet', component: DepositComponent },
-      { path: 'plans-report', component: PlansReportComponent },
-      { path: 'refferal', component: ReferralComponent },
-      { path: 'edit-profile', component: EditProfileComponent }
+      { path: 'choose-plan', component: ChoosePlanComponent, canActivate: [AuthGuard] },
+      { path: 'wallet', component: DepositComponent, canActivate: [AuthGuard] },
+      { path: 'plans-report', component: PlansReportComponent, canActivate: [AuthGuard] },
+      { path: 'refferal', component: ReferralComponent, canActivate: [AuthGuard] },
+      { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthGuard] }
     ],
   },
 ];

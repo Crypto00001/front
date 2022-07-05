@@ -31,81 +31,81 @@
         role="grid"
       >
         <thead>
-          <tr role="row">
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-              style="padding-left: 30px; text-align: center"
-            >
-              CURRENCY
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-              style="text-align: center"
-            >
-              ASSET
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-              style="text-align: center"
-            >
-              INVESTING
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-              style="text-align: center"
-            >
-              AVAILABLE
-            </th>
-            <th
-              tabindex="0"
-              aria-controls="DataTables_Table_0"
-              rowspan="1"
-              colspan="1"
-              style="padding-right: 40px; text-align: center"
-            >
-              ACTION
-            </th>
-          </tr>
+        <tr role="row">
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+            style="padding-left: 30px; text-align: center"
+          >
+            CURRENCY
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+            style="text-align: center"
+          >
+            ASSET
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+            style="text-align: center"
+          >
+            INVESTING
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+            style="text-align: center"
+          >
+            AVAILABLE
+          </th>
+          <th
+            tabindex="0"
+            aria-controls="DataTables_Table_0"
+            rowspan="1"
+            colspan="1"
+            style="padding-right: 40px; text-align: center"
+          >
+            ACTION
+          </th>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let wallet of walletList" role="row" class="odd">
-            <td style="text-align: center">
-              {{ wallet.name }}
-            </td>
-            <td style="text-align: center">{{ wallet.balance }}</td>
-            <td style="text-align: center">{{ wallet.investedBalance }}</td>
-            <td style="text-align: center">{{ wallet.availableBalance }}</td>
-            <td style="text-align: center">
-              <div class="btn-group" role="group" aria-label="Basic example">
-                <button
-                  type="button"
-                  class="btn btn-outline-success waves-effect waves-light"
-                  (click)="depositPopup(+wallet.walletType)"
-                >
-                  Deposit
-                </button>
-                <button
-                  type="button"
-                  class="btn btn-outline-info waves-effect waves-light"
-                  (click)="withdrawPopup(+wallet.walletType)"
-                >
-                  Withdraw
-                </button>
-              </div>
-            </td>
-          </tr>
+        <tr *ngFor="let wallet of walletList" role="row" class="odd">
+          <td style="text-align: center">
+            {{ wallet.name }}
+          </td>
+          <td style="text-align: center">{{ wallet.balance }}</td>
+          <td style="text-align: center">{{ wallet.investedBalance }}</td>
+          <td style="text-align: center">{{ wallet.availableBalance }}</td>
+          <td style="text-align: center">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button
+                type="button"
+                class="btn btn-outline-success waves-effect waves-light"
+                (click)="depositPopup(+wallet.walletType)"
+              >
+                Deposit
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-info waves-effect waves-light"
+                (click)="withdrawPopup(+wallet.walletType)"
+              >
+                Withdraw
+              </button>
+            </div>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
@@ -161,10 +161,10 @@
                 <a
                   id="steps-uid-2-t-0"
                   aria-controls="steps-uid-2-p-0"
-                  ><span class="current-info audible">current step: </span
-                  ><span class="step"
-                    ><i class="step-icon feather icon-credit-card"></i
-                  ></span>
+                ><span class="current-info audible">current step: </span
+                ><span class="step"
+                ><i class="step-icon feather icon-credit-card"></i
+                ></span>
                   Payment</a
                 >
               </li>
@@ -177,9 +177,9 @@
                 <a
                   id="steps-uid-2-t-1"
                   aria-controls="steps-uid-2-p-1"
-                  ><span class="step"
-                    ><i class="step-icon feather icon-file-text"></i
-                  ></span>
+                ><span class="step"
+                ><i class="step-icon feather icon-file-text"></i
+                ></span>
                   Transaction Identification</a
                 >
               </li>
@@ -192,9 +192,9 @@
                 <a
                   id="steps-uid-2-t-1"
                   aria-controls="steps-uid-2-p-1"
-                  ><span class="step"
-                    ><i class="step-icon feather icon-check"></i
-                  ></span>
+                ><span class="step"
+                ><i class="step-icon feather icon-check"></i
+                ></span>
                   Confirmation</a
                 >
               </li>
@@ -224,7 +224,7 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <img src={{pathQR}} />
+                    <img src={{pathQR}}/>
                   </div>
                 </div>
                 <div class="col-md-4"></div>
@@ -233,12 +233,17 @@
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                   <div class="form-group" style="word-wrap: break-word">
-                    <p>
+                    <span>
                       {{displayWalletAddress}}
-                    </p>
+                    </span>
+                    <button class="copy-text" (click)="copyText($event,displayWalletAddress)">
+                      <i class="fa fa-clone"></i>
+                    </button>
                   </div>
                 </div>
-                <div class="col-md-1"></div>
+                <div class="col-md-1">
+
+                </div>
               </div>
               <div class="row">
                 <div class="col-md-2"></div>
@@ -374,7 +379,7 @@
             <ul role="menu" aria-label="Pagination">
               <li [style.display]="previousButton">
                 <a (click)="previous()" class="btn btn-danger" role="menuitem"
-                  >Previous</a
+                >Previous</a
                 >
               </li>
               <li [style.display]="nextButton" aria-disabled="false">
@@ -426,42 +431,42 @@
           id="steps-uid-2"
           novalidate="novalidate"
         >
-        <div class="steps clearfix">
-          <ul role="tablist">
-            <li
-              #paymentLi
-              role="tab"
-              class="first current"
-              aria-disabled="false"
-              aria-selected="true"
-            >
-              <a
-                id="steps-uid-2-t-0"
-                aria-controls="steps-uid-2-p-0"
+          <div class="steps clearfix">
+            <ul role="tablist">
+              <li
+                #paymentLi
+                role="tab"
+                class="first current"
+                aria-disabled="false"
+                aria-selected="true"
+              >
+                <a
+                  id="steps-uid-2-t-0"
+                  aria-controls="steps-uid-2-p-0"
                 ><span class="current-info audible">current step: </span
                 ><span class="step"
-                  ><i class="step-icon feather icon-credit-card"></i
+                ><i class="step-icon feather icon-credit-card"></i
                 ></span>
-                Withdraw Request</a
+                  Withdraw Request</a
+                >
+              </li>
+              <li
+                #confirmationLi
+                role="tab"
+                class="disabled"
+                aria-disabled="true"
               >
-            </li>
-            <li
-              #confirmationLi
-              role="tab"
-              class="disabled"
-              aria-disabled="true"
-            >
-              <a
-                id="steps-uid-2-t-1"
-                aria-controls="steps-uid-2-p-1"
+                <a
+                  id="steps-uid-2-t-1"
+                  aria-controls="steps-uid-2-p-1"
                 ><span class="step"
-                  ><i class="step-icon feather icon-check"></i
+                ><i class="step-icon feather icon-check"></i
                 ></span>
-                Confirmation</a
-              >
-            </li>
-          </ul>
-        </div>
+                  Confirmation</a
+                >
+              </li>
+            </ul>
+          </div>
           <div class="content clearfix">
             <!-- Step 2 -->
             <h6 id="steps-uid-2-h-1" tabindex="-1" class="title">
@@ -479,8 +484,12 @@
                   <div class="alert alert-info" role="alert">
                     <h4 class="alert-heading">Attention</h4>
                     <ul class="b">
-                      <li>After the check operation, the money will be transferred to your account up to 6 hours on working days.</li>
-                      <li>If the money is not credited to your account within the said period, contact our colleagues to follow up the problem.</li>
+                      <li>After the check operation, the money will be transferred to your account up to 6 hours on
+                        working days.
+                      </li>
+                      <li>If the money is not credited to your account within the said period, contact our colleagues to
+                        follow up the problem.
+                      </li>
                       <li>Note that the transfer fee will be deducted from the desired amount.</li>
                     </ul>
                   </div>
@@ -520,8 +529,8 @@
                   <div class="form-group">
                     <label for="firstName3"> Amount </label>
                     <input
-                    digitOnly
-                    [decimal]="true"
+                      digitOnly
+                      [decimal]="true"
                       type="text"
                       [ngClass]="{
                         'is-invalid': submitted && amount.errors?.required
@@ -553,7 +562,7 @@
                         *ngIf="walletAddress.errors?.minlength || walletAddress.errors?.maxlength"
                         class="danger"
                       >
-                      Wallet Address not well formed
+                        Wallet Address not well formed
                       </div>
                     </div>
                   </div>
@@ -580,8 +589,12 @@
                     </p>
                     <h4>{{ withdrawalNumber }}</h4>
                     <ul class="b">
-                      <li>Your request has been received, the money will be deposited for you at the first opportunity.</li>
-                      <li>If the money is not transferred to your wallet within 12 hours, please contact our partners with the confirmation code to address the issue.</li>
+                      <li>Your request has been received, the money will be deposited for you at the first
+                        opportunity.
+                      </li>
+                      <li>If the money is not transferred to your wallet within 12 hours, please contact our partners
+                        with the confirmation code to address the issue.
+                      </li>
                     </ul>
                   </div>
                 </div>
