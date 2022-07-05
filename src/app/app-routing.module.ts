@@ -64,7 +64,7 @@ const routes: Routes = [
     path: '',
     component: PortalLayoutComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+      // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'choose-plan', component: ChoosePlanComponent, canActivate: [AuthGuard] },
       { path: 'wallet', component: DepositComponent, canActivate: [AuthGuard] },
       { path: 'plans-report', component: PlansReportComponent, canActivate: [AuthGuard] },

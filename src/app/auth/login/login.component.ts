@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       this.form.get('cpt').updateValueAndValidity();
     }
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/dashboard';
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/choose-plan';
   }
 
   // convenience getter for easy access to form fields
