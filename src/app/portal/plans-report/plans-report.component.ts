@@ -11,11 +11,11 @@ import { UserPlanService } from 'src/app/_services/user-plan.service';
   styleUrls: ['./plans-report.component.scss'],
 })
 export class PlansReportComponent implements OnInit {
-  userPlanList: any;
+  userPlanList: Array<any>;
 
   constructor( private formBuilder: FormBuilder,
     private alertService:AlertService,
-    private userPlanService:UserPlanService) { 
+    private userPlanService:UserPlanService) {
   }
 
   ngOnInit() {

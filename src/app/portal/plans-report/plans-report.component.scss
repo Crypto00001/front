@@ -7,3 +7,10 @@ table.data-list-view.dataTable tbody tr:hover, table.data-thumb-view.dataTable t
 table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody tr {
     cursor: unset;
 }
+.no-content{
+  background-color: #212744;
+  margin-top: -14px;
+  padding: 40px;
+  text-align: center;
+  font-size: large;
+}

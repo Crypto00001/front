@@ -189,7 +189,6 @@ export class DepositComponent implements OnInit {
       .pipe(first())
       .subscribe((response) => {
         if (response.hasError) {
-          this.closePopupWithdraw();
           this.alertService.error(response.errorMessage);
           this.loading = false;
         } else {
