@@ -159,8 +159,8 @@
               >
                 <form
                   novalidate=""
-                  [formGroup]="changePaaswordForm"
-                  (ngSubmit)="onChangePaaswordFormSubmit();"
+                  [formGroup]="changePasswordForm"
+                  (ngSubmit)="onChangePasswordFormSubmit();"
                 >
                   <div class="row">
                     <div class="col-12">
@@ -170,7 +170,7 @@
                           <input
                           formControlName="oldPassword"
                             [ngClass]="{
-                              'is-invalid': changePaaswordFormSubmitted && getChangePaaswordForm.oldPassword.errors
+                              'is-invalid': changePasswordFormSubmitted && getChangePasswordForm.oldPassword.errors
                             }"
                             type="password"
                             name="con-password"
@@ -183,15 +183,15 @@
                           <div class="input-group-append">
                             <span [ngStyle]="{
                               'border-color':
-                                submitted && getChangePaaswordForm.oldPassword.errors ? '#EA5455' : '#10163A'}"
+                                submitted && getChangePasswordForm.oldPassword.errors ? '#EA5455' : '#10163A'}"
                             class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
                           </div>
                         </div>
                           <div>
-                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.oldPassword.hasError('minlength')" class="alert alert-danger">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePasswordFormSubmitted && getChangePasswordForm.oldPassword.hasError('minlength')" class="alert alert-danger">
                               Password must be at least 6 characters long
                             </p>
-                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.oldPassword.hasError('maxlength')" class="alert alert-danger">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePasswordFormSubmitted && getChangePasswordForm.oldPassword.hasError('maxlength')" class="alert alert-danger">
                               Password cannot exceed 30 characters
                             </p>
                           </div>
@@ -204,7 +204,7 @@
                           <input
                           formControlName="newPassword"
                             [ngClass]="{
-                              'is-invalid': changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.errors
+                              'is-invalid': changePasswordFormSubmitted && getChangePasswordForm.newPassword.errors
                             }"
                             type="password"
                             name="con-password"
@@ -217,15 +217,15 @@
                           <div class="input-group-append">
                             <span [ngStyle]="{
                               'border-color':
-                                submitted && getChangePaaswordForm.newPassword.errors ? '#EA5455' : '#10163A'}"
+                                submitted && getChangePasswordForm.newPassword.errors ? '#EA5455' : '#10163A'}"
                             class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
                           </div>
                         </div>
                           <div>
-                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.hasError('minlength')" class="alert alert-danger">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePasswordFormSubmitted && getChangePasswordForm.newPassword.hasError('minlength')" class="alert alert-danger">
                               Password must be at least 6 characters long
                             </p>
-                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.newPassword.hasError('maxlength')" class="alert alert-danger">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePasswordFormSubmitted && getChangePasswordForm.newPassword.hasError('maxlength')" class="alert alert-danger">
                               Password cannot exceed 30 characters
                             </p>
                           </div>
@@ -238,7 +238,7 @@
                           <input
                           formControlName="confirmPassword"
                             [ngClass]="{
-                              'is-invalid': changePaaswordFormSubmitted && getChangePaaswordForm.confirmPassword.errors
+                              'is-invalid': changePasswordFormSubmitted && getChangePasswordForm.confirmPassword.errors
                             }"
                             type="password"
                             name="con-password"
@@ -251,18 +251,18 @@
                           <div class="input-group-append">
                             <span [ngStyle]="{
                               'border-color':
-                                submitted && getChangePaaswordForm.confirmPassword.errors ? '#EA5455' : '#10163A'}"
+                                submitted && getChangePasswordForm.confirmPassword.errors ? '#EA5455' : '#10163A'}"
                             class="input-group-text cursor-pointer"><i class="feather icon-eye"></i></span>
                           </div>
                         </div>
                           <div  >
-                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.confirmPassword.hasError('minlength')" class="alert alert-danger">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePasswordFormSubmitted && getChangePasswordForm.confirmPassword.hasError('minlength')" class="alert alert-danger">
                               Password must be at least 6 characters long
                             </p>
-                            <p style="line-height: 0.5rem !important;" *ngIf="changePaaswordFormSubmitted && getChangePaaswordForm.confirmPassword.hasError('maxlength')" class="alert alert-danger">
+                            <p style="line-height: 0.5rem !important;" *ngIf="changePasswordFormSubmitted && getChangePasswordForm.confirmPassword.hasError('maxlength')" class="alert alert-danger">
                               Password cannot exceed 30 characters
                             </p>
-                            <p class="alert alert-danger" *ngIf="changePaaswordFormSubmitted && changePaaswordForm.hasError('notSame')">
+                            <p class="alert alert-danger" *ngIf="changePasswordFormSubmitted && changePasswordForm.hasError('notSame')">
                               Password does not match
                             </p>
                           </div>

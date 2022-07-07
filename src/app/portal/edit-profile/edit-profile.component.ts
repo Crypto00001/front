@@ -261,10 +261,10 @@ export class EditProfileComponent implements OnInit {
     'Zimbabwe',
   ];
   generalForm: FormGroup;
-  changePaaswordForm: FormGroup;
+  changePasswordForm: FormGroup;
   loading = false;
   generalFormSubmitted = false;
-  changePaaswordFormSubmitted = false;
+  changePasswordFormSubmitted = false;
 
   constructor(private formBuilder: FormBuilder,
     private accountService: AccountService,
@@ -285,7 +285,7 @@ export class EditProfileComponent implements OnInit {
         email: [null, [Validators.required,Validators.maxLength(50)]],
         country: [null, Validators.required],
       });
-    this.changePaaswordForm = this.formBuilder.group({
+    this.changePasswordForm = this.formBuilder.group({
       oldPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
       newPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
       confirmPassword: ['', [Validators.required,Validators.minLength(6),Validators.maxLength(30)]],
@@ -301,13 +301,13 @@ export class EditProfileComponent implements OnInit {
   };
     // convenience getter for easy access to form fields
     get getGeneralForm() { return this.generalForm.controls; }
-    get getChangePaaswordForm() { return this.changePaaswordForm.controls; }
+    get getChangePasswordForm() { return this.changePasswordForm.controls; }
 
   onGeneralFormSubmit() {
     this.generalFormSubmitted = true;
 
     // stop here if form is invalid
-    if (this.generalForm.invalid) {
+    if (this.generalForm.invalid || !this.changePasswordForm.dirty) {
       return;
     }
     this.loading = true;
@@ -318,8 +318,8 @@ export class EditProfileComponent implements OnInit {
               if (data.hasError) {
                 this.alertService.error(data.errorMessage);
                 this.loading = false;
-              } 
-              else 
+              }
+              else
                 this.alertService.success('Information successfully updated!', { keepAfterRouteChange: true });
             },
             () => {
@@ -329,28 +329,28 @@ export class EditProfileComponent implements OnInit {
             });
   }
 
-  onChangePaaswordFormSubmit() {
-    this.changePaaswordFormSubmitted = true;
+  onChangePasswordFormSubmit() {
+    this.changePasswordFormSubmitted = true;
 
     // stop here if form is invalid
-    if (this.changePaaswordForm.invalid) {
+    if (this.changePasswordForm.invalid || !this.changePasswordForm.dirty) {
       return;
     }
     this.loading = true;
-    this.accountService.updatePassword(this.changePaaswordForm.value)
+    this.accountService.updatePassword(this.changePasswordForm.value)
         .pipe(first())
         .subscribe(
             data => {
               this.loading = false;
               if (data.hasError) {
                 this.alertService.error(data.errorMessage);
-              } 
-              else 
+              }
+              else
                 this.alertService.success('Password successfully changed!', { keepAfterRouteChange: true });
             },
             () => {
               this.loading = false;
-              this.changePaaswordFormSubmitted = false;
+              this.changePasswordFormSubmitted = false;
               this.alertService.error('Something went wrong.');
             });
   }

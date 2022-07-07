@@ -19,7 +19,7 @@ export class ReferralComponent implements OnInit {
     private alertService: AlertService
   ) {}
   email = new FormControl('', [Validators.required,Validators.maxLength(50)]);
-  inviteeList: any;
+  inviteeList: Array<any>;
   ngOnInit() {
     this.referralService
       .getAll()

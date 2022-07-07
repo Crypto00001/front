@@ -13,4 +13,10 @@ table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody t
   padding: 40px;
   text-align: center;
   font-size: large;
+  border-style: dashed;
+  border-color: darkgray;
+  border-width: 2px;
+}
+.no-content p{
+  margin: 0;
 }
