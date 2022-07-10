@@ -4,14 +4,15 @@
     <div class="col-xl-4 col-md-6 col-sm-12">
       <div class="card" style="height: 96%">
         <div class="card-content">
-          <div class="bronze"><a class="bronzeText">25%</a></div>
+          <div class="bronze"><a class="bronzeText">20%</a></div>
           <div class="card-body">
             <h5 style="text-align: center">Bronze Plan</h5>
             <div style="text-align: center;font-size: 12pt">
-              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">25%</span></p>
+              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">20%</span></p>
               <p class="card-text mb-2">Refferal Bonus per person : <span style="font-weight: bold">1%</span></p>
               <p class="card-text mb-2">Minimum Deposit : <span style="font-weight: bold">100$</span></p>
-              <p class="card-text mb-4">Duration Deposit : <span style="font-weight: bold">1 month</span></p>
+              <p class="card-text mb-2">Contract Period : <span style="font-weight: bold">1 month</span></p>
+              <p class="card-text mb-4">Principal Included</p>
             </div>
             <button
               (click)="invest('Bronze Plan',0.25,1)"
@@ -32,14 +33,15 @@
     <div class="col-xl-4 col-md-6 col-sm-12">
       <div class="card" style="height: 96%">
         <div class="card-content">
-          <div class="silver"><a class="silverText">35%</a></div>
+          <div class="silver"><a class="silverText">25%</a></div>
           <div class="card-body">
             <h5 style="text-align: center">Silver Plan</h5>
             <div style="text-align: center;font-size: 12pt">
-              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">35%</span></p>
-              <p class="card-text mb-2">Refferal Bonus per person : <span style="font-weight: bold">2%</span></p>
+              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">25%</span></p>
+              <p class="card-text mb-2">Refferal Bonus per person : <span style="font-weight: bold">1%</span></p>
               <p class="card-text mb-2">Minimum Deposit : <span style="font-weight: bold">400$</span></p>
-              <p class="card-text mb-4">Duration Deposit : <span style="font-weight: bold">2 months</span></p>
+              <p class="card-text mb-2">Contract Period : <span style="font-weight: bold">2 months</span></p>
+              <p class="card-text mb-4">Principal Included</p>
             </div>
             <button
               (click)="invest('Silver Plan',0.35,2)"
@@ -60,14 +62,15 @@
     <div class="col-xl-4 col-md-6 col-sm-12">
       <div class="card" style="height: 96%">
         <div class="card-content">
-          <div class="gold"><a class="goldText">50%</a></div>
+          <div class="gold"><a class="goldText">30%</a></div>
           <div class="card-body">
             <h5 style="text-align: center">Gold Plan</h5>
             <div style="text-align: center;font-size: 12pt">
-              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">50%</span></p>
-              <p class="card-text mb-2">Refferal Bonus per person : <span style="font-weight: bold">3%</span></p>
+              <p class="card-text mb-2">Profit per month : <span style="font-weight: bold">30%</span></p>
+              <p class="card-text mb-2">Refferal Bonus per person : <span style="font-weight: bold">2%</span></p>
               <p class="card-text mb-2">Minimum Deposit : <span style="font-weight: bold">900$</span></p>
-              <p class="card-text mb-4">Duration Deposit : <span style="font-weight: bold">3 months</span></p>
+              <p class="card-text mb-2">Contract Period : <span style="font-weight: bold">3 months</span></p>
+              <p class="card-text mb-4">Principal Included</p>
             </div>
             <button
               (click)="invest('Gold Plan',0.5,3)"
@@ -197,7 +200,6 @@
               <input
                 formControlName="investmentAmount"
                 digitOnly
-                [max]="balance"
                 [decimal]="true"
                 [ngClass]="{
                   'is-invalid': submitted && f.investmentAmount.errors
@@ -214,7 +216,7 @@
           <div class="col-12">
             <div class="alert alert-success" role="alert" style="width: 100%">
               <div class="b" style="display: flex">
-                You will gain {{finalProfit}} per month
+                You will gain {{finalProfit}} at the end of investment contract
               </div>
             </div>
           </div>

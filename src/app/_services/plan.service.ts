@@ -13,6 +13,6 @@ export class PlanService {
   }
 
   getAll() {
-    return this.http.get<Plan[]>(`${environment.apiUrl}/plan`);
+    return this.http.get<any>(`${environment.apiUrl}/plan`);
   }
 }

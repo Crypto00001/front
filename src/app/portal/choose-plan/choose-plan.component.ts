@@ -52,14 +52,14 @@ export class ChoosePlanComponent implements OnInit {
       investmentAmount: ['', Validators.required]
     });
 
-    const statePromise = this.referralService
+    const referralCount = this.referralService
       .getAll();
-    const citiesPromise = this.planService
+    const plans = this.planService
       .getAll();
 
-    forkJoin([statePromise, citiesPromise]).subscribe((responses) => {
+    forkJoin([referralCount, plans]).subscribe((responses) => {
       this.countActive = responses[0].data;
-      this.planList = responses[1].map(item => ({
+      this.planList = responses[1].data.map(item => ({
         value: item.name, planDetail: {
           percentage: item.profitPercent,
           month: item.duration,
@@ -184,7 +184,7 @@ export class ChoosePlanComponent implements OnInit {
     this.plan = this.planList.find(a => a.value === this.form.controls.planName.value);
     const profitPercentage = this.toPercentage(this.plan.planDetail.percentage);
     const referralPercentage = this.toPercentage(this.plan.planDetail.referralPercent) * this.countActive;
-    return parseFloat((investmentValue + (investmentValue * (profitPercentage + referralPercentage))).toFixed(8));
+    return parseFloat((investmentValue * Math.pow(((1+ (profitPercentage + referralPercentage)/1)),this.plan.planDetail.month)).toFixed(8));
   }
 
   toPercentage(percentage: number) {

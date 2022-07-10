@@ -28,7 +28,7 @@
             <h2>Contact Form.</h2>
           </div>
           <div class="contact-form-area">
-            <form
+            <form [formGroup]="generalForm" (ngSubmit)="onSubmit()"
               method="post"
               action="/contact-us/process"
               id="contact-form"
@@ -37,6 +37,7 @@
                 <input
                   type="text"
                   name="name"
+                  formControlName="name"
                   placeholder="Your Name"
                   required
                 />
@@ -45,23 +46,30 @@
                 <input
                   type="email"
                   name="email"
+                  formControlName="email"
                   placeholder="Email Address"
                   required
                 />
               </div>
               <div class="form-group">
-                <input type="text" name="phone" placeholder="Phone" required />
+                <input type="text" name="phone" formControlName="phone" placeholder="Phone" required />
               </div>
               <div class="form-group">
                 <input
                   type="text"
                   name="subject"
+                  formControlName="subject"
                   placeholder="Subject"
                   required
                 />
               </div>
               <div class="form-group">
-                <textarea name="message" placeholder="Message"></textarea>
+                <textarea name="message" formControlName="message" placeholder="Message"></textarea>
+              </div>
+              <div #sendNotif class="form-group alert alert-success" role="alert" style="width: 100%; display:none">
+                <div class="b" style="display: flex">
+                  Your message was sent successfully
+                </div>
               </div>
               <div class="form-group theme-btn">
                 <input

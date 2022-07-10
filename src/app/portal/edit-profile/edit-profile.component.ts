@@ -282,7 +282,7 @@ export class EditProfileComponent implements OnInit {
       this.generalForm = this.formBuilder.group({
         firstName: [null, [Validators.required,Validators.maxLength(50)]],
         lastName: [null, [Validators.required,Validators.maxLength(50)]],
-        email: [null, [Validators.required,Validators.maxLength(50)]],
+        email: [null, [Validators.required, Validators.email,Validators.maxLength(50)]],
         country: [null, Validators.required],
       });
     this.changePasswordForm = this.formBuilder.group({
