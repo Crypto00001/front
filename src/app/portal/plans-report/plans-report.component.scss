@@ -1,13 +1,16 @@
 table {
-    border-collapse: inherit;
+  border-collapse: inherit;
 }
+
 table.data-list-view.dataTable tbody tr:hover, table.data-thumb-view.dataTable tbody tr:hover {
-    transform: translateY(0px) !important;
+  transform: translateY(0px) !important;
 }
+
 table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody tr {
-    cursor: unset;
+  cursor: unset;
 }
-.no-content{
+
+.no-content {
   background-color: #212744;
   margin-top: -14px;
   padding: 40px;
@@ -17,6 +20,12 @@ table.data-list-view.dataTable tbody tr, table.data-thumb-view.dataTable tbody t
   border-color: darkgray;
   border-width: 2px;
 }
-.no-content p{
+
+.no-content p {
   margin: 0;
+}
+
+.table.dataTable tbody td,
+.table.dataTable thead th{
+  text-align: center;
 }
