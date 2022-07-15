@@ -307,7 +307,7 @@ export class EditProfileComponent implements OnInit {
     this.generalFormSubmitted = true;
 
     // stop here if form is invalid
-    if (this.generalForm.invalid || !this.changePasswordForm.dirty) {
+    if (this.generalForm.invalid) {
       return;
     }
     this.loading = true;
@@ -315,12 +315,12 @@ export class EditProfileComponent implements OnInit {
         .pipe(first())
         .subscribe(
             data => {
-              if (data.hasError) {
+              if (data.hasError) 
                 this.alertService.error(data.errorMessage);
-                this.loading = false;
-              }
               else
                 this.alertService.success('Information successfully updated!', { keepAfterRouteChange: true });
+                
+              this.loading = false;
             },
             () => {
               this.loading = false;
