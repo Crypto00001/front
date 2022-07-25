@@ -78,6 +78,5 @@
 /* inverse breadcrumb */
 @each $color, $value in $theme-colors {
   .bg-inverse-#{$color} {
-    @include breadcrumb-inverse-variant($value);
   }
 }

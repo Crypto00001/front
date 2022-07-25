@@ -105,6 +105,5 @@
 /* pagination variations */
 @each $color, $value in $theme-colors {
   .pagination-#{$color} {
-    @include pagination-variants($value);
   }
 }

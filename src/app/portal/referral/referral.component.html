@@ -29,7 +29,7 @@
               </li>
               <li>You are allowed to have up to 5 active invitees.</li>
               <li>
-                For each <d style="text-decoration: underline">active</d> invitee, you will be awarded a percentage of the
+                For each <a style="cursor: default ;text-decoration: underline">active</a> invitee, you will be awarded a percentage of the
                 bonus, the amount of which varies in each plan.
               </li>
             </ul>
@@ -114,7 +114,7 @@
                       </tr>
                       </tbody>
                     </table>
-                    <div *ngIf="!this.inviteeList.length>0" class="no-content">
+                    <div *ngIf="!(this.inviteeList.length>0)" class="no-content">
                       <p>No referrals found</p>
                     </div>
                   </div>

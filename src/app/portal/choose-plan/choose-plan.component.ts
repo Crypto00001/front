@@ -25,7 +25,7 @@ export class ChoosePlanComponent implements OnInit {
     {key: 4, value: 'Zcash'},
     {key: 5, value: 'Tether'}
   ];
-  private countActive: any;
+  public countActive: any;
 
   constructor(private formBuilder: FormBuilder,
               private referralService: ReferralService,
