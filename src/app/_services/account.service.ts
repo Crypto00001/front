@@ -32,7 +32,7 @@ export class AccountService {
       .pipe(
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          this.cookieService.set('user',JSON.stringify(user),{secure:true});
+          this.cookieService.set('user',JSON.stringify(user),{secure:false});
           this.userSubject.next(user);
           return user;
         })
@@ -59,7 +59,7 @@ export class AccountService {
       map((x) => {
         // update local storage
         const user = { ...this.userValue, ...params };
-        this.cookieService.set('user',JSON.stringify(user),{secure:true});
+        this.cookieService.set('user',JSON.stringify(user),{secure:false});
 
         // publish updated user to subscribers
         this.userSubject.next(user);
@@ -72,7 +72,7 @@ export class AccountService {
       map((x) => {
         // update local storage
         const user = { ...this.userValue, ...params };
-        this.cookieService.set('user',JSON.stringify(user),{secure:true});
+        this.cookieService.set('user',JSON.stringify(user),{secure:false});
 
         // publish updated user to subscribers
         this.userSubject.next(user);
