@@ -68,7 +68,7 @@ const routes: Routes = [
       { path: 'choose-plan', component: ChoosePlanComponent, canActivate: [AuthGuard] },
       { path: 'wallet', component: DepositComponent, canActivate: [AuthGuard] },
       { path: 'plans-report', component: PlansReportComponent, canActivate: [AuthGuard] },
-      { path: 'refferal', component: ReferralComponent, canActivate: [AuthGuard] },
+      { path: 'referral', component: ReferralComponent, canActivate: [AuthGuard] },
       { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthGuard] }
     ],
   },
